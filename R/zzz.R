@@ -23,5 +23,7 @@ boto3_available <- function() {
 #' Fails if boto3 Python module is not installed
 #' @export
 assert_boto3_available <- function() {
-    stopifnot(boto3_available())
+    if (boto3_available() == FALSE) {
+        stop('boto3 not available, please install manually or via reticulate::py_install')
+    }
 }
