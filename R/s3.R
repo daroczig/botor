@@ -65,6 +65,11 @@ s3_download <- function(object, file, force = TRUE) {
     assert_flag(force)
     assert_s3()
     s3object <- s3$Object(bucket_name = s3_extract_path(object)$bucket_name, key = s3_extract_path(object)$key)
-    s3object$download_file(file)
+    tryCatch(
+        s3object$download_file(file),
+        error = function(e) {
+            e <- py_last_error()
+            stop(paste(e$type, e$value, sep = ': '), call. = FALSE)
+        })
     invisible(file)
 }

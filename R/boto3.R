@@ -3,7 +3,7 @@
 #' @export
 #' @importFrom reticulate py_module_available
 boto3_available <- function() {
-    py_module_available('boto3')
+    py_available() & py_module_available('boto3')
 }
 
 
