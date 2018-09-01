@@ -2,10 +2,11 @@
 % Please edit documentation in R/boto3.R
 \name{assert_boto3_available}
 \alias{assert_boto3_available}
-\title{Fails if boto3 Python module is not installed}
+\title{Fail if boto3 Python module is not installed}
 \usage{
 assert_boto3_available()
 }
 \description{
-Fails if boto3 Python module is not installed
+Fail if boto3 Python module is not installed
 }
+\keyword{internal}

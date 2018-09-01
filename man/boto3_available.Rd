@@ -2,7 +2,7 @@
 % Please edit documentation in R/boto3.R
 \name{boto3_available}
 \alias{boto3_available}
-\title{Checks if boto3 Python module is installed}
+\title{Check if boto3 Python module is installed}
 \usage{
 boto3_available()
 }
@@ -10,5 +10,5 @@ boto3_available()
 boolean
 }
 \description{
-Checks if boto3 Python module is installed
+Check if boto3 Python module is installed
 }

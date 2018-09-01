@@ -2,7 +2,7 @@
 % Please edit documentation in R/s3.R
 \name{s3_list_buckets}
 \alias{s3_list_buckets}
-\title{Lists all S3 buckets}
+\title{List all S3 buckets}
 \usage{
 s3_list_buckets()
 }
@@ -10,5 +10,5 @@ s3_list_buckets()
 \code{list} of \code{Bucket}s
 }
 \description{
-Lists all S3 buckets
+List all S3 buckets
 }
