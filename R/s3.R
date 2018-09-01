@@ -5,14 +5,14 @@ s3 <- NULL
 #' @return boto3 resource
 #' @keywords internal
 s3_init <- function() {
-    if (is.null(s3)) {
-        utils::assignInMyNamespace('s3', botor$resource('s3'))
+    if (is.null(s3) || attr(s3, 'pid') != Sys.getpid()) {
+        utils::assignInMyNamespace('s3', structure(botor$resource('s3'), pid = Sys.getpid()))
     }
 }
 
 
 #' Lists all S3 buckets
-#' @return list
+#' @return \code{list} of \code{Bucket}s
 #' @export
 #' @importFrom reticulate iter_next
 s3_list_buckets <- function() {

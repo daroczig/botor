@@ -7,7 +7,7 @@
 s3_list_buckets()
 }
 \value{
-list
+\code{list} of \code{Bucket}s
 }
 \description{
 Lists all S3 buckets
