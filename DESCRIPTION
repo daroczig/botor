@@ -6,6 +6,7 @@ Authors@R: c(
     )
 Title: Reticulate wrapper on 'boto3' with convent helper functions
 Description: Provides access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module.
+SystemRequirements: boto3 (https://aws.amazon.com/sdk-for-python)
 Version: 0.1
 Date: 2018-09-01
 URL: https://github.com/daroczig/botor
