@@ -6,11 +6,11 @@ Quick example:
 
 1. Load the `botor` package with a lazy Python `import` on `boto3` in the background:
 
-```r
-system.time(library(botor))
-#>    user  system elapsed 
-#>   0.753   0.055   0.815
-```
+    ```r
+    system.time(library(botor))
+    #>    user  system elapsed 
+    #>   0.753   0.055   0.815
+    ```
 
 2. Actual `boto3` import happens on first usage:
 
@@ -36,7 +36,7 @@ system.time(s3_list_buckets())[['elapsed']]
 
 5. Unfortunately, sharing the same Boto3 resource between (forked) processes is not ideal, so `botor` will take care of that by spawning new resources in the forked threads:
 
-```
+```r
 library(parallel)
 simplify2array(mclapply(1:4, function(i) system.time(s3_list_buckets())[['elapsed']], mc.cores = 2))
 #> [1] 1.359 1.356 0.406 0.397
