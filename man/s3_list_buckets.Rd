@@ -4,10 +4,13 @@
 \alias{s3_list_buckets}
 \title{List all S3 buckets}
 \usage{
-s3_list_buckets()
+s3_list_buckets(simplify = TRUE)
+}
+\arguments{
+\item{simplify}{return bucket names as a character vector}
 }
 \value{
-\code{list} of \code{Bucket}s
+\code{list} of \code{boto3.resources.factory.s3.Bucket} or a character vector
 }
 \description{
 List all S3 buckets

@@ -13,10 +13,15 @@ assert_s3 <- function() {
 
 
 #' List all S3 buckets
-#' @return \code{list} of \code{Bucket}s
+#' @param simplify return bucket names as a character vector
+#' @return \code{list} of \code{boto3.resources.factory.s3.Bucket} or a character vector
 #' @export
 #' @importFrom reticulate iter_next
-s3_list_buckets <- function() {
+s3_list_buckets <- function(simplify = TRUE) {
     assert_s3()
-    iter_next(s3$buckets$pages())
+    buckets <- iter_next(s3$buckets$pages())
+    if (simplify == TRUE) {
+        buckets <- sapply(buckets, `[[`, 'name')
+    }
+    buckets
 }
