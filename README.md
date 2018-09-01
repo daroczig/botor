@@ -28,6 +28,8 @@ devtools::install_github('darociz/botor')
     #>   0.341   0.283   0.445
     ```
 
+`botor` will use the credentials and related options set in the [environmental variables](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuration) or in the `~/.aws/config` and `~/.aws/credentials` files. If you need to specify a custom profile or AWS region, please set the related environment variable before loading `botor`, as there are no intentions to provide helper functions passing parameters to `boto3.session.Session`.
+
 ## Using the raw Boto3 module
 
 The `botor` package provides the `botor` object with full access to the Boto3 Python SDK. Quick example on listing all S3 buckets:
