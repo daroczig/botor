@@ -27,3 +27,11 @@ assert_boto3_available <- function() {
         stop('boto3 not available, please install manually or via reticulate::py_install')
     }
 }
+
+
+#' boto3 version
+#' @return string
+#' @export
+boto3_version <- function() {
+    botor$`__version__`
+}

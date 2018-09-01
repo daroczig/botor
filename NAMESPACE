@@ -2,5 +2,6 @@
 
 export(assert_boto3_available)
 export(boto3_available)
+export(boto3_version)
 export(botor)
 importFrom(reticulate,py_module_available)
