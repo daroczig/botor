@@ -28,6 +28,7 @@ s3_extract_path <- function(path) {
     )
 }
 
+## TODO s3_object_to_path
 
 #' List all S3 buckets
 #' @param simplify return bucket names as a character vector
@@ -67,4 +68,23 @@ s3_download <- function(object, file, force = TRUE) {
     s3object <- s3$Object(bucket_name = s3_extract_path(object)$bucket_name, key = s3_extract_path(object)$key)
     trypy(s3object$download_file(file))
     invisible(file)
+}
+
+
+#' Download and read a file from S3, then clean up
+#' @inheritParams s3_download
+#' @param fun R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}
+#' @return R object
+#' @export
+#' @examples \dontrun{
+#' s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+#' }
+s3_read <- function(object, fun, ...) {
+
+    t <- tempfile()
+    on.exit(unlink(t))
+
+    s3_download(object, t)
+    fun(t, ...)
+
 }
