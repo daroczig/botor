@@ -15,3 +15,4 @@ list
 \description{
 Split the bucket name and object key from the S3 URI
 }
+\keyword{internal}

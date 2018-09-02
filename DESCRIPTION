@@ -4,7 +4,7 @@ Authors@R: c(
     person("Gergely", "Daroczi", , "daroczig@rapporter.net", role = c("aut", "cre")),
     person("System1", role = c("fnd"))
     )
-Title: Reticulate wrapper on 'boto3' with convent helper functions
+Title: Reticulate wrapper on 'boto3' with convenient helper functions
 Description: Provides access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module.
 SystemRequirements: boto3 (https://aws.amazon.com/sdk-for-python)
 Version: 0.1

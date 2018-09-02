@@ -18,7 +18,7 @@ assert_s3 <- function() {
 #' Split the bucket name and object key from the S3 URI
 #' @inheritParams s3_object
 #' @return list
-#' @export
+#' @keywords internal
 s3_split_uri <- function(uri) {
     assert_s3_uri(uri)
     path <- sub('^s3://', '', uri)
@@ -155,3 +155,8 @@ s3_write <- function(x, fun, uri, ...) {
     s3_upload_file(t, uri)
 
 }
+
+
+## TODO delete
+## TODO exists
+## TODO ls
