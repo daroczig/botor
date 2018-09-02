@@ -8,4 +8,6 @@ botor <- NULL
         'botor',
         reticulate::import('boto3', delay_load = TRUE))
 
+    ## options('reticulate.traceback' = FALSE)
+
 }
