@@ -4,10 +4,10 @@
 \alias{check_s3_uri}
 \title{Check if an argument looks like an S3 bucket}
 \usage{
-check_s3_uri(uri)
+check_s3_uri(x)
 }
 \arguments{
-\item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
+\item{x}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 }
 \description{
 Check if an argument looks like an S3 bucket

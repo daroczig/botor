@@ -16,7 +16,7 @@ assert_s3 <- function() {
 
 
 #' Split the bucket name and object key from the S3 URI
-#' @inheritParams check_s3_uri
+#' @inheritParams s3_object
 #' @return list
 #' @export
 s3_split_uri <- function(uri) {
@@ -30,7 +30,7 @@ s3_split_uri <- function(uri) {
 
 
 #' Create an S3 Object reference from an URI
-#' @inheritParams check_s3_uri
+#' @param uri string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
 #' @return \code{s3$Object}
 #' @export
 s3_object <- function(uri) {
@@ -57,16 +57,17 @@ s3_list_buckets <- function(simplify = TRUE) {
 
 
 #' Download a file from S3
-#' @inheritParams check_s3_uri
+#' @inheritParams s3_object
 #' @param file string, location of local file
 #' @param overwrite boolean, overwrite local file if exists
 #' @export
 #' @importFrom checkmate assert_string assert_directory_exists assert_flag
 #' @return invisibly \code{file}
 #' @examples \dontrun{
-#' s3_download('s3://botor/example-data/mtcars.csv', tempfile())
+#' s3_download_file('s3://botor/example-data/mtcars.csv', tempfile())
 #' }
-s3_download <- function(uri, file, force = TRUE) {
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.download_file}
+s3_download_file <- function(uri, file, force = TRUE) {
     assert_string(file)
     assert_directory_exists(dirname(file))
     if (force == FALSE & file.exists(file)) {
@@ -82,7 +83,7 @@ s3_download <- function(uri, file, force = TRUE) {
 
 
 #' Download and read a file from S3, then clean up
-#' @inheritParams s3_download
+#' @inheritParams s3_download_file
 #' @param fun R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}
 #' @return R object
 #' @export
@@ -95,7 +96,27 @@ s3_read <- function(uri, fun, ...) {
     t <- tempfile()
     on.exit(unlink(t))
 
-    s3_download(uri, t)
+    s3_download_file(uri, t)
     fun(t, ...)
 
+}
+
+
+#' Upload a file to S3
+#' @inheritParams s3_object
+#' @param file string, location of local file
+#' @param overwrite boolean, overwrite local file if exists
+#' @export
+#' @importFrom checkmate assert_file_exists
+#' @return invisibly \code{uri}
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file}
+#' @seealso \code{\link{s3_download_file}}
+s3_upload_file <- function(file, uri) {
+    assert_string(file)
+    assert_file_exists(file)
+    assert_s3_uri(uri)
+    assert_s3()
+    s3object <- s3_object(uri)
+    trypy(s3object$upload_file(file))
+    invisible(uri)
 }
