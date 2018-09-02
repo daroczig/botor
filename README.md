@@ -83,3 +83,18 @@ The currently supported resources and features via helper functions:
 
 * S3: ...
 * KMS: ...
+
+
+## Error handling
+
+The convenient helper functions try to suppress the boring Python traceback and provide you only the most relevant information on the error. If you want to see the full tracelog and more details after an error, call `reticulate::py_last_error()`. When working with the raw `boto3` wrapper, you may find `botor:::trypy` useful as well.
+
+```r
+s3_download('s3://BOTOR/example-data/mtcars.csv', tempfile())
+#> Error in s3_download('s3://BOTOR/example-data/mtcars.csv', tempfile()) : 
+#>   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden
+
+s3_read('s3://botor/example-data/mtcars2.csv', read.csv)
+#> Error in s3_download(object, t) : 
+#>   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found
+```
