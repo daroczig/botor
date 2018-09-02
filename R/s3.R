@@ -89,7 +89,9 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' @export
 #' @examples \dontrun{
 #' s3_read('s3://botor/example-data/mtcars.csv', read.csv)
-#' s3_read('s3://botor/example-data/mtcars.csv2', read.csv, sep = ';')
+#' s3_read('s3://botor/example-data/mtcars.csv2', read.csv2)
+#' s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
+#' s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
 #' }
 s3_read <- function(uri, fun, ...) {
 
@@ -135,6 +137,7 @@ s3_upload_file <- function(file, uri) {
 #' @note The temp file used for this operation is automatically removed.
 #' @examples \dontrun{
 #' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
+#' s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 #' s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
 #' s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
 #' }

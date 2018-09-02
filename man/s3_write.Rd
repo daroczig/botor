@@ -24,6 +24,7 @@ The temp file used for this operation is automatically removed.
 \examples{
 \dontrun{
 s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
+s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
 s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
 }

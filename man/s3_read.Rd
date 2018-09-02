@@ -20,6 +20,8 @@ Download and read a file from S3, then clean up
 \examples{
 \dontrun{
 s3_read('s3://botor/example-data/mtcars.csv', read.csv)
-s3_read('s3://botor/example-data/mtcars.csv2', read.csv, sep = ';')
+s3_read('s3://botor/example-data/mtcars.csv2', read.csv2)
+s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
+s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
 }
 }
