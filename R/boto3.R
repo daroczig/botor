@@ -1,7 +1,7 @@
 #' Check if boto3 Python module is installed
 #' @return boolean
 #' @export
-#' @importFrom reticulate py_module_available
+#' @importFrom reticulate py_available py_module_available
 boto3_available <- function() {
     py_available() & py_module_available('boto3')
 }

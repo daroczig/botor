@@ -7,6 +7,7 @@
 #' trypy(sum(1:2))
 #' trypy(sum(1:1foo))
 #' }
+#' @importFrom reticulate py_clear_last_error py_last_error
 trypy <- function(expression) {
     py_clear_last_error()
     tryCatch(
