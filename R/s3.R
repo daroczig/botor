@@ -19,7 +19,7 @@ assert_s3 <- function() {
 #' @inheritParams check_s3_uri
 #' @return list
 #' @export
-s3_split_path <- function(uri) {
+s3_split_uri <- function(uri) {
     assert_s3_uri(uri)
     path <- sub('^s3://', '', uri)
     list(
@@ -28,7 +28,18 @@ s3_split_path <- function(uri) {
     )
 }
 
-## TODO s3_object_to_path
+
+#' Create an S3 Object reference from an URI
+#' @inheritParams check_s3_uri
+#' @return \code{s3$Object}
+#' @export
+s3_object <- function(uri) {
+    uri_parts <- s3_split_uri(uri)
+    s3$Object(
+        bucket_name = uri_parts$bucket_name,
+        key = uri_parts$key)
+}
+
 
 #' List all S3 buckets
 #' @param simplify return bucket names as a character vector
@@ -64,7 +75,7 @@ s3_download <- function(uri, file, force = TRUE) {
     assert_s3_uri(uri)
     assert_flag(force)
     assert_s3()
-    s3object <- s3$Object(bucket_name = s3_split_path(object)$bucket_name, key = s3_split_path(object)$key)
+    s3object <- s3_object(uri)
     trypy(s3object$download_file(file))
     invisible(file)
 }
