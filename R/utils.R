@@ -6,7 +6,7 @@ trypy <- function(expression) {
     tryCatch(
         eval.parent(expression),
         error = function(e) {
-            e <- py_last_error()
-            stop(paste0('[[', e$type, ']] ', e$value), call. = FALSE)
+            e$call <- sys.calls()[[sys.nframe() - 5]]
+            stop(e)
         })
 }
