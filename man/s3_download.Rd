@@ -4,10 +4,10 @@
 \alias{s3_download}
 \title{Download a file from S3}
 \usage{
-s3_download(object, file, force = TRUE)
+s3_download(uri, file, force = TRUE)
 }
 \arguments{
-\item{object}{string, remote S3 path of file to download, should start with 's3://'}
+\item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
 \item{file}{string, location of local file}
 

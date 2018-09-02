@@ -4,10 +4,10 @@
 \alias{s3_read}
 \title{Download and read a file from S3, then clean up}
 \usage{
-s3_read(object, fun, ...)
+s3_read(uri, fun, ...)
 }
 \arguments{
-\item{object}{string, remote S3 path of file to download, should start with 's3://'}
+\item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
 \item{fun}{R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}}
 }

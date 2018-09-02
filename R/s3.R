@@ -15,13 +15,13 @@ assert_s3 <- function() {
 }
 
 
-#' Split the bucket name and object key from the S3 path
-#' @param path S3 path starting with \code{s3://}, bucket name and object key
+#' Split the bucket name and object key from the S3 URI
+#' @inheritParams check_s3_uri
 #' @return list
 #' @export
-s3_split_path <- function(path) {
-    assert_s3_uri(path)
-    path <- sub('^s3://', '', path)
+s3_split_path <- function(uri) {
+    assert_s3_uri(uri)
+    path <- sub('^s3://', '', uri)
     list(
         bucket_name = sub('/.*$', '', path),
         key = sub('^[a-z0-9][a-z0-9\\.-]+[a-z0-9]/', '', path)
@@ -46,23 +46,22 @@ s3_list_buckets <- function(simplify = TRUE) {
 
 
 #' Download a file from S3
-#' @param object string, remote S3 path of file to download, should start with 's3://'
+#' @inheritParams check_s3_uri
 #' @param file string, location of local file
 #' @param overwrite boolean, overwrite local file if exists
 #' @export
 #' @importFrom checkmate assert_string assert_directory_exists assert_flag
-#' @importFrom aws.s3 save_object
 #' @return invisibly \code{file}
 #' @examples \dontrun{
 #' s3_download('s3://botor/example-data/mtcars.csv', tempfile())
 #' }
-s3_download <- function(object, file, force = TRUE) {
+s3_download <- function(uri, file, force = TRUE) {
     assert_string(file)
     assert_directory_exists(dirname(file))
     if (force == FALSE & file.exists(file)) {
         stop(paste(file, 'already exists'))
     }
-    assert_s3_uri(object)
+    assert_s3_uri(uri)
     assert_flag(force)
     assert_s3()
     s3object <- s3$Object(bucket_name = s3_split_path(object)$bucket_name, key = s3_split_path(object)$key)
@@ -80,12 +79,12 @@ s3_download <- function(object, file, force = TRUE) {
 #' s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 #' s3_read('s3://botor/example-data/mtcars.csv2', read.csv, sep = ';')
 #' }
-s3_read <- function(object, fun, ...) {
+s3_read <- function(uri, fun, ...) {
 
     t <- tempfile()
     on.exit(unlink(t))
 
-    s3_download(object, t)
+    s3_download(uri, t)
     fun(t, ...)
 
 }

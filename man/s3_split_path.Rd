@@ -4,10 +4,10 @@
 \alias{s3_split_path}
 \title{Split the bucket name and object key from the S3 path}
 \usage{
-s3_split_path(path)
+s3_split_path(uri)
 }
 \arguments{
-\item{path}{S3 path starting with \code{s3://}, bucket name and object key}
+\item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 }
 \value{
 list
