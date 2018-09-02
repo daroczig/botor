@@ -20,7 +20,7 @@ assert_s3 <- function() {
 #' @return list
 #' @export
 s3_split_path <- function(path) {
-    assert_s3_path(path)
+    assert_s3_uri(path)
     path <- sub('^s3://', '', path)
     list(
         bucket_name = sub('/.*$', '', path),
@@ -62,7 +62,7 @@ s3_download <- function(object, file, force = TRUE) {
     if (force == FALSE & file.exists(file)) {
         stop(paste(file, 'already exists'))
     }
-    assert_s3_path(object)
+    assert_s3_uri(object)
     assert_flag(force)
     assert_s3()
     s3object <- s3$Object(bucket_name = s3_split_path(object)$bucket_name, key = s3_split_path(object)$key)
