@@ -111,6 +111,10 @@ s3_read <- function(uri, fun, ...) {
 #' @return invisibly \code{uri}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file}
 #' @seealso \code{\link{s3_download_file}}
+#' @examples \dontrun{
+#' write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
+#' s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
+#' }
 s3_upload_file <- function(file, uri) {
     assert_string(file)
     assert_file_exists(file)
@@ -119,4 +123,32 @@ s3_upload_file <- function(file, uri) {
     s3object <- s3_object(uri)
     trypy(s3object$upload_file(file))
     invisible(uri)
+}
+
+
+#' Write an R object into S3
+#' @param x R object
+#' @param fun R function with \code{file} argument to write \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json} or \code{saveRDS}
+#' @inheritParams s3_object
+#' @param ... optional further arguments passed to \code{fun}
+#' @export
+#' @note The temp file used for this operation is automatically removed.
+#' @examples \dontrun{
+#' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
+#' s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
+#' s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
+#' }
+s3_write <- function(x, fun, uri, ...) {
+
+    t <- tempfile()
+    on.exit(unlink(t))
+
+    if (deparse(substitute(fun)) %in% c('jsonlite::write_json', 'write_json')) {
+        fun(x, path = t, ...)
+    } else {
+        fun(x, file = t, ...)
+    }
+
+    s3_upload_file(t, uri)
+
 }

@@ -19,6 +19,12 @@ invisibly \code{uri}
 \description{
 Upload a file to S3
 }
+\examples{
+\dontrun{
+write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
+s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
+}
+}
 \references{
 \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file}
 }
