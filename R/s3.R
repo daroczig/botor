@@ -15,11 +15,11 @@ assert_s3 <- function() {
 }
 
 
-#' Extract bucket name and key from S3 path
+#' Split the bucket name and object key from the S3 path
 #' @param path S3 path starting with \code{s3://}, bucket name and object key
 #' @return list
 #' @export
-s3_extract_path <- function(path) {
+s3_split_path <- function(path) {
     assert_s3_path(path)
     path <- sub('^s3://', '', path)
     list(
@@ -65,7 +65,7 @@ s3_download <- function(object, file, force = TRUE) {
     assert_s3_path(object)
     assert_flag(force)
     assert_s3()
-    s3object <- s3$Object(bucket_name = s3_extract_path(object)$bucket_name, key = s3_extract_path(object)$key)
+    s3object <- s3$Object(bucket_name = s3_split_path(object)$bucket_name, key = s3_split_path(object)$key)
     trypy(s3object$download_file(file))
     invisible(file)
 }
@@ -78,6 +78,7 @@ s3_download <- function(object, file, force = TRUE) {
 #' @export
 #' @examples \dontrun{
 #' s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+#' s3_read('s3://botor/example-data/mtcars.csv2', read.csv, sep = ';')
 #' }
 s3_read <- function(object, fun, ...) {
 
