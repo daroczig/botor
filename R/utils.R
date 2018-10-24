@@ -56,3 +56,20 @@ base64_dec <- function(text) {
 uuid <- function() {
     py_str(import('uuid')$uuid1())
 }
+
+
+#' Creates an initial or reinitialize an already existing AWS client
+#' @param service string, eg S3 or IAM
+#' @return cached AWS client
+#' @keywords internal
+botor_client <- function(service) {
+    .name  <- paste0('.', service)
+    client <- getFromNamespace(.name, 'botor')
+    if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
+        client <- botor()$client(service)
+        utils::assignInMyNamespace(.name, structure(
+            client,
+            uuid = botor_session_uuid()))
+    }
+    client
+}

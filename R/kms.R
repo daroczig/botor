@@ -6,12 +6,7 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kms.html}
 kms <- function() {
-    if (is.null(.kms) || attr(.kms, 'uuid') != botor_session_uuid()) {
-        utils::assignInMyNamespace('.kms', structure(
-            botor()$client('kms'),
-            uuid = botor_session_uuid()))
-    }
-    .kms
+    botor_client('kms')
 }
 
 
