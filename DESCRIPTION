@@ -10,7 +10,7 @@ SystemRequirements: boto3 (https://aws.amazon.com/sdk-for-python)
 Version: 0.1
 Date: 2018-09-01
 URL: https://github.com/daroczig/botor
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 License: AGPL-3
 Imports:
   utils,

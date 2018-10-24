@@ -1,17 +1,17 @@
-#' Raw access to boto3.resource('s3')
+.s3 <- NULL
+
+
+#' The default, fork-safe S3 client on the top of \code{botor}
+#' @return \code{s3.ServiceResource}
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
-s3 <- NULL
-
-
-#' Make sure S3 is available as a resource
-#' @return boto3 resource
-#' @keywords internal
-assert_s3 <- function() {
-    assert_boto3_available()
-    if (is.null(s3) || attr(s3, 'pid') != Sys.getpid()) {
-        utils::assignInMyNamespace('s3', structure(botor$resource('s3'), pid = Sys.getpid()))
+s3 <- function() {
+    if (is.null(.s3) || attr(.s3, 'session') != botor_session_id()) {
+        utils::assignInMyNamespace('.s3', structure(
+            botor()$resource('s3'),
+            session = botor_session_id()))
     }
+    .s3
 }
 
 
@@ -35,7 +35,7 @@ s3_split_uri <- function(uri) {
 #' @export
 s3_object <- function(uri) {
     uri_parts <- s3_split_uri(uri)
-    s3$Object(
+    s3()$Object(
         bucket_name = uri_parts$bucket_name,
         key = uri_parts$key)
 }
@@ -47,8 +47,7 @@ s3_object <- function(uri) {
 #' @export
 #' @importFrom reticulate iter_next
 s3_list_buckets <- function(simplify = TRUE) {
-    assert_s3()
-    buckets <- iter_next(s3$buckets$pages())
+    buckets <- iter_next(s3()$buckets$pages())
     if (simplify == TRUE) {
         buckets <- sapply(buckets, `[[`, 'name')
     }
@@ -75,7 +74,6 @@ s3_download_file <- function(uri, file, force = TRUE) {
     }
     assert_s3_uri(uri)
     assert_flag(force)
-    assert_s3()
     s3object <- s3_object(uri)
     trypy(s3object$download_file(file))
     invisible(file)
@@ -120,8 +118,7 @@ s3_read <- function(uri, fun, ...) {
 s3_upload_file <- function(file, uri) {
     assert_string(file)
     assert_file_exists(file)
-    assert_s3_uri(uri)
-    assert_s3()
+    assert_s3uri(uri)
     s3object <- s3_object(uri)
     trypy(s3object$upload_file(file))
     invisible(uri)

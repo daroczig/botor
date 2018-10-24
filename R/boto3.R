@@ -1,3 +1,9 @@
+#' Raw access to the boto3 module imported at package load time
+#' @note You may rather want to use \code{\link{botor}} instead, that provides a fork-safe \code{boto3} session.
+#' @export
+boto3 <- NULL
+
+
 #' Check if boto3 Python module is installed
 #' @return boolean
 #' @export
@@ -10,9 +16,11 @@ boto3_available <- function() {
 #' Fail if boto3 Python module is not installed
 #' @keywords internal
 assert_boto3_available <- function() {
+
     if (boto3_available() == FALSE) {
         stop('boto3 not available, please install manually or via reticulate::py_install')
     }
+
 }
 
 
