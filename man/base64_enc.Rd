@@ -15,3 +15,6 @@ string
 \description{
 Base64-encode raw bytes using Python's base64 module
 }
+\seealso{
+\code{\link{base64_dec}}
+}

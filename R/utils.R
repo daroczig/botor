@@ -30,8 +30,22 @@ trypy <- function(expression) {
 #' @param raw \code{raw} bytes
 #' @return string
 #' @export
+#' @seealso \code{\link{base64_dec}}
 base64_enc <- function(raw) {
     import('base64')$b64encode(raw)
+}
+
+
+#' Base64-decode a string into raw bytes using Python's base64 module
+#' @param text string
+#' @return \code{raw} bytes
+#' @export
+#' @examples \dontrun{
+#' base64_dec(base64_enc(charToRaw('foobar')))
+#' }
+#' @seealso \code{\link{base64_enc}}
+base64_dec <- function(text) {
+    import('base64')$b64decode(text)
 }
 
 
