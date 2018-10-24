@@ -6,10 +6,12 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
 s3 <- function() {
-    if (is.null(.s3) || attr(.s3, 'pid') != botor_session_pid()) {
+    if (is.null(.s3) || attr(.s3, 'uuid') != botor_session_uuid()) {
+        flog.warn('UPDATE S3')
+        flog.info(botor()$region_name)
         utils::assignInMyNamespace('.s3', structure(
             botor()$resource('s3'),
-            pid = botor_session_pid()))
+            uuid = botor_session_uuid()))
     }
     .s3
 }

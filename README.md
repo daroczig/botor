@@ -133,6 +133,7 @@ s3_read('s3://botor/example-data/mtcars2.csv', read.csv)
 #> Error in s3_download(object, t) : 
 #>   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden
 
+botor(region_name = 'us-west-2')
 s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 #>     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 #> 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
