@@ -6,8 +6,6 @@
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html}
 iam <- function() {
     if (is.null(.iam) || attr(.iam, 'uuid') != botor_session_uuid()) {
-        flog.warn('UPDATE S3')
-        flog.info(botor()$region_name)
         utils::assignInMyNamespace('.iam', structure(
             botor()$client('iam'),
             uuid = botor_session_uuid()))

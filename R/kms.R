@@ -7,8 +7,6 @@
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kms.html}
 kms <- function() {
     if (is.null(.kms) || attr(.kms, 'uuid') != botor_session_uuid()) {
-        flog.warn('UPDATE S3')
-        flog.info(botor()$region_name)
         utils::assignInMyNamespace('.kms', structure(
             botor()$client('kms'),
             uuid = botor_session_uuid()))
