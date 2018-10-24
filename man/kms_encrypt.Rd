@@ -14,8 +14,11 @@ kms_encrypt(key, text, simplify = TRUE)
 \item{simplify}{returns Base64-encoded text instead of raw list}
 }
 \value{
-list or string
+string or \code{list}
 }
 \description{
 Encrypt plain text via KMS
+}
+\seealso{
+kms_decrypt
 }
