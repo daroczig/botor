@@ -18,7 +18,10 @@ botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token,
 
     if (length(args) != 0 || is.null(botor_session) || botor_session_pid() != Sys.getpid()) {
 
-        ## TODO use previous botor's args if pid doesn't match
+        if (!is.null(botor_session) & length(args) == 0) {
+            args <- attr(botor_session, 'args')
+        }
+
         session <- do.call(boto3$session$Session, args)
 
         utils::assignInMyNamespace(
