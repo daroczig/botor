@@ -7,7 +7,6 @@
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
 s3 <- function() {
     if (is.null(.s3) || attr(.s3, 'pid') != botor_session_pid()) {
-        flog.error('new s3')
         utils::assignInMyNamespace('.s3', structure(
             botor()$resource('s3'),
             pid = botor_session_pid()))

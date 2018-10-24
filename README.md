@@ -125,17 +125,23 @@ The currently supported resources and features via helper functions:
 The convenient helper functions try to suppress the boring Python traceback and provide you only the most relevant information on the error. If you want to see the full tracelog and more details after an error, call `reticulate::py_last_error()`. When working with the raw `boto3` wrapper, you may find `botor:::trypy` useful as well.
 
 ```r
-s3_download_file('s3://BOTOR/example-data/mtcars.csv', tempfile())
-#> Error in s3_download('s3://BOTOR/example-data/mtcars.csv', tempfile()) : 
-#>   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden
+s3_download_file('s3://bottttor/example-data/mtcars.csv', tempfile())
+#> Error in s3_download_file("s3://bottttor/example-data/mtcars.csv", tempfile()) : 
+#>   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found
 
 s3_read('s3://botor/example-data/mtcars2.csv', read.csv)
 #> Error in s3_download(object, t) : 
-#>   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found
+#>   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden
+
+s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+#>     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+#> 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+#> 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+#> ...
 ```
 
 ## Why the name?
 
-`botor` means ... Hungarian.
+`botor` means "goofy" in Hungarian. This is how I feel when looking back to all the dev hours spent on integrating the AWS Java SDK in R -- this includes `AWR.KMS`, where I ended up debugging and fixing many issues in forked processes, but `AWR.Kinesis` still rocks :)
 
-It also reminds you it's not exactly `boto3`, as eg you have to use `$` instead of `.` to access methods.
+The name also reminds you that it's not exactly `boto3`, as eg you have to use `$` instead of `.` to access methods.
