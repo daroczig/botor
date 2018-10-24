@@ -24,19 +24,19 @@ system.time(library(botor))
 
 Quick examples:
 
-1. Read a `csv` file stored in S3:
+1. Read a `csv` file stored in S3 using a helper function:
 
     ```r
     s3_read('s3://botor/example-data/mtcars.csv', read.csv)
     ```
 
-2. Encrypt a string via KMS:
+2. Encrypt a string via KMS using a helper function:
 
     ```r
     kms_encrypt('alias/key', 'secret')
     ```
 
-3. Get AWS user info:
+3. Get AWS user info using the IAM client directly:
 
     ```r
     iam()$get_user()
