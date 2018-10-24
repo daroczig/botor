@@ -12,7 +12,7 @@ devtools::install_github('daroczig/botor')
 
 ## Loading the package
 
-Load the `botor` package might take a while as it will also `import` the `boto3` Python module in the background:
+Loading the `botor` package might take a while as it will also `import` the `boto3` Python module in the background:
 
 ```r
 system.time(library(botor))
@@ -25,7 +25,12 @@ system.time(library(botor))
 The `botor` package by default will use the credentials and related options set in [environmental variables](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuration) or in the `~/.aws/config` and `~/.aws/credentials` files. If you need to specify a custom profile or AWS region etc, there are various options with different complexity and flexibility:
 
 * set the related environment variable(s) before loading `botor`
-* call the `botor()` function with the relevant argument to set the config of the default session for the `botor` helper functions
+* call the `botor()` function with the relevant argument to set the config of the default session for the `botor` helper functions, eg
+
+```r
+botor(region_name = 'eu-west-42')
+```
+
 * start custom sessions via `boto3.session.Session` using the raw `boto3` object from the package, eg
 
 ```r
@@ -116,8 +121,8 @@ Examples:
 
 The currently supported resources and features via helper functions:
 
-* S3: ...
-* KMS: ...
+* S3: `s3_list_buckets`, `s3_download_file`, `s3_read`, `s3_upload_file`, `s3_write`
+* KMS: `kms_encrypt`, `kms_decrypt`
 
 
 ## Error handling
