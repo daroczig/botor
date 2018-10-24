@@ -7,7 +7,7 @@ This R package provides access to the 'Amazon Web Services' ('AWS') 'SDK' via th
 `botor` is not on CRAN yet, please install from GitHub:
 
 ```r
-devtools::install_github('darociz/botor')
+devtools::install_github('daroczig/botor')
 ```
 
 ## Loading the package
