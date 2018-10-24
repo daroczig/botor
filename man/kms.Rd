@@ -7,11 +7,11 @@
 kms()
 }
 \value{
-\code{s3.ServiceResource}
+\code{botocore.client.KMS}
 }
 \description{
 The default, fork-safe KMS client on the top of \code{botor}
 }
 \references{
-\url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
+\url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kms.html}
 }

@@ -20,7 +20,29 @@ system.time(library(botor))
 #>   1.131   0.250   1.191
 ```
 
-### AWS Auth
+## Getting started
+
+Quick examples:
+
+1. Read a `csv` file stored in S3:
+
+    ```r
+    s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+    ```
+
+2. Encrypt a string via KMS:
+
+    ```r
+    kms_encrypt('alias/key', 'secret')
+    ```
+
+3. Get AWS user info:
+
+    ```r
+    iam()$get_user()
+    ```
+
+## AWS Auth
 
 The `botor` package by default will use the credentials and related options set in [environmental variables](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuration) or in the `~/.aws/config` and `~/.aws/credentials` files. If you need to specify a custom profile or AWS region etc, there are various options with different complexity and flexibility:
 
