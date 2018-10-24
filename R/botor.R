@@ -10,7 +10,6 @@ botor_session <- NULL
 #' @param profile_name The name of a profile to use. If not given, then the default profile is used
 #' @return boto3 \code{Session}
 #' @export
-#' @importFrom reticulate py_str
 botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token,
                   region_name, botocore_session, profile_name) {
 
@@ -30,7 +29,7 @@ botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token,
             structure(
                 session,
                 pid  = Sys.getpid(),
-                uuid = py_str(import('uuid')$uuid1()),
+                uuid = uuid(),
                 args = args))
     }
 

@@ -24,3 +24,21 @@ trypy <- function(expression) {
         stop(e)
     })
 }
+
+
+#' Base64-encode raw bytes using Python's base64 module
+#' @param raw \code{raw} bytes
+#' @return string
+#' @export
+base64_enc <- function(raw) {
+    import('base64')$b64encode(raw)
+}
+
+
+#' Generate UUID using Python's uuid module
+#' @return string
+#' @export
+#' @importFrom reticulate py_str
+uuid <- function() {
+    py_str(import('uuid')$uuid1())
+}
