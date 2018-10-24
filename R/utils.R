@@ -58,15 +58,21 @@ uuid <- function() {
 }
 
 
-#' Creates an initial or reinitialize an already existing AWS client
+#' Creates an initial or reinitialize an already existing AWS client or resource
 #' @param service string, eg S3 or IAM
+#' @param type client or resource to be created
 #' @return cached AWS client
 #' @keywords internal
-botor_client <- function(service) {
+botor_client <- function(service, type = c('client', 'resource')) {
+    type <- match.arg(type)
     .name  <- paste0('.', service)
     client <- getFromNamespace(.name, 'botor')
     if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
-        client <- botor()$client(service)
+        if (type == 'client') {
+            client <- botor()$client(service)
+        } else {
+            client <- botor()$resource(service)
+        }
         utils::assignInMyNamespace(.name, structure(
             client,
             uuid = botor_session_uuid()))

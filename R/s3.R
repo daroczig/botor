@@ -6,12 +6,7 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
 s3 <- function() {
-    if (is.null(.s3) || attr(.s3, 'uuid') != botor_session_uuid()) {
-        utils::assignInMyNamespace('.s3', structure(
-            botor()$resource('s3'),
-            uuid = botor_session_uuid()))
-    }
-    .s3
+    botor_client('s3', type = 'resource')
 }
 
 

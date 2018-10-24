@@ -5,5 +5,5 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html}
 iam <- function() {
-    botor_client('iam')
+    botor_client('iam', type = 'client')
 }

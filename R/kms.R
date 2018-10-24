@@ -6,7 +6,7 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kms.html}
 kms <- function() {
-    botor_client('kms')
+    botor_client('kms', type = 'client')
 }
 
 
