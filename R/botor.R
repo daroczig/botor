@@ -13,35 +13,24 @@ botor_session <- NULL
 botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token,
                   region_name, botocore_session, profile_name) {
 
-    assert_boto3_available()
-
     mc   <- match.call()
     args <- as.list(mc[-1])
+
     if (length(args) != 0 || is.null(botor_session) || botor_session_pid() != Sys.getpid()) {
 
-
         ## TODO use previous botor's args if pid doesn't match
-        session <- do.call(boto3$Session, args)
+        session <- do.call(boto3$session$Session, args)
 
         utils::assignInMyNamespace(
             'botor_session',
             structure(
                 session,
-                id   = reticulate:::py_id(session),
                 pid  = Sys.getpid(),
                 args = args))
     }
 
     botor_session
 
-}
-
-
-#' Look up internal Python id of the Boto3 session
-#' @return int
-#' @keywords internal
-botor_session_id <- function() {
-    attr(botor_session, 'id')
 }
 
 

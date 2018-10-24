@@ -12,21 +12,13 @@ devtools::install_github('darociz/botor')
 
 ## Loading the package
 
-1. Load the `botor` package with a lazy Python `import` on `boto3` in the background:
+Load the `botor` package might take a while as it will also `import` the `boto3` Python module in the background:
 
-    ```r
-    system.time(library(botor))
-    #>    user  system elapsed 
-    #>   0.753   0.055   0.815
-    ```
-
-2. Actual `boto3` import happens on first usage:
-
-    ```r
-    system.time(assert_boto3_available())
-    #>    user  system elapsed 
-    #>   0.341   0.283   0.445
-    ```
+```r
+system.time(library(botor))
+#>    user  system elapsed 
+#>   1.131   0.250   1.191
+```
 
 ### AWS Auth
 
@@ -40,9 +32,9 @@ The `botor` package by default will use the credentials and related options set 
 my_custom_session <- boto3$Session(region_name = 'us-west-2')
 ```
 
-## Using the raw Boto3 module
+## Using the raw `boto3` module
 
-The `botor` package provides the `boto3` object with full access to the Boto3 Python SDK. Quick example on listing all S3 buckets:
+The `botor` package provides the `boto3` object with full access to the `boto3` Python SDK. Quick example on listing all S3 buckets:
 
 ```r
 library(botor)
@@ -51,11 +43,11 @@ library(reticulate)
 iter_next(s3$buckets$pages())
 ```
 
-Note that this approach requires a stable understanding of the Boto3 Python module, plus a decent familiarity with `reticulate` as well (see eg `iter_next`) -- so you might want to rather consider using the helper functions described below.
+Note that this approach requires a stable understanding of the `boto3` Python module, plus a decent familiarity with `reticulate` as well (see eg `iter_next`) -- so you might want to rather consider using the helper functions described below.
 
 ## Using the default `botor` session
 
-Calling `botor()` will provide you a default Boto3 session that is cached internally. You can always override the default session by calling `botor()` again with new arguments. See eg setting the default Boto3 session to use `us-west-2`:
+Calling `botor()` will provide you a default `boto3` session that is cached internally. You can always override the default session by calling `botor()` again with new arguments. See eg setting the default `boto3` session to use `us-west-2`:
 
 ```r
 botor(region_name = 'us-west-2')
@@ -65,20 +57,24 @@ botor()$resource('s3')
 A great advantage of using `botor()` instead of custom sessions is that it's fork-safe. See eg:
 
 ```r
-reticulate:::py_id(botor())
-#> [1] 2078856464
-reticulate:::py_id(botor())
-#> [1] 2078856464
+attr(botor(), 'pid')
+#> [1] 31225
+attr(botor(), 'pid')
+#> [1] 31225
 
-lapply(1:2, function(i) reticulate:::py_id(botor()))
+lapply(1:2, function(i) attr(botor(), 'pid'))
 #> [[1]]
-#> [1] 2078856464
+#> [1] 31225
 #>
 #> [[2]]
-#> [1] 2078856464
+#> [1] 31225
 
-mclapply(1:2, function(i) reticulate:::py_id(botor()), mc.cores = 2)
-
+mclapply(1:2, function(i) attr(botor(), 'pid'), mc.cores = 2)
+#> [[1]]
+#> [1] 13209
+#> 
+#> [[2]]
+#> [1] 13210
 ```
 
 ## Convenient helper functions
