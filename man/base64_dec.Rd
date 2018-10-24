@@ -23,3 +23,4 @@ base64_dec(base64_enc(charToRaw('foobar')))
 \seealso{
 \code{\link{base64_enc}}
 }
+\keyword{internal}

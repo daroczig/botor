@@ -29,7 +29,7 @@ trypy <- function(expression) {
 #' Base64-encode raw bytes using Python's base64 module
 #' @param raw \code{raw} bytes
 #' @return string
-#' @export
+#' @keywords internal
 #' @seealso \code{\link{base64_dec}}
 base64_enc <- function(raw) {
     import('base64')$b64encode(raw)
@@ -39,7 +39,7 @@ base64_enc <- function(raw) {
 #' Base64-decode a string into raw bytes using Python's base64 module
 #' @param text string
 #' @return \code{raw} bytes
-#' @export
+#' @keywords internal
 #' @examples \dontrun{
 #' base64_dec(base64_enc(charToRaw('foobar')))
 #' }
@@ -51,7 +51,7 @@ base64_dec <- function(text) {
 
 #' Generate UUID using Python's uuid module
 #' @return string
-#' @export
+#' @keywords internal
 #' @importFrom reticulate py_str
 uuid <- function() {
     py_str(import('uuid')$uuid1())
