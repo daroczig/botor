@@ -106,3 +106,44 @@ kms_encrypt_file <- function(key, file) {
 
 }
 
+
+#' Decrypt file via KMS
+#' @param file base file path (without the \code{enc} or \code{key} suffix)
+#' @param return where to place the encrypted file (defaults to \code{file})
+#' @return decrypted file path
+#' @export
+#' @seealso kms_encrypt kms_encrypt_file
+kms_decrypt_file <- function(file, return = file) {
+
+    if (!file.exists(paste0(file, '.enc'))) {
+        stop(paste('Encrypted file does not exist:', paste0(file, '.enc')))
+    }
+    if (!file.exists(paste0(file, '.key'))) {
+        stop(paste('Encryption key does not exist:', paste0(file, '.key')))
+    }
+    if (file.exists(return)) {
+        stop(paste('Encrypted file already exists:', return))
+    }
+    if (!requireNamespace('digest', quietly = TRUE)) {
+        stop('The digest package is required to encrypt files')
+    }
+
+    ## load the encryption key
+    key <- charToRaw(kms_decrypt(readLines(paste0(file, '.key'), warn = FALSE)))
+
+    ## load the encrypted file
+    msg <- readBin(paste0(file, '.enc'), 'raw', n = file.size(paste0(file, '.enc')))
+
+    ## decrypt the file using the encryption key
+    aes <- AES(key, mode = 'ECB')
+    msg <- aes$decrypt(msg, raw = TRUE)
+
+    msg <- base64_dec(rawToChar(msg))
+
+    ## Base64-decode and return
+    writeBin(msg, return)
+
+    ## return file paths
+    return
+
+}
