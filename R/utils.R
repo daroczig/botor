@@ -61,11 +61,11 @@ uuid <- function() {
 }
 
 
-#' Creates an initial or reinitialize an already existing AWS client or resource
+#' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
 #' @param service string, eg S3 or IAM
 #' @param type client or resource to be created
 #' @return cached AWS client
-#' @keywords internal
+#' @export
 botor_client <- function(service, type = c('client', 'resource')) {
 
     assert_string(service)

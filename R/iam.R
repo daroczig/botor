@@ -5,3 +5,11 @@
 iam <- function() {
     botor_client('iam', type = 'client')
 }
+
+
+#' Get the current AWS username
+#' @return string
+#' @export
+iam_whoami <- function() {
+    iam()$get_user()$User$UserName
+}

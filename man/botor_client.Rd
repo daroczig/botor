@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{botor_client}
 \alias{botor_client}
-\title{Creates an initial or reinitialize an already existing AWS client or resource}
+\title{Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace}
 \usage{
 botor_client(service, type = c("client", "resource"))
 }
@@ -15,6 +15,5 @@ botor_client(service, type = c("client", "resource"))
 cached AWS client
 }
 \description{
-Creates an initial or reinitialize an already existing AWS client or resource
+Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
 }
-\keyword{internal}

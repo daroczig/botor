@@ -24,22 +24,41 @@ system.time(library(botor))
 
 Quick examples:
 
-1. Read a `csv` file stored in S3 using a helper function:
+1. Check the currently used AWS user's name:
+
+    ```r
+    iam_whoami()
+    #> [1] "gergely-dev"
+    ```
+
+2. Read a `csv` file stored in S3 using a helper function:
 
     ```r
     s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+    #>     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+    #> 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+    #> 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+    #> ...
     ```
 
-2. Encrypt a string via KMS using a helper function:
+3. Encrypt a string via KMS using a helper function:
 
     ```r
     kms_encrypt('alias/key', 'secret')
+    #> [1] "QWERTY..."
     ```
 
-3. Get AWS user info using the IAM client directly:
+4. Get more info on the currently used AWS user calling the IAM client directly:
 
     ```r
     iam()$get_user()
+    ```
+
+5. Create a new client to a service without helper functions:
+
+    ```r
+    ec2 <- botor_client('ec2')
+    ec2$describe_vpcs()
     ```
 
 ## AWS Auth
