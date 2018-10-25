@@ -72,10 +72,13 @@ The `botor` package by default will use the credentials and related options set 
 botor(region_name = 'eu-west-42')
 ```
 
-* start custom sessions via `boto3.session.Session` using the raw `boto3` object from the package, eg
+* if you need to manage multiple sessions, then use the raw `boto3` object from the `botor` package and `boto3.session.Session` to init these custom sessions and the required clients/resources on the top of those, eg
 
 ```r
-my_custom_session <- boto3$Session(region_name = 'us-west-2')
+my_custom_session1 <- boto3$Session(region_name = 'us-west-1')
+my_custom_s3_client1 <- my_custom_session1$client('s3')
+my_custom_session2 <- boto3$Session(region_name = 'us-west-2')
+my_custom_s3_client2 <- my_custom_session2$client('s3')
 ```
 
 ## Using the raw `boto3` module
