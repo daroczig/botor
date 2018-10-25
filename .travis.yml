@@ -1,3 +1,6 @@
+language: R
+sudo: false
+
 before_deploy: Rscript -e 'install.packages("pkgdown")'
 deploy:
   provider: script
