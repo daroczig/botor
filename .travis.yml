@@ -2,6 +2,9 @@ language: R
 sudo: false
 cache: packages
 
+before_install:
+  - pip install boto3
+
 before_deploy: Rscript -e 'devtools::install_github("r-lib/pkgdown")'
 deploy:
   provider: script
