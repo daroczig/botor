@@ -128,7 +128,7 @@ mclapply(1:2, function(i) attr(botor(), 'pid'), mc.cores = 2)
 
 ## Convenient helper functions
 
-The package also provides a `botor` function that returns a pre-initialized default Boto3 session and further R helper functions for the most common AWS actions, like interacting with S3 or KMS. Note, that the list of these functions is pretty limited for now, but you can always fall back to the raw Boto3 functions if needed. PRs on new helper functions are appreciated :)
+Besides the `botor` pre-initialized default Boto3 session, the package also provides some further R helper functions for the most common AWS actions, like interacting with S3 or KMS. Note, that the list of these functions is pretty limited for now, but you can always fall back to the raw Boto3 functions if needed. PRs on new helper functions are appreciated :)
 
 Examples:
 
