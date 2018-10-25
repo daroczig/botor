@@ -10,6 +10,8 @@ s3_read(uri, fun, ...)
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
 \item{fun}{R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}}
+
+\item{...}{optional params passed to \code{fun}}
 }
 \value{
 R object

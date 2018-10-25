@@ -10,8 +10,6 @@ s3_upload_file(file, uri)
 \item{file}{string, location of local file}
 
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
-
-\item{overwrite}{boolean, overwrite local file if exists}
 }
 \value{
 invisibly \code{uri}

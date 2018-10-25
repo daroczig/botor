@@ -7,6 +7,7 @@
 #' check_s3_path('https://foo/bar')
 #' assert_s3_path('https://foo/bar')
 #' }
+#' @aliases check_s3_uri assert_s3_uri test_s3_uri expect_s3_uri
 check_s3_uri <- function(x) {
     regex <- '^s3://[a-z0-9][a-z0-9\\.-]+[a-z0-9](/(.*)?)?$'
     check <- check_string(x, pattern = regex)

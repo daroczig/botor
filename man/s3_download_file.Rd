@@ -11,7 +11,7 @@ s3_download_file(uri, file, force = TRUE)
 
 \item{file}{string, location of local file}
 
-\item{overwrite}{boolean, overwrite local file if exists}
+\item{force}{boolean, overwrite local file if exists}
 }
 \value{
 invisibly \code{file}

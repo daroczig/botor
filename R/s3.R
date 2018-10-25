@@ -50,7 +50,7 @@ s3_list_buckets <- function(simplify = TRUE) {
 #' Download a file from S3
 #' @inheritParams s3_object
 #' @param file string, location of local file
-#' @param overwrite boolean, overwrite local file if exists
+#' @param force boolean, overwrite local file if exists
 #' @export
 #' @importFrom checkmate assert_string assert_directory_exists assert_flag
 #' @return invisibly \code{file}
@@ -75,6 +75,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' Download and read a file from S3, then clean up
 #' @inheritParams s3_download_file
 #' @param fun R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}
+#' @param ... optional params passed to \code{fun}
 #' @return R object
 #' @export
 #' @examples \dontrun{
@@ -97,7 +98,6 @@ s3_read <- function(uri, fun, ...) {
 #' Upload a file to S3
 #' @inheritParams s3_object
 #' @param file string, location of local file
-#' @param overwrite boolean, overwrite local file if exists
 #' @export
 #' @importFrom checkmate assert_file_exists
 #' @return invisibly \code{uri}
@@ -110,7 +110,7 @@ s3_read <- function(uri, fun, ...) {
 s3_upload_file <- function(file, uri) {
     assert_string(file)
     assert_file_exists(file)
-    assert_s3uri(uri)
+    assert_s3_uri(uri)
     s3object <- s3_object(uri)
     trypy(s3object$upload_file(file))
     invisible(uri)

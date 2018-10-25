@@ -2,6 +2,9 @@
 % Please edit documentation in R/checkmate.R
 \name{check_s3_uri}
 \alias{check_s3_uri}
+\alias{assert_s3_uri}
+\alias{test_s3_uri}
+\alias{expect_s3_uri}
 \title{Check if an argument looks like an S3 bucket}
 \usage{
 check_s3_uri(x)
