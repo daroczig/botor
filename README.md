@@ -163,11 +163,7 @@ Examples:
     #> [1] 1.330 1.332 0.000 0.000
     ```
 
-The currently supported resources and features via helper functions:
-
-* S3: `s3_list_buckets`, `s3_download_file`, `s3_read`, `s3_upload_file`, `s3_write`
-* KMS: `kms_encrypt`, `kms_decrypt`
-
+The currently supported resources and features via helper functions: https://daroczig.github.io/botor/reference/index.html
 
 ## Error handling
 
