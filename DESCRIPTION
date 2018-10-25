@@ -17,4 +17,5 @@ Imports:
   reticulate,
   checkmate
 Suggests:
-  testthat
+  testthat,
+  digest

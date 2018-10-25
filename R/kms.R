@@ -42,3 +42,67 @@ kms_decrypt <- function(cipher, simplify = TRUE) {
     }
     res
 }
+
+
+#' Generate a data encryption key for envelope encryption via KMS
+#' @param bytes the required length of the data encryption key in bytes (so provide eg \code{64L} for a 512-bit key)
+#' @return \code{list} of the Base64-encoded encrypted version of the data encryption key (to be stored on disk), the \code{raw} object of the encryption key and the KMS customer master key used to generate this object
+#' @inheritParams kms_encrypt
+#' @export
+#' @importFrom checkmate assert_integer
+kms_generate_data_key <- function(key, bytes = 64L) {
+
+    assert_string(key)
+    assert_integer(bytes)
+
+    data_key <- kms()$generate_data_key(KeyId = key, NumberOfBytes = bytes)
+
+    list(
+        cipher = base64_enc(data_key$CiphertextBlob),
+        key    = data_key$KeyId,
+        text   = python_builtins$bytearray(data_key$Plaintext))
+
+}
+
+
+#' Encrypt file via KMS
+#' @param file file path
+#' @return two files created with \code{enc} (encrypted data) and \code{key} (encrypted key) extensions
+#' @inheritParams kms_encrypt
+#' @export
+#' @seealso kms_encrypt kms_decrypt_file
+#' @importFrom checkmate assert_file_exists
+kms_encrypt_file <- function(key, file) {
+
+    assert_string(key)
+    assert_file_exists(file)
+    if (!requireNamespace('digest', quietly = TRUE)) {
+        stop('The digest package is required to encrypt files')
+    }
+
+    ## load the file to be encrypted
+    msg <- readBin(file, 'raw', n = file.size(file))
+    ## the text length must be a multiple of 16 bytes
+    ## so let's Base64-encode just in case
+    msg <- charToRaw(base64_enc(msg))
+    msg <- c(msg, as.raw(rep(as.raw(0), 16 - length(msg) %% 16)))
+
+    ## generate encryption key
+    key <- kms_generate_data_key(key, bytes = 32L)
+
+    ## encrypt file using the encryption key
+    aes <- AES(key$text, mode = 'ECB')
+    writeBin(aes$encrypt(msg), paste0(file, '.enc'))
+
+    ## store encrypted key
+    cat(key$cipher, file = paste0(file, '.key'))
+
+    ## return file paths
+    list(
+        file = file,
+        encrypted = paste0(file, '.enc'),
+        key = paste0(file, '.key')
+    )
+
+}
+
