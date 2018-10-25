@@ -172,5 +172,20 @@ s3_ls <- function(uri) {
 
 }
 
+
+#' Checks if an object exists in S3
+#' @inheritParams s3_object
+#' @export
+#' @return boolean
+s3_exists <- function(uri) {
+    assert_s3_uri(uri)
+    s3object <- s3_object(uri)
+    uri_parts <- s3_split_uri(uri)
+    head <- tryCatch(
+        trypy(s3()$meta$client$head_object(Bucket = uri_parts$bucket_name, Key = uri_parts$key)),
+        error = function(e) e)
+    invisible(!inherits(head, 'error'))
+}
+
+
 ## TODO delete
-## TODO exists
