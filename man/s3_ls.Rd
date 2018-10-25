@@ -15,6 +15,3 @@ s3_ls(uri)
 \description{
 List objects at an S3 path
 }
-\author{
-Gergely Daroczi
-}

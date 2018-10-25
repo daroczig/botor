@@ -72,7 +72,7 @@ botor_client <- function(service, type = c('client', 'resource')) {
     type <- match.arg(type)
 
     client <- tryCatch(
-        get(service, env = clients, inherits = FALSE),
+        get(service, envir = clients, inherits = FALSE),
         error = function(e) NULL)
 
     if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
@@ -88,6 +88,6 @@ botor_client <- function(service, type = c('client', 'resource')) {
                envir = clients)
     }
 
-    get(service, env = clients)
+    get(service, envir = clients)
 
 }

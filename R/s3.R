@@ -149,7 +149,8 @@ s3_write <- function(x, fun, uri, ...) {
 #' List objects at an S3 path
 #' @param uri string, should start with \code{s3://}, then bucket name and object key prefix
 #' @return \code{data.frame} with bucket name, key/path, size, owner, last modification timestamp
-#' @author Gergely Daroczi
+#' @export
+#' @importFrom reticulate iterate
 s3_ls <- function(uri) {
 
     uri_parts <- s3_split_uri(uri)

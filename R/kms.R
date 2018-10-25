@@ -91,7 +91,7 @@ kms_encrypt_file <- function(key, file) {
     key <- kms_generate_data_key(key, bytes = 32L)
 
     ## encrypt file using the encryption key
-    aes <- AES(key$text, mode = 'ECB')
+    aes <- digest::AES(key$text, mode = 'ECB')
     writeBin(aes$encrypt(msg), paste0(file, '.enc'))
 
     ## store encrypted key
@@ -135,7 +135,7 @@ kms_decrypt_file <- function(file, return = file) {
     msg <- readBin(paste0(file, '.enc'), 'raw', n = file.size(paste0(file, '.enc')))
 
     ## decrypt the file using the encryption key
-    aes <- AES(key, mode = 'ECB')
+    aes <- digest::AES(key, mode = 'ECB')
     msg <- aes$decrypt(msg, raw = TRUE)
 
     msg <- base64_dec(rawToChar(msg))
