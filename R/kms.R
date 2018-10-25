@@ -1,6 +1,3 @@
-.kms <- NULL
-
-
 #' The default, fork-safe KMS client on the top of \code{botor}
 #' @return \code{botocore.client.KMS}
 #' @export

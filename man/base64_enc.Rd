@@ -4,10 +4,10 @@
 \alias{base64_enc}
 \title{Base64-encode raw bytes using Python's base64 module}
 \usage{
-base64_enc(raw)
+base64_enc(text)
 }
 \arguments{
-\item{raw}{\code{raw} bytes}
+\item{text}{\code{raw}, R string or Python string}
 }
 \value{
 string

@@ -1,6 +1,3 @@
-.s3 <- NULL
-
-
 #' The default, fork-safe S3 client on the top of \code{botor}
 #' @return \code{s3.ServiceResource}
 #' @export

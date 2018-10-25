@@ -1,5 +1,3 @@
-.iam <- NULL
-
 #' The default, fork-safe IAM client on the top of \code{botor}
 #' @return \code{botocore.client.IAM}
 #' @export

@@ -1,3 +1,5 @@
+clients <- new.env()
+
 .onLoad <- function(libname, pkgname) {
 
     utils::assignInMyNamespace(

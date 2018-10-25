@@ -67,19 +67,27 @@ uuid <- function() {
 #' @return cached AWS client
 #' @keywords internal
 botor_client <- function(service, type = c('client', 'resource')) {
+
     assert_string(service)
     type <- match.arg(type)
-    .name  <- paste0('.', service)
-    client <- getFromNamespace(.name, 'botor')
+
+    client <- tryCatch(
+        get(service, env = clients, inherits = FALSE),
+        error = function(e) NULL)
+
     if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
         if (type == 'client') {
             client <- botor()$client(service)
         } else {
             client <- botor()$resource(service)
         }
-        utils::assignInMyNamespace(.name, structure(
-            client,
-            uuid = botor_session_uuid()))
+        assign(x = service,
+               value = structure(
+                   client,
+                   uuid = botor_session_uuid()),
+               envir = clients)
     }
-    client
+
+    get(service, env = clients)
+
 }
