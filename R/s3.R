@@ -145,6 +145,11 @@ s3_write <- function(x, fun, uri, ...) {
 
 }
 
+
+#' List objects at an S3 path
+#' @param uri string, should start with \code{s3://}, then bucket name and object key prefix
+#' @return \code{data.frame} with bucket name, key/path, size, owner, last modification timestamp
+#' @author Gergely Daroczi
 s3_ls <- function(uri) {
 
     uri_parts <- s3_split_uri(uri)
@@ -154,49 +159,18 @@ s3_ls <- function(uri) {
     objects <- iterate(objects$pages(), simplify = FALSE)
     objects <- unlist(objects, recursive = FALSE)
 
-    library(data.table)
-    system.time(x <- rbindlist(lapply(objects[1:1000], function(object) {
+    do.call(rbind, lapply(objects, function(object) {
+        object <- object$meta$`__dict__`
         data.frame(
             bucket_name = uri_parts$bucket_name,
-            ## bucket_name = object$bucket_name,
-            key = object$key,
-            size = object$size,
-            ## owner = object$owner$DisplayName,
-            last_modified = object$last_modified)
-    })))
-
-
-    x <- do.call(rbind, lapply(objects[1:], function(object) {
-        data.frame(
-            bucket_name = object$bucket_name,
-            key = object$key,
-            size = object$size,
-            owner = object$owner,
-            last_modified = object$last_modified)
+            key = object$data$Key,
+            size = object$data$Size,
+            owner = object$data$Owner$DisplayName,
+            last_modified = object$data$LastModified$strftime('%Y-%m-%d %H:%M:%S %Z'),
+            stringsAsFactors = FALSE)
     }))
-
-    for (page in objects$pages()) {
-        iter_next(page)
-    }
-
-    for (page in objects$pages()) {
-        cat(page)
-    }
-
-    objects <- iter_next(objects$pages())
-
-    objects <- iterate(objects$pages(), simplify = FALSE)
-
-    paginator <- s3()$meta$client$get_paginator('list_objects')
-    paginator$paginate(Bucket = 'openmail-model')
-
-    if (simplify == TRUE) {
-        buckets <- sapply(buckets, `[[`, 'name')
-    }
-    buckets
 
 }
 
 ## TODO delete
 ## TODO exists
-## TODO ls
