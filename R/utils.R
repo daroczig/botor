@@ -27,12 +27,13 @@ trypy <- function(expression) {
 
 
 #' Base64-encode raw bytes using Python's base64 module
-#' @param raw \code{raw} bytes
+#' @param text \code{raw}, R string or Python string
 #' @return string
 #' @keywords internal
 #' @seealso \code{\link{base64_dec}}
-base64_enc <- function(raw) {
-    import('base64')$b64encode(raw)
+#' @importFrom checkmate assert_class
+base64_enc <- function(text) {
+    as.character(import('base64')$b64encode(text))
 }
 
 
@@ -44,7 +45,9 @@ base64_enc <- function(raw) {
 #' base64_dec(base64_enc(charToRaw('foobar')))
 #' }
 #' @seealso \code{\link{base64_enc}}
+#' @importFrom reticulate import
 base64_dec <- function(text) {
+    assert_string(text)
     import('base64')$b64decode(text)
 }
 
@@ -64,6 +67,7 @@ uuid <- function() {
 #' @return cached AWS client
 #' @keywords internal
 botor_client <- function(service, type = c('client', 'resource')) {
+    assert_string(service)
     type <- match.arg(type)
     .name  <- paste0('.', service)
     client <- getFromNamespace(.name, 'botor')

@@ -18,6 +18,9 @@ kms <- function() {
 #' @export
 #' @seealso kms_decrypt
 kms_encrypt <- function(key, text, simplify = TRUE) {
+    assert_string(key)
+    assert_string(text)
+    assert_flag(simplify)
     res <- kms()$encrypt(KeyId = key, Plaintext = charToRaw(text))
     if (simplify == TRUE) {
         res <- res$CiphertextBlob
@@ -34,6 +37,8 @@ kms_encrypt <- function(key, text, simplify = TRUE) {
 #' @export
 #' @seealso kms_encrypt
 kms_decrypt <- function(cipher, simplify = TRUE) {
+    assert_string(cipher)
+    assert_flag(simplify)
     res <- kms()$decrypt(CiphertextBlob = base64_dec(cipher))
     if (simplify == TRUE) {
         res <- res$Plaintext
