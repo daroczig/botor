@@ -48,7 +48,7 @@ base64_enc <- function(text) {
 #' @importFrom reticulate import
 base64_dec <- function(text) {
     assert_string(text)
-    import('base64')$b64decode(text)
+    python_builtins$bytearray(import('base64')$b64decode(text))
 }
 
 
