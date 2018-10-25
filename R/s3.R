@@ -145,6 +145,57 @@ s3_write <- function(x, fun, uri, ...) {
 
 }
 
+s3_ls <- function(uri) {
+
+    uri_parts <- s3_split_uri(uri)
+
+    objects <- s3()$Bucket(uri_parts$bucket_name)$objects
+    objects <- objects$filter(Prefix = 'tsm/4200')
+    objects <- iterate(objects$pages(), simplify = FALSE)
+    objects <- unlist(objects, recursive = FALSE)
+
+    library(data.table)
+    system.time(x <- rbindlist(lapply(objects[1:1000], function(object) {
+        data.frame(
+            bucket_name = uri_parts$bucket_name,
+            ## bucket_name = object$bucket_name,
+            key = object$key,
+            size = object$size,
+            ## owner = object$owner$DisplayName,
+            last_modified = object$last_modified)
+    })))
+
+
+    x <- do.call(rbind, lapply(objects[1:], function(object) {
+        data.frame(
+            bucket_name = object$bucket_name,
+            key = object$key,
+            size = object$size,
+            owner = object$owner,
+            last_modified = object$last_modified)
+    }))
+
+    for (page in objects$pages()) {
+        iter_next(page)
+    }
+
+    for (page in objects$pages()) {
+        cat(page)
+    }
+
+    objects <- iter_next(objects$pages())
+
+    objects <- iterate(objects$pages(), simplify = FALSE)
+
+    paginator <- s3()$meta$client$get_paginator('list_objects')
+    paginator$paginate(Bucket = 'openmail-model')
+
+    if (simplify == TRUE) {
+        buckets <- sapply(buckets, `[[`, 'name')
+    }
+    buckets
+
+}
 
 ## TODO delete
 ## TODO exists
