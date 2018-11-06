@@ -1,5 +1,7 @@
 # botor: Reticulate wrapper on 'boto3'
 
+[![Build Status](https://travis-ci.org/daroczig/botor.svg?branch=master)](https://travis-ci.org/daroczig/botor) ![](https://img.shields.io/maintenance/yes/2018.svg)
+
 This R package provides access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module and some convenient helper functions and workarounds, eg taking care of spawning new resources in forked R processes.
 
 ## Installation
