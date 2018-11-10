@@ -188,5 +188,19 @@ s3_exists <- function(uri) {
     invisible(!inherits(head, 'error'))
 }
 
+#' Copy an object from one S3 location to another
+#' @param uri_source string, location of the source file
+#' @param uri_target string, location of the target file
+#' @export
+#' @return invisibly \code{uri_target}
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Object.copy}
+s3_copy <- function(uri_source, uri_target) {
+    assert_s3_uri(uri_source)
+    assert_s3_uri(uri_target)
+    source <- s3_split_uri(uri_source)
+    target <- s3_object(uri_target)
+    trypy(target$copy(list(Bucket = source$bucket_name, Key = source$key)))
+    invisible(uri_target)
+}
 
 ## TODO delete
