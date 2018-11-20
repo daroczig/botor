@@ -156,7 +156,7 @@ s3_ls <- function(uri) {
     uri_parts <- s3_split_uri(uri)
 
     objects <- s3()$Bucket(uri_parts$bucket_name)$objects
-    objects <- objects$filter(Prefix = 'tsm/4200')
+    objects <- objects$filter(Prefix = uri_parts$key)
     objects <- iterate(objects$pages(), simplify = FALSE)
     objects <- unlist(objects, recursive = FALSE)
 
