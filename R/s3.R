@@ -203,4 +203,11 @@ s3_copy <- function(uri_source, uri_target) {
     invisible(uri_target)
 }
 
-## TODO delete
+
+#' Delete an object stored in S3
+#' @inheritParams s3_object
+#' @export
+s3_delete <- function(uri) {
+    assert_s3_uri(uri)
+    s3_object(uri)$delete()
+}
