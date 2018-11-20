@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Raw access to the boto3 module imported at package load time — boto3 • botor</title>
+<title>Delete an object stored in S3 — s3_delete • botor</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Raw access to the boto3 module imported at package load time — boto3" />
+<meta property="og:title" content="Delete an object stored in S3 — s3_delete" />
 
-<meta property="og:description" content="Raw access to the boto3 module imported at package load time" />
+<meta property="og:description" content="Delete an object stored in S3" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,37 +98,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Raw access to the boto3 module imported at package load time</h1>
-    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/boto3.R'><code>R/boto3.R</code></a></small>
-    <div class="hidden name"><code>boto3.Rd</code></div>
+    <h1>Delete an object stored in S3</h1>
+    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/s3.R'><code>R/s3.R</code></a></small>
+    <div class="hidden name"><code>s3_delete.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Raw access to the boto3 module imported at package load time</p>
+    <p>Delete an object stored in S3</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>boto3</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>python.builtin.module</code> (inherits from <code>python.builtin.object</code>) of length 2.</p>
+    <pre class="usage"><span class='fu'>s3_delete</span>(<span class='no'>uri</span>)</pre>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>You may rather want to use <code><a href='botor.html'>botor</a></code> instead, that provides a fork-safe <code>boto3</code> session.</p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>uri</th>
+      <td><p>string, URI of an S3 object, should start with <code>s3://</code>, then bucket name and object key</p></td>
+    </tr>
+    </table>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#note">Note</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
 
   </div>
 </div>
