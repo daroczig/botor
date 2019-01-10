@@ -147,8 +147,8 @@ s3_write <- function(x, fun, uri, ...) {
 
 
 #' List objects at an S3 path
-#' @param uri string, should start with \code{s3://}, then bucket name and object key prefix
-#' @return \code{data.frame} with bucket name, key/path, size, owner, last modification timestamp
+#' @param uri string, should start with \code{s3://}, then bucket name and optional object key prefix
+#' @return \code{data.frame} with \code{bucket_name}, object \code{key}, \code{uri} (that can be directly passed to eg \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and \code{last_modified} timestamp
 #' @export
 #' @importFrom reticulate iterate
 s3_ls <- function(uri) {
@@ -165,6 +165,7 @@ s3_ls <- function(uri) {
         data.frame(
             bucket_name = uri_parts$bucket_name,
             key = object$data$Key,
+            uri = file.path('s3:/', uri_parts$bucket_name, object$data$Key),
             size = object$data$Size,
             owner = object$data$Owner$DisplayName,
             last_modified = object$data$LastModified$strftime('%Y-%m-%d %H:%M:%S %Z'),
