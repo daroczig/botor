@@ -15,8 +15,9 @@ python_builtins <- NULL
         reticulate::import_builtins())
 
     ## although glue would be more convenient,
-    ## but let's use the always available sprintf formatter for logging
+    ## but let's use the always available sprintf formatter function for logging
     logger::log_formatter(logger::formatter_sprintf, namespace = pkgname)
+    logger::log_threshold(logger::DEBUG, namespace = pkgname)
 
     ## options('reticulate.traceback' = FALSE)
 

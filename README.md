@@ -190,11 +190,22 @@ s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 
 ## Logging
 
-`botor` uses the [`logger`](https://daroczig.github.io/logger) package for logging with the default log level threshold set to `INFO`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
+`botor` uses the [`logger`](https://daroczig.github.io/logger) package for logging with the default log level threshold set to `DEBUG`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
 
 ```r
-> library(logger)
-> log_threshold(TRACE, namespace = 'botor')
+library(logger)
+log_threshold(TRACE, namespace = 'botor')
+
+s3_download_file('s3://botor/example-data/mtcars.csv', tempfile())
+#> TRACE [2019-01-11 14:48:07] Downloading s3://botor/example-data/mtcars.csv to '/tmp/RtmpCPNrOk/file6fac556567d4' ...
+#> DEBUG [2019-01-11 14:48:09] Downloaded 1303 bytes from s3://botor/example-data/mtcars.csv and saved at '/tmp/RtmpCPNrOk/file6fac556567d4'
+```
+
+Or update to not fire the less important messages than warnings:
+
+```r
+library(logger)
+log_threshold(WARN, namespace = 'botor')
 ```
 
 You can use the same approach to set custom (or more than one) log appenders, eg writing the log messages to files, a database etc -- check the `logger` docs for more details.
