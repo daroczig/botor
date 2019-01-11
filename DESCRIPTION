@@ -17,7 +17,8 @@ Encoding: UTF-8
 Imports:
   utils,
   reticulate,
-  checkmate
+  checkmate,
+  logger
 Suggests:
   testthat,
   digest

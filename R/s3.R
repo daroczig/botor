@@ -151,8 +151,10 @@ s3_write <- function(x, fun, uri, ...) {
 #' @return \code{data.frame} with \code{bucket_name}, object \code{key}, \code{uri} (that can be directly passed to eg \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and \code{last_modified} timestamp
 #' @export
 #' @importFrom reticulate iterate
+#' @importFrom logger log_info log_debug
 s3_ls <- function(uri) {
 
+    log_debug('Recursive listing of files in %s', uri)
     uri_parts <- s3_split_uri(uri)
 
     objects <- s3()$Bucket(uri_parts$bucket_name)$objects
@@ -160,7 +162,7 @@ s3_ls <- function(uri) {
     objects <- iterate(objects$pages(), simplify = FALSE)
     objects <- unlist(objects, recursive = FALSE)
 
-    do.call(rbind, lapply(objects, function(object) {
+    objects <- do.call(rbind, lapply(objects, function(object) {
         object <- object$meta$`__dict__`
         data.frame(
             bucket_name = uri_parts$bucket_name,
@@ -171,6 +173,9 @@ s3_ls <- function(uri) {
             last_modified = object$data$LastModified$strftime('%Y-%m-%d %H:%M:%S %Z'),
             stringsAsFactors = FALSE)
     }))
+
+    log_info('Found %s item(s) in %s', nrow(objects), uri)
+    objects
 
 }
 

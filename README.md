@@ -188,6 +188,17 @@ s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 #> ...
 ```
 
+## Logging
+
+`botor` uses the [`logger`](https://daroczig.github.io/logger) package for logging with the default log level threshold set to `INFO`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
+
+```r
+> library(logger)
+> log_threshold(TRACE, namespace = 'botor')
+```
+
+You can use the same approach to set custom (or more than one) log appenders, eg writing the log messages to files, a database etc -- check the `logger` docs for more details.
+
 ## Why the name?
 
 `botor` means "goofy" in Hungarian. This is how I feel when looking back to all the dev hours spent on integrating the AWS Java SDK in R -- this includes `AWR.KMS`, where I ended up debugging and fixing many issues in forked processes, but `AWR.Kinesis` still rocks :)
