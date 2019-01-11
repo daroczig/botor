@@ -190,7 +190,16 @@ s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 
 ## Logging
 
-`botor` uses the [`logger`](https://daroczig.github.io/logger) package for logging with the default log level threshold set to `DEBUG`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
+`botor` uses the [`logger`](https://daroczig.github.io/logger) package to write log messages to the console by default with the following log level standards:
+
+* `TRACE` start of an AWS query (eg just about to start listing all S3 buckets in an AWS account)
+* `DEBUG` summary on the result of an AWS query (eg number of S3 buckets found in an AWS account)
+* `INFO` currently not used
+* `WARN` currently not used
+* `ERROR` something bad happened and logging extra context besides what's being returned in the error message
+* `FATAL` currently not used
+
+The default log level threshold set to `DEBUG`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
 
 ```r
 library(logger)
