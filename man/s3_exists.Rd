@@ -15,3 +15,9 @@ boolean
 \description{
 Checks if an object exists in S3
 }
+\examples{
+\dontrun{
+s3_exists('s3://botor/example-data/mtcars.csv')
+s3_exists('s3://botor/example-data/UNDEFINED.CSVLX')
+}
+}
