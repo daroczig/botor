@@ -4,7 +4,7 @@
 \alias{s3_read}
 \title{Download and read a file from S3, then clean up}
 \usage{
-s3_read(uri, fun, ...)
+s3_read(uri, fun, ..., extract = c("none", "gzip", "bzip2", "xz"))
 }
 \arguments{
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
@@ -12,6 +12,8 @@ s3_read(uri, fun, ...)
 \item{fun}{R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}}
 
 \item{...}{optional params passed to \code{fun}}
+
+\item{extract}{optionally extract/decompress the file after downloading from S3 but before passing to \code{fun}}
 }
 \value{
 R object

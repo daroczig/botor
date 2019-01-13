@@ -81,6 +81,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' @inheritParams s3_download_file
 #' @param fun R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}
 #' @param ... optional params passed to \code{fun}
+#' @param extract optionally extract/decompress the file after downloading from S3 but before passing to \code{fun}
 #' @return R object
 #' @export
 #' @examples \dontrun{
@@ -89,7 +90,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
 #' s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
 #' }
-s3_read <- function(uri, fun, ...) {
+s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 
     t <- tempfile()
     on.exit({
@@ -98,6 +99,20 @@ s3_read <- function(uri, fun, ...) {
     })
 
     s3_download_file(uri, t)
+
+    ## decompress/extract downloaded file
+    extract <- match.arg(extract)
+    if (extract != 'none') {
+        filesize <- file.info(t)$size
+        ## gzfile can handle bzip2 and xz as well
+        filecon <- gzfile(t, open = 'rb')
+        filecontent <- readBin(t, 'raw', n = filesize)
+        close(filecon)
+        ## overwrite
+        writeBin(filecontent, t)
+        log_trace('Decompressed %s via %s from %s to %s bytes', t, extract, filesize, file.info(t)$size)
+    }
+
     fun(t, ...)
 
 }
