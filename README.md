@@ -188,6 +188,37 @@ s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 #> ...
 ```
 
+## Logging
+
+`botor` uses the [`logger`](https://daroczig.github.io/logger) package to write log messages to the console by default with the following log level standards:
+
+* `TRACE` start of an AWS query (eg just about to start listing all S3 buckets in an AWS account)
+* `DEBUG` summary on the result of an AWS query (eg number of S3 buckets found in an AWS account)
+* `INFO` currently not used
+* `WARN` currently not used
+* `ERROR` something bad happened and logging extra context besides what's being returned in the error message
+* `FATAL` currently not used
+
+The default log level threshold set to `DEBUG`. If you want to update that, use the package name for the `namespace` argument of `log_threshold` from the `logger` package, eg to enable all log messages:
+
+```r
+library(logger)
+log_threshold(TRACE, namespace = 'botor')
+
+s3_download_file('s3://botor/example-data/mtcars.csv', tempfile())
+#> TRACE [2019-01-11 14:48:07] Downloading s3://botor/example-data/mtcars.csv to '/tmp/RtmpCPNrOk/file6fac556567d4' ...
+#> DEBUG [2019-01-11 14:48:09] Downloaded 1303 bytes from s3://botor/example-data/mtcars.csv and saved at '/tmp/RtmpCPNrOk/file6fac556567d4'
+```
+
+Or update to not fire the less important messages than warnings:
+
+```r
+library(logger)
+log_threshold(WARN, namespace = 'botor')
+```
+
+You can use the same approach to set custom (or more than one) log appenders, eg writing the log messages to files, a database etc -- check the `logger` docs for more details.
+
 ## Why the name?
 
 `botor` means "goofy" in Hungarian. This is how I feel when looking back to all the dev hours spent on integrating the AWS Java SDK in R -- this includes `AWR.KMS`, where I ended up debugging and fixing many issues in forked processes, but `AWR.Kinesis` still rocks :)

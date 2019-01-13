@@ -2,6 +2,7 @@
 #' @return \code{s3.ServiceResource}
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
+#' @importFrom logger log_trace log_debug log_info log_warn log_error
 s3 <- function() {
     botor_client('s3', type = 'resource')
 }
@@ -39,7 +40,9 @@ s3_object <- function(uri) {
 #' @export
 #' @importFrom reticulate iter_next
 s3_list_buckets <- function(simplify = TRUE) {
+    log_trace('Listing all S3 buckets ...')
     buckets <- iter_next(s3()$buckets$pages())
+    log_debug('Found %s S3 buckets', length(buckets))
     if (simplify == TRUE) {
         buckets <- sapply(buckets, `[[`, 'name')
     }
@@ -61,6 +64,7 @@ s3_list_buckets <- function(simplify = TRUE) {
 s3_download_file <- function(uri, file, force = TRUE) {
     assert_string(file)
     assert_directory_exists(dirname(file))
+    log_trace('Downloading %s to %s ...', uri, shQuote(file))
     if (force == FALSE & file.exists(file)) {
         stop(paste(file, 'already exists'))
     }
@@ -68,6 +72,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
     assert_flag(force)
     s3object <- s3_object(uri)
     trypy(s3object$download_file(file))
+    log_debug('Downloaded %s bytes from %s and saved at %s', file.info(file)$size, uri, shQuote(file))
     invisible(file)
 }
 
@@ -111,8 +116,10 @@ s3_upload_file <- function(file, uri) {
     assert_string(file)
     assert_file_exists(file)
     assert_s3_uri(uri)
+    log_trace('Uploading %s to %s ...', shQuote(file), uri)
     s3object <- s3_object(uri)
     trypy(s3object$upload_file(file))
+    log_debug('Uploaded %s bytes from %s to %s', file.info(file)$size, shQuote(file), uri)
     invisible(uri)
 }
 
@@ -153,6 +160,7 @@ s3_write <- function(x, fun, uri, ...) {
 #' @importFrom reticulate iterate
 s3_ls <- function(uri) {
 
+    log_trace('Recursive listing of files in %s', uri)
     uri_parts <- s3_split_uri(uri)
 
     objects <- s3()$Bucket(uri_parts$bucket_name)$objects
@@ -160,7 +168,7 @@ s3_ls <- function(uri) {
     objects <- iterate(objects$pages(), simplify = FALSE)
     objects <- unlist(objects, recursive = FALSE)
 
-    do.call(rbind, lapply(objects, function(object) {
+    objects <- do.call(rbind, lapply(objects, function(object) {
         object <- object$meta$`__dict__`
         data.frame(
             bucket_name = uri_parts$bucket_name,
@@ -172,6 +180,9 @@ s3_ls <- function(uri) {
             stringsAsFactors = FALSE)
     }))
 
+    log_debug('Found %s item(s) in %s', nrow(objects), uri)
+    objects
+
 }
 
 
@@ -179,15 +190,23 @@ s3_ls <- function(uri) {
 #' @inheritParams s3_object
 #' @export
 #' @return boolean
+#' @examples \dontrun{
+#' s3_exists('s3://botor/example-data/mtcars.csv')
+#' s3_exists('s3://botor/example-data/UNDEFINED.CSVLX')
+#' }
 s3_exists <- function(uri) {
     assert_s3_uri(uri)
     s3object <- s3_object(uri)
     uri_parts <- s3_split_uri(uri)
+    log_trace('Checking if object at %s exist ...', uri)
     head <- tryCatch(
         trypy(s3()$meta$client$head_object(Bucket = uri_parts$bucket_name, Key = uri_parts$key)),
         error = function(e) e)
-    invisible(!inherits(head, 'error'))
+    found <- !inherits(head, 'error')
+    log_debug('%s %s', uri, ifelse(found, 'found', 'not found'))
+    invisible(found)
 }
+
 
 #' Copy an object from one S3 location to another
 #' @param uri_source string, location of the source file
@@ -198,9 +217,11 @@ s3_exists <- function(uri) {
 s3_copy <- function(uri_source, uri_target) {
     assert_s3_uri(uri_source)
     assert_s3_uri(uri_target)
+    log_trace('Copying %s to %s ...', uri_source, uri_target)
     source <- s3_split_uri(uri_source)
     target <- s3_object(uri_target)
     trypy(target$copy(list(Bucket = source$bucket_name, Key = source$key)))
+    log_debug('Copied %s to %s', uri_source, uri_target)
     invisible(uri_target)
 }
 
@@ -210,5 +231,7 @@ s3_copy <- function(uri_source, uri_target) {
 #' @export
 s3_delete <- function(uri) {
     assert_s3_uri(uri)
+    log_trace('Deleting %s ...', uri)
     s3_object(uri)$delete()
+    log_debug('Deleted %s', uri)
 }
