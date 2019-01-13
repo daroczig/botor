@@ -4,7 +4,7 @@
 \alias{s3_write}
 \title{Write an R object into S3}
 \usage{
-s3_write(x, fun, uri, ...)
+s3_write(x, fun, uri, compress = c("none", "gzip", "bzip2", "xz"), ...)
 }
 \arguments{
 \item{x}{R object}
@@ -12,6 +12,8 @@ s3_write(x, fun, uri, ...)
 \item{fun}{R function with \code{file} argument to write \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json} or \code{saveRDS}}
 
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
+
+\item{compress}{optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in \code{uri} as well (that is not done automatically).}
 
 \item{...}{optional further arguments passed to \code{fun}}
 }
@@ -27,5 +29,10 @@ s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FA
 s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
 s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
+
+## compress file after writing to disk but before uploading to S3
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.gz', compress = 'gzip', row.names = FALSE)
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.bz2', compress = 'bzip2', row.names = FALSE)
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.xz', compress = 'xz', row.names = FALSE)
 }
 }

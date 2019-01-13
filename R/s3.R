@@ -92,7 +92,10 @@ s3_download_file <- function(uri, file, force = TRUE) {
 s3_read <- function(uri, fun, ...) {
 
     t <- tempfile()
-    on.exit(unlink(t))
+    on.exit({
+        log_trace('Deleted %s', t)
+        unlink(t)
+    })
 
     s3_download_file(uri, t)
     fun(t, ...)
@@ -127,8 +130,9 @@ s3_upload_file <- function(file, uri) {
 #' Write an R object into S3
 #' @param x R object
 #' @param fun R function with \code{file} argument to write \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json} or \code{saveRDS}
-#' @inheritParams s3_object
+#' @param compress optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in \code{uri} as well (that is not done automatically).
 #' @param ... optional further arguments passed to \code{fun}
+#' @inheritParams s3_object
 #' @export
 #' @note The temp file used for this operation is automatically removed.
 #' @examples \dontrun{
@@ -136,16 +140,41 @@ s3_upload_file <- function(file, uri) {
 #' s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 #' s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
 #' s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
+#'
+#' ## compress file after writing to disk but before uploading to S3
+#' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.gz', compress = 'gzip', row.names = FALSE)
+#' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.bz2', compress = 'bzip2', row.names = FALSE)
+#' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.xz', compress = 'xz', row.names = FALSE)
 #' }
-s3_write <- function(x, fun, uri, ...) {
+s3_write <- function(x, fun, uri, compress = c('none', 'gzip', 'bzip2', 'xz'), ...) {
 
     t <- tempfile()
-    on.exit(unlink(t))
+    on.exit({
+        log_trace('Deleted %s', t)
+        unlink(t)
+    })
 
     if (deparse(substitute(fun)) %in% c('jsonlite::write_json', 'write_json')) {
         fun(x, path = t, ...)
     } else {
         fun(x, file = t, ...)
+    }
+    log_trace('Wrote %s bytes to %s', file.info(t)$size, t)
+
+    compress <- match.arg(compress)
+    if (compress != 'none') {
+        filesize    <- file.info(t)$size
+        filecontent <- readBin(t, 'raw', n = filesize)
+        compressor  <- switch(
+            compress,
+            'gzip'  = gzfile,
+            'bzip2' = bzfile,
+            'xz'    = xzfile)
+        filecon <- compressor(t, open = 'wb')
+        ## overwrite
+        writeBin(filecontent, filecon)
+        close(filecon)
+        log_trace('Compressed %s via %s from %s to %s bytes', t, compress, filesize, file.info(t)$size)
     }
 
     s3_upload_file(t, uri)
