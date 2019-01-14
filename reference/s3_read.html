@@ -110,7 +110,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>s3_read</span>(<span class='no'>uri</span>, <span class='no'>fun</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>s3_read</span>(<span class='no'>uri</span>, <span class='no'>fun</span>, <span class='no'>...</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"gzip"</span>, <span class='st'>"bzip2"</span>, <span class='st'>"xz"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,6 +127,10 @@
       <th>...</th>
       <td><p>optional params passed to <code>fun</code></p></td>
     </tr>
+    <tr>
+      <th>extract</th>
+      <td><p>optionally extract/decompress the file after downloading from S3 but before passing to <code>fun</code></p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -137,9 +141,16 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv'</span>, <span class='no'>read.csv</span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv'</span>, <span class='kw pkg'>data.table</span><span class='kw ns'>::</span><span class='no'>fread</span>)
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv2'</span>, <span class='no'>read.csv2</span>)
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.RDS'</span>, <span class='no'>readRDS</span>)
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.json'</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>fromJSON</a></span>)
+
+<span class='co'>## read compressed data</span>
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv.gz'</span>, <span class='no'>read.csv</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>'gzip'</span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv.gz'</span>, <span class='kw pkg'>data.table</span><span class='kw ns'>::</span><span class='no'>fread</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>'gzip'</span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv.bz2'</span>, <span class='no'>read.csv</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>'bzip2'</span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv.xz'</span>, <span class='no'>read.csv</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>'xz'</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

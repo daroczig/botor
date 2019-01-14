@@ -110,7 +110,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>s3_write</span>(<span class='no'>x</span>, <span class='no'>fun</span>, <span class='no'>uri</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>s3_write</span>(<span class='no'>x</span>, <span class='no'>fun</span>, <span class='no'>uri</span>, <span class='kw'>compress</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"gzip"</span>, <span class='st'>"bzip2"</span>, <span class='st'>"xz"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,6 +126,10 @@
     <tr>
       <th>uri</th>
       <td><p>string, URI of an S3 object, should start with <code>s3://</code>, then bucket name and object key</p></td>
+    </tr>
+    <tr>
+      <th>compress</th>
+      <td><p>optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in <code>uri</code> as well (that is not done automatically).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -144,6 +148,11 @@
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv2</span>, <span class='st'>'s3://botor/example-data/mtcars.csv2'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/jsonlite/topics/read_json'>write_json</a></span>, <span class='st'>'s3://botor/example-data/mtcars.json'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>saveRDS</span>, <span class='st'>'s3://botor/example-data/mtcars.RDS'</span>)
+
+<span class='co'>## compress file after writing to disk but before uploading to S3</span>
+<span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv</span>, <span class='st'>'s3://botor/example-data/mtcars.csv.gz'</span>, <span class='kw'>compress</span> <span class='kw'>=</span> <span class='st'>'gzip'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv</span>, <span class='st'>'s3://botor/example-data/mtcars.csv.bz2'</span>, <span class='kw'>compress</span> <span class='kw'>=</span> <span class='st'>'bzip2'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv</span>, <span class='st'>'s3://botor/example-data/mtcars.csv.xz'</span>, <span class='kw'>compress</span> <span class='kw'>=</span> <span class='st'>'xz'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
