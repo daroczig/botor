@@ -86,9 +86,16 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' @export
 #' @examples \dontrun{
 #' s3_read('s3://botor/example-data/mtcars.csv', read.csv)
+#' s3_read('s3://botor/example-data/mtcars.csv', data.table::fread)
 #' s3_read('s3://botor/example-data/mtcars.csv2', read.csv2)
 #' s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
 #' s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
+#'
+#' ## read compressed data
+#' s3_read('s3://botor/example-data/mtcars.csv.gz', read.csv, extract = 'gzip')
+#' s3_read('s3://botor/example-data/mtcars.csv.gz', data.table::fread, extract = 'gzip')
+#' s3_read('s3://botor/example-data/mtcars.csv.bz2', read.csv, extract = 'bzip2')
+#' s3_read('s3://botor/example-data/mtcars.csv.xz', read.csv, extract = 'xz')
 #' }
 s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 
@@ -103,6 +110,7 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
     ## decompress/extract downloaded file
     extract <- match.arg(extract)
     if (extract != 'none') {
+        ## NOTE that we just multiply the compressed file size by 1000 to estimate the uncompressed :/
         filesize <- file.info(t)$size * 1e3
         ## gzfile can handle bzip2 and xz as well
         filecon <- gzfile(t, open = 'rb')
