@@ -103,7 +103,7 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
     ## decompress/extract downloaded file
     extract <- match.arg(extract)
     if (extract != 'none') {
-        filesize <- file.info(t)$size
+        filesize <- file.info(t)$size * 1e3
         ## gzfile can handle bzip2 and xz as well
         filecon <- gzfile(t, open = 'rb')
         filecontent <- readBin(filecon, 'raw', n = filesize)
