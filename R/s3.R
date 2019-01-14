@@ -106,7 +106,7 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
         filesize <- file.info(t)$size
         ## gzfile can handle bzip2 and xz as well
         filecon <- gzfile(t, open = 'rb')
-        filecontent <- readBin(t, 'raw', n = filesize)
+        filecontent <- readBin(filecon, 'raw', n = filesize)
         close(filecon)
         ## overwrite
         writeBin(filecontent, t)
