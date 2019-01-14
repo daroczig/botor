@@ -1,5 +1,7 @@
 #' Internal boto3 session
+#' @keywords internal
 botor_session <- NULL
+
 
 #' The default, fork-safe Boto3 session
 #' @param aws_access_key_id AWS access key ID

@@ -11,4 +11,4 @@ botor_session
 \description{
 Internal boto3 session
 }
-\keyword{datasets}
+\keyword{internal}
