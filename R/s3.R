@@ -110,15 +110,26 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
     ## decompress/extract downloaded file
     extract <- match.arg(extract)
     if (extract != 'none') {
+
         filesize <- file.info(t)$size
+
         ## gzfile can handle bzip2 and xz as well
         filecon <- gzfile(t, open = 'rb')
-        ## NOTE that we just multiply the compressed file size by 1000 to estimate the uncompressed :/
-        filecontent <- readBin(filecon, 'raw', n = filesize * 1e3)
+
+        ## paginate read compressed file by 1MB chunks
+        ## as we have no idea about the size of the uncompressed data
+        chunksize <- 1024L * 1024L
+        chunks <- list(readBin(filecon, 'raw', n = chunksize))
+        while (length(chunks[[length(chunks)]]) == chunksize) {
+            chunks[[length(chunks) + 1]] <- readBin(filecon, 'raw', n = chunksize)
+        }
+        filecontent <- unlist(chunks, use.names = FALSE)
         close(filecon)
-        ## overwrite
+
+        ## overwrite compressed temp file with uncompressed data
         writeBin(filecontent, t)
         log_trace('Decompressed %s via %s from %s to %s bytes', t, extract, filesize, file.info(t)$size)
+
     }
 
     fun(t, ...)
