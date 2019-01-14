@@ -92,7 +92,6 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
 #'
 #' ## read compressed data
-#' ## TODO add public permissions to these
 #' s3_read('s3://botor/example-data/mtcars.csv.gz', read.csv, extract = 'gzip')
 #' s3_read('s3://botor/example-data/mtcars.csv.gz', data.table::fread, extract = 'gzip')
 #' s3_read('s3://botor/example-data/mtcars.csv.bz2', read.csv, extract = 'bzip2')
