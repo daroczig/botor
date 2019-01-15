@@ -129,7 +129,7 @@ kms_decrypt_file <- function(file, return = file) {
     }
 
     ## load the encryption key
-    key <- charToRaw(kms_decrypt(readLines(paste0(file, '.key'), warn = FALSE)))
+    key <- charToRaw(kms_decrypt(paste(readLines(paste0(file, '.key'), warn = FALSE), collapse = '')))
 
     ## load the encrypted file
     msg <- readBin(paste0(file, '.enc'), 'raw', n = file.size(paste0(file, '.enc')))
