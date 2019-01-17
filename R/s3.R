@@ -140,8 +140,10 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' Upload a file to S3
 #' @inheritParams s3_object
 #' @param file string, location of local file
+#' @param content_type content type of a file that is auto-guess if omitted
 #' @export
 #' @importFrom checkmate assert_file_exists
+#' @importFrom reticulate import
 #' @return invisibly \code{uri}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file}
 #' @seealso \code{\link{s3_download_file}}
@@ -149,15 +151,37 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
 #' s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
 #' }
-s3_upload_file <- function(file, uri) {
+s3_upload_file <- function(file, uri, content_type = NA) {
+
     assert_string(file)
     assert_file_exists(file)
     assert_s3_uri(uri)
+    assert_string(content_type, na.ok = TRUE)
+
+    ## guess content type
+    if (is.na(content_type)) {
+        mimetypes <- import(module = 'mimetypes')
+        content_type <- mimetypes$guess_type(file)[[1]]
+        if (is.null(content_type)) {
+            content_type <- NA
+        }
+    }
+
+    ## set content type
+    if (!is.na(content_type)) {
+        extra_args <- list(ContentType = content_type)
+    } else {
+        extra_args <- NULL
+    }
+
     log_trace('Uploading %s to %s ...', shQuote(file), uri)
     s3object <- s3_object(uri)
-    trypy(s3object$upload_file(file))
-    log_debug('Uploaded %s bytes from %s to %s', file.info(file)$size, shQuote(file), uri)
+    trypy(s3object$upload_file(file, ExtraArgs = extra_args))
+    log_debug(
+        'Uploaded %s bytes from %s to %s with %s content type',
+        file.info(file)$size, shQuote(file), uri, shQuote(content_type))
     invisible(uri)
+
 }
 
 
