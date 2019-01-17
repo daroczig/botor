@@ -151,21 +151,12 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
 #' s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
 #' }
-s3_upload_file <- function(file, uri, content_type = NA) {
+s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 
     assert_string(file)
     assert_file_exists(file)
     assert_s3_uri(uri)
     assert_string(content_type, na.ok = TRUE)
-
-    ## guess content type
-    if (is.na(content_type)) {
-        mimetypes <- import(module = 'mimetypes')
-        content_type <- mimetypes$guess_type(file)[[1]]
-        if (is.null(content_type)) {
-            content_type <- NA
-        }
-    }
 
     ## set content type
     if (!is.na(content_type)) {

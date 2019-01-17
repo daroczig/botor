@@ -91,3 +91,23 @@ botor_client <- function(service, type = c('client', 'resource')) {
     get(service, envir = clients)
 
 }
+
+
+#' Guess the type of a file based on the filename using \code{mimetypes} Python module
+#' @param file path
+#' @return string
+#' @export
+#' @importFrom reticulate import
+mime_guess <- function(file) {
+
+    mimetypes <- import(module = 'mimetypes')
+    content_type <- mimetypes$guess_type(file)[[1]]
+
+    ## return NA instead of NULL
+    if (is.null(content_type)) {
+        content_type <- NA
+    }
+
+    content_type
+
+}

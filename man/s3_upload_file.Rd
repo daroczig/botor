@@ -4,7 +4,7 @@
 \alias{s3_upload_file}
 \title{Upload a file to S3}
 \usage{
-s3_upload_file(file, uri, content_type = NA)
+s3_upload_file(file, uri, content_type = mime_guess(file))
 }
 \arguments{
 \item{file}{string, location of local file}
