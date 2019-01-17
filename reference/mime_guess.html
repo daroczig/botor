@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Upload a file to S3 — s3_upload_file • botor</title>
+<title>Guess the type of a file based on the filename using <code>mimetypes</code> Python module — mime_guess • botor</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Upload a file to S3 — s3_upload_file" />
+<meta property="og:title" content="Guess the type of a file based on the filename using <code>mimetypes</code> Python module — mime_guess" />
 
-<meta property="og:description" content="Upload a file to S3" />
+<meta property="og:description" content="Guess the type of a file based on the filename using mimetypes Python module" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,54 +99,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Upload a file to S3</h1>
-    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/s3.R'><code>R/s3.R</code></a></small>
-    <div class="hidden name"><code>s3_upload_file.Rd</code></div>
+    <h1>Guess the type of a file based on the filename using <code>mimetypes</code> Python module</h1>
+    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>mime_guess.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Upload a file to S3</p>
+    <p>Guess the type of a file based on the filename using <code>mimetypes</code> Python module</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>s3_upload_file</span>(<span class='no'>file</span>, <span class='no'>uri</span>, <span class='kw'>content_type</span> <span class='kw'>=</span> <span class='fu'><a href='mime_guess.html'>mime_guess</a></span>(<span class='no'>file</span>))</pre>
+    <pre class="usage"><span class='fu'>mime_guess</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>string, location of local file</p></td>
-    </tr>
-    <tr>
-      <th>uri</th>
-      <td><p>string, URI of an S3 object, should start with <code>s3://</code>, then bucket name and object key</p></td>
-    </tr>
-    <tr>
-      <th>content_type</th>
-      <td><p>content type of a file that is auto-guess if omitted</p></td>
+      <td><p>path</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>invisibly <code>uri</code></p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file'>https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file</a></p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='s3_download_file.html'>s3_download_file</a></code></p></div>
+    <p>string</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.csv</a></span>(<span class='no'>mtcars</span>, <span class='st'>'/tmp/mtcars.csv'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>s3_upload_file</span>(<span class='st'>'/tmp/mtcars.csv'</span>, <span class='st'>'s3://botor/example-data/mtcars.csv'</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -154,13 +133,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
