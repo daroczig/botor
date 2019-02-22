@@ -1,4 +1,4 @@
-#' The default, fork-safe S3 client on the top of \code{botor}
+#' The default, fork-safe Amazon Simple Storage Service (S3) client on the top of \code{botor}
 #' @return \code{s3.ServiceResource}
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}

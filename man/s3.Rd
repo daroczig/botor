@@ -2,7 +2,7 @@
 % Please edit documentation in R/s3.R
 \name{s3}
 \alias{s3}
-\title{The default, fork-safe S3 client on the top of \code{botor}}
+\title{The default, fork-safe Amazon Simple Storage Service (S3) client on the top of \code{botor}}
 \usage{
 s3()
 }
@@ -10,7 +10,7 @@ s3()
 \code{s3.ServiceResource}
 }
 \description{
-The default, fork-safe S3 client on the top of \code{botor}
+The default, fork-safe Amazon Simple Storage Service (S3) client on the top of \code{botor}
 }
 \references{
 \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
