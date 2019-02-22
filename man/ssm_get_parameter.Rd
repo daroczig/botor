@@ -2,16 +2,16 @@
 % Please edit documentation in R/ssm.R
 \name{ssm_get_parameter}
 \alias{ssm_get_parameter}
-\title{Create an S3 Object reference from an URI}
+\title{Read AWS System Manager's Parameter Store}
 \usage{
 ssm_get_parameter(path, decrypt = TRUE)
 }
 \arguments{
-\item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
+\item{path}{name/path of the key to be read}
 }
 \value{
-\code{s3$Object}
+decrypted value
 }
 \description{
-Create an S3 Object reference from an URI
+Read AWS System Manager's Parameter Store
 }

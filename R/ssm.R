@@ -7,9 +7,9 @@ ssm <- function() {
 }
 
 
-#' Create an S3 Object reference from an URI
-#' @param uri string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
-#' @return \code{s3$Object}
+#' Read AWS System Manager's Parameter Store
+#' @param path name/path of the key to be read
+#' @return decrypted value
 #' @export
 ssm_get_parameter <- function(path, decrypt = TRUE) {
     trypy(ssm()$get_parameter(
