@@ -243,7 +243,7 @@ s3_ls <- function(uri) {
 
     objects <- s3()$Bucket(uri_parts$bucket_name)$objects
     objects <- objects$filter(Prefix = uri_parts$key)
-    objects <- iterate(objects$pages(), simplify = FALSE)
+    objects <- trypy(iterate(objects$pages(), simplify = FALSE))
     objects <- unlist(objects, recursive = FALSE)
 
     objects <- do.call(rbind, lapply(objects, function(object) {
