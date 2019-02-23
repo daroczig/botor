@@ -8,9 +8,11 @@ ssm_get_parameter(path, decrypt = TRUE)
 }
 \arguments{
 \item{path}{name/path of the key to be read}
+
+\item{decrypt}{decrypt the value or return the raw ciphertext}
 }
 \value{
-decrypted value
+(optionally decrypted) value
 }
 \description{
 Read AWS System Manager's Parameter Store

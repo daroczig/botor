@@ -31,8 +31,11 @@ s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', ro
 s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
 
 ## compress file after writing to disk but before uploading to S3
-s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.gz', compress = 'gzip', row.names = FALSE)
-s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.bz2', compress = 'bzip2', row.names = FALSE)
-s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.xz', compress = 'xz', row.names = FALSE)
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.gz',
+  compress = 'gzip', row.names = FALSE)
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.bz2',
+  compress = 'bzip2', row.names = FALSE)
+s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv.xz',
+  compress = 'xz', row.names = FALSE)
 }
 }
