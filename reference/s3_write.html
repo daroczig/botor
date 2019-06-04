@@ -121,7 +121,7 @@
     </tr>
     <tr>
       <th>fun</th>
-      <td><p>R function with <code>file</code> argument to write <code>x</code> to disk before uploading, eg <code>write.csv</code>, <code>write_json</code> or <code>saveRDS</code></p></td>
+      <td><p>R function with <code>file</code> argument to serialize <code>x</code> to disk before uploading, eg <code>write.csv</code>, <code>write_json</code>, <code>stream_out</code> or <code>saveRDS</code></p></td>
     </tr>
     <tr>
       <th>uri</th>
@@ -147,6 +147,7 @@
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv</span>, <span class='st'>'s3://botor/example-data/mtcars.csv'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>write.csv2</span>, <span class='st'>'s3://botor/example-data/mtcars.csv2'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/jsonlite/topics/read_json'>write_json</a></span>, <span class='st'>'s3://botor/example-data/mtcars.json'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/jsonlite/topics/stream_in'>stream_out</a></span>, <span class='st'>'s3://botor/example-data/mtcars.jsonl'</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>s3_write</span>(<span class='no'>mtcars</span>, <span class='no'>saveRDS</span>, <span class='st'>'s3://botor/example-data/mtcars.RDS'</span>)
 
 <span class='co'>## compress file after writing to disk but before uploading to S3</span>
@@ -177,7 +178,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>
