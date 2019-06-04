@@ -9,7 +9,7 @@ s3_read(uri, fun, ..., extract = c("none", "gzip", "bzip2", "xz"))
 \arguments{
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
-\item{fun}{R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}}
+\item{fun}{R function to read the file, eg \code{fromJSON}, \code{stream_in}, \code{fread} or \code{readRDS}}
 
 \item{...}{optional params passed to \code{fun}}
 
@@ -28,6 +28,7 @@ s3_read('s3://botor/example-data/mtcars.csv', data.table::fread)
 s3_read('s3://botor/example-data/mtcars.csv2', read.csv2)
 s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
 s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
+s3_read('s3://botor/example-data/mtcars.jsonl', jsonlite::stream_in)
 
 ## read compressed data
 s3_read('s3://botor/example-data/mtcars.csv.gz', read.csv, extract = 'gzip')

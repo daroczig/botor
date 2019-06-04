@@ -9,7 +9,7 @@ s3_write(x, fun, uri, compress = c("none", "gzip", "bzip2", "xz"), ...)
 \arguments{
 \item{x}{R object}
 
-\item{fun}{R function with \code{file} argument to write \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json} or \code{saveRDS}}
+\item{fun}{R function with \code{file} argument to serialize \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json}, \code{stream_out} or \code{saveRDS}}
 
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
@@ -28,6 +28,7 @@ The temp file used for this operation is automatically removed.
 s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
 s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
+s3_write(mtcars, jsonlite::stream_out, 's3://botor/example-data/mtcars.jsonl', row.names = FALSE)
 s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
 
 ## compress file after writing to disk but before uploading to S3

@@ -79,7 +79,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
 
 #' Download and read a file from S3, then clean up
 #' @inheritParams s3_download_file
-#' @param fun R function to read the file, eg \code{fromJSON}, \code{fread} or \code{readRDS}
+#' @param fun R function to read the file, eg \code{fromJSON}, \code{stream_in}, \code{fread} or \code{readRDS}
 #' @param ... optional params passed to \code{fun}
 #' @param extract optionally extract/decompress the file after downloading from S3 but before passing to \code{fun}
 #' @return R object
@@ -90,6 +90,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
 #' s3_read('s3://botor/example-data/mtcars.csv2', read.csv2)
 #' s3_read('s3://botor/example-data/mtcars.RDS', readRDS)
 #' s3_read('s3://botor/example-data/mtcars.json', jsonlite::fromJSON)
+#' s3_read('s3://botor/example-data/mtcars.jsonl', jsonlite::stream_in)
 #'
 #' ## read compressed data
 #' s3_read('s3://botor/example-data/mtcars.csv.gz', read.csv, extract = 'gzip')
@@ -130,6 +131,10 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
         writeBin(filecontent, t)
         log_trace('Decompressed %s via %s from %s to %s bytes', t, extract, filesize, file.info(t)$size)
 
+    }
+
+    if (deparse(substitute(fun)) %in% c('jsonlite::stream_in', 'stream_in')) {
+        t <- file(t)
     }
 
     fun(t, ...)
@@ -178,7 +183,7 @@ s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 
 #' Write an R object into S3
 #' @param x R object
-#' @param fun R function with \code{file} argument to write \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json} or \code{saveRDS}
+#' @param fun R function with \code{file} argument to serialize \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json}, \code{stream_out} or \code{saveRDS}
 #' @param compress optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in \code{uri} as well (that is not done automatically).
 #' @param ... optional further arguments passed to \code{fun}
 #' @inheritParams s3_object
@@ -188,6 +193,7 @@ s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 #' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
 #' s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
 #' s3_write(mtcars, jsonlite::write_json, 's3://botor/example-data/mtcars.json', row.names = FALSE)
+#' s3_write(mtcars, jsonlite::stream_out, 's3://botor/example-data/mtcars.jsonl', row.names = FALSE)
 #' s3_write(mtcars, saveRDS, 's3://botor/example-data/mtcars.RDS')
 #'
 #' ## compress file after writing to disk but before uploading to S3
@@ -209,7 +215,11 @@ s3_write <- function(x, fun, uri, compress = c('none', 'gzip', 'bzip2', 'xz'), .
     if (deparse(substitute(fun)) %in% c('jsonlite::write_json', 'write_json')) {
         fun(x, path = t, ...)
     } else {
-        fun(x, file = t, ...)
+        if (deparse(substitute(fun)) %in% c('jsonlite::stream_out', 'stream_out')) {
+            fun(x, con = file(t), ...)
+        } else {
+            fun(x, file = t, ...)
+        }
     }
     log_trace('Wrote %s bytes to %s', file.info(t)$size, t)
 
