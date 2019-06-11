@@ -40,6 +40,9 @@ kms_decrypt <- function(cipher, simplify = TRUE) {
     if (simplify == TRUE) {
         res <- res$Plaintext
     }
+    ## python3 returns bytes literal, so need to decode
+    ## but this fails with python2 returning a string
+    res <- tryCatch(res$decode(), error = function(e) res)
     res
 }
 
