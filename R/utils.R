@@ -111,3 +111,14 @@ mime_guess <- function(file) {
     content_type
 
 }
+
+
+#' Tries to call decode on Python literal to make sure to transform bytes literals to string
+#'
+#' This is useful to call eg for the KMS call, where python2 returns a string without a "decode" method, but python3 returns bytes literals where we have to call "decode" to transform to a standard string in R.
+#' @param x string
+#' @return string
+#' @keywords internal
+coerce_bytes_literals_to_string <- function(x) {
+    tryCatch(x$decode('unicode_escape'), error = function(e) x)
+}
