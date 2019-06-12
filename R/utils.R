@@ -120,5 +120,5 @@ mime_guess <- function(file) {
 #' @return string
 #' @keywords internal
 coerce_bytes_literals_to_string <- function(x) {
-    tryCatch(x$decode('unicode_escape'), error = function(e) x)
+    rawToChar(python_builtins$bytearray(x))
 }
