@@ -22,6 +22,7 @@ kms_encrypt <- function(key, text, simplify = TRUE) {
     if (simplify == TRUE) {
         res <- res$CiphertextBlob
         res <- base64_enc(res)
+        res <- coerce_bytes_literals_to_string(res)
     }
     res
 }
@@ -39,6 +40,7 @@ kms_decrypt <- function(cipher, simplify = TRUE) {
     res <- kms()$decrypt(CiphertextBlob = base64_dec(cipher))
     if (simplify == TRUE) {
         res <- res$Plaintext
+        res <- coerce_bytes_literals_to_string(res)
     }
     res
 }
@@ -58,7 +60,7 @@ kms_generate_data_key <- function(key, bytes = 64L) {
     data_key <- kms()$generate_data_key(KeyId = key, NumberOfBytes = bytes)
 
     list(
-        cipher = base64_enc(data_key$CiphertextBlob),
+        cipher = coerce_bytes_literals_to_string(base64_enc(data_key$CiphertextBlob)),
         key    = data_key$KeyId,
         text   = python_builtins$bytearray(data_key$Plaintext))
 
