@@ -113,9 +113,9 @@ mime_guess <- function(file) {
 }
 
 
-#' Tries to call decode on Python literal to make sure to transform bytes literals to string
+#' Transforms a python2 string literal or python3 bytes literal into an R string
 #'
-#' This is useful to call eg for the KMS call, where python2 returns a string without a "decode" method, but python3 returns bytes literals where we have to call "decode" to transform to a standard string in R.
+#' This is useful to call eg for the KMS call, where python2 returns a string, but python3 returns bytes literals -- calling "decode" is tricky, but bytearray conversion, then passing the raw vector to R and converting that a string works.
 #' @param x string
 #' @return string
 #' @keywords internal
