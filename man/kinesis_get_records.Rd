@@ -7,7 +7,7 @@
 kinesis_get_records(shard_iterator)
 }
 \arguments{
-\item{shard_iterator}{the position in the shard from which you want to start sequentially reading data records, usually provided by \code{kinesis_get_shard_iterator}}
+\item{shard_iterator}{the position in the shard from which you want to start sequentially reading data records, usually provided by \code{\link{kinesis_get_shard_iterator}}}
 }
 \value{
 list of \code{Records}, \code{NextShardIterator} and \code{MillisBehindLatest}

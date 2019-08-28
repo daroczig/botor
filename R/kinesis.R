@@ -36,7 +36,7 @@ kinesis_put_record <- function(stream, data, partition_key) {
 #' @export
 #' @return list of \code{ShardIterator}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_shard_iterator}
-#' @seealso \code{kinesis_get_records}
+#' @seealso \code{\link{kinesis_get_records}}
 kinesis_get_shard_iterator <- function(stream, shard,
                                        shard_iterator_type = c(
                                            'TRIM_HORIZON', 'LATEST',
@@ -48,7 +48,7 @@ kinesis_get_shard_iterator <- function(stream, shard,
 
 #' Gets data records from a Kinesis data stream's shard
 #' @inheritParams kinesis_put_record
-#' @param shard_iterator the position in the shard from which you want to start sequentially reading data records, usually provided by \code{kinesis_get_shard_iterator}
+#' @param shard_iterator the position in the shard from which you want to start sequentially reading data records, usually provided by \code{\link{kinesis_get_shard_iterator}}
 #' @export
 #' @return list of \code{Records}, \code{NextShardIterator} and \code{MillisBehindLatest}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_records}

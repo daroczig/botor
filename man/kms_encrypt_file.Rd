@@ -18,5 +18,5 @@ two files created with \code{enc} (encrypted data) and \code{key} (encrypted key
 Encrypt file via KMS
 }
 \seealso{
-kms_encrypt kms_decrypt_file
+\code{\link{kms_encrypt}} \code{\link{kms_decrypt_file}}
 }

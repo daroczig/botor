@@ -18,5 +18,5 @@ decrypted text as string or \code{list}
 Decrypt cipher into plain text via KMS
 }
 \seealso{
-kms_encrypt
+\code{\link{kms_encrypt}}
 }

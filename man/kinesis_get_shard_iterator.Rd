@@ -27,5 +27,5 @@ Gets an Amazon Kinesis shard iterator
 \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_shard_iterator}
 }
 \seealso{
-\code{kinesis_get_records}
+\code{\link{kinesis_get_records}}
 }
