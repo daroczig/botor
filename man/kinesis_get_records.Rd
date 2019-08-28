@@ -16,7 +16,7 @@ list of \code{Records}, \code{NextShardIterator} and \code{MillisBehindLatest}
 Gets data records from a Kinesis data stream's shard
 }
 \examples{
-\dontrun {
+\dontrun{
 botor(profile_name = 'botor-tester')
 iterator <- kinesis_get_shard_iterator(stream = 'botor-tester', shard = '0')
 kinesis_get_records(iterator$ShardIterator)

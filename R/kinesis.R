@@ -52,7 +52,7 @@ kinesis_get_shard_iterator <- function(stream, shard,
 #' @export
 #' @return list of \code{Records}, \code{NextShardIterator} and \code{MillisBehindLatest}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_records}
-#' @examples \dontrun {
+#' @examples \dontrun{
 #' botor(profile_name = 'botor-tester')
 #' iterator <- kinesis_get_shard_iterator(stream = 'botor-tester', shard = '0')
 #' kinesis_get_records(iterator$ShardIterator)
