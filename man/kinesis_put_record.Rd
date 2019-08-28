@@ -12,6 +12,8 @@ kinesis_put_record(stream, data, partition_key)
 \item{data}{the data blob (<1 MB) to put into the record, which is base64-encoded when the blob is serialized}
 
 \item{partition_key}{Unicode string with a maximum length limit of 256 characters determining which shard in the stream the data record is assigned to}
+
+\item{...}{optional further parameters that might be required for some of the above parameter combinations}
 }
 \value{
 list of \code{ShardId}, \code{SequenceNumber} and \code{EncryptionType}
