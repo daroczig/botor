@@ -1,7 +1,7 @@
 #' Check if an argument looks like an S3 bucket
 #' @param x string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
 #' @export
-#' @importFrom checkmate makeAssertionFunction makeTestFunction makeExpectationFunction makeAssertion check_string vname
+#' @importFrom checkmate makeAssertionFunction makeTestFunction makeExpectationFunction makeAssertion makeExpectation check_string vname
 #' @examples \dontrun{
 #' check_s3_path('s3://foo/bar')
 #' check_s3_path('https://foo/bar')
