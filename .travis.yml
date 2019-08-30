@@ -4,6 +4,9 @@ cache:
 - packages
 - pip
 
+r_packages:
+- devtools
+
 before_install:
   - pip install --user boto3
 
