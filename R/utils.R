@@ -33,7 +33,7 @@ trypy <- function(expression) {
 #' @seealso \code{\link{base64_dec}}
 #' @importFrom checkmate assert_class
 base64_enc <- function(text) {
-    as.character(import('base64')$b64encode(text))
+    as.character(require_python_module('base64')$b64encode(text))
 }
 
 
@@ -48,7 +48,7 @@ base64_enc <- function(text) {
 #' @importFrom reticulate import
 base64_dec <- function(text) {
     assert_string(text)
-    python_builtins$bytearray(import('base64')$b64decode(text))
+    require_python_builtins()$bytearray(require_python_module('base64')$b64decode(text))
 }
 
 
@@ -57,39 +57,7 @@ base64_dec <- function(text) {
 #' @keywords internal
 #' @importFrom reticulate py_str
 uuid <- function() {
-    py_str(import('uuid')$uuid1())
-}
-
-
-#' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
-#' @param service string, eg S3 or IAM
-#' @param type client or resource to be created
-#' @return cached AWS client
-#' @export
-botor_client <- function(service, type = c('client', 'resource')) {
-
-    assert_string(service)
-    type <- match.arg(type)
-
-    client <- tryCatch(
-        get(service, envir = clients, inherits = FALSE),
-        error = function(e) NULL)
-
-    if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
-        if (type == 'client') {
-            client <- botor()$client(service)
-        } else {
-            client <- botor()$resource(service)
-        }
-        assign(x = service,
-               value = structure(
-                   client,
-                   uuid = botor_session_uuid()),
-               envir = clients)
-    }
-
-    get(service, envir = clients)
-
+    py_str(require_python_module('uuid')$uuid1())
 }
 
 
@@ -100,8 +68,7 @@ botor_client <- function(service, type = c('client', 'resource')) {
 #' @importFrom reticulate import
 mime_guess <- function(file) {
 
-    mimetypes <- import(module = 'mimetypes')
-    content_type <- mimetypes$guess_type(file)[[1]]
+    content_type <- require_python_module('mimetypes')$guess_type(file)[[1]]
 
     ## return NA instead of NULL
     if (is.null(content_type)) {
@@ -120,5 +87,5 @@ mime_guess <- function(file) {
 #' @return string
 #' @keywords internal
 coerce_bytes_literals_to_string <- function(x) {
-    rawToChar(python_builtins$bytearray(x))
+    rawToChar(require_python_builtins()$bytearray(x))
 }

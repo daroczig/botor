@@ -54,3 +54,40 @@ botor_session_pid <- function() {
 botor_session_uuid <- function() {
     attr(botor_session, 'uuid')
 }
+
+
+#' boto3 clients cache
+#' @keywords internal
+clients <- new.env()
+
+
+#' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
+#' @param service string, eg S3 or IAM
+#' @param type client or resource to be created
+#' @return cached AWS client
+#' @export
+botor_client <- function(service, type = c('client', 'resource')) {
+
+    assert_string(service)
+    type <- match.arg(type)
+
+    client <- tryCatch(
+        get(service, envir = clients, inherits = FALSE),
+        error = function(e) NULL)
+
+    if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
+        if (type == 'client') {
+            client <- botor()$client(service)
+        } else {
+            client <- botor()$resource(service)
+        }
+        assign(x = service,
+               value = structure(
+                   client,
+                   uuid = botor_session_uuid()),
+               envir = clients)
+    }
+
+    get(service, envir = clients)
+
+}

@@ -62,7 +62,7 @@ kms_generate_data_key <- function(key, bytes = 64L) {
     list(
         cipher = coerce_bytes_literals_to_string(base64_enc(data_key$CiphertextBlob)),
         key    = data_key$KeyId,
-        text   = python_builtins$bytearray(data_key$Plaintext))
+        text   = require_python_builtins()$bytearray(data_key$Plaintext))
 
 }
 
