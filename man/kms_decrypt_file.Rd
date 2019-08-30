@@ -18,5 +18,5 @@ decrypted file path
 Decrypt file via KMS
 }
 \seealso{
-kms_encrypt kms_encrypt_file
+\code{\link{kms_encrypt}} \code{\link{kms_encrypt_file}}
 }

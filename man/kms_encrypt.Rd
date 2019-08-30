@@ -20,5 +20,5 @@ string or \code{list}
 Encrypt plain text via KMS
 }
 \seealso{
-kms_decrypt
+\code{\link{kms_decrypt}}
 }
