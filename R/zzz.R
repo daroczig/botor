@@ -4,7 +4,7 @@ python_builtins <- NULL
 .onLoad <- function(libname, pkgname) {
 
 
-    if (reticulate::py_available()) {
+    if (reticulate::py_available(initialize = TRUE)) {
 
         utils::assignInMyNamespace(
             'python_builtins',
