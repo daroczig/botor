@@ -3,9 +3,9 @@
 #' @export
 #' @importFrom checkmate makeAssertionFunction makeTestFunction makeExpectationFunction makeAssertion makeExpectation check_string vname
 #' @examples \dontrun{
-#' check_s3_path('s3://foo/bar')
-#' check_s3_path('https://foo/bar')
-#' assert_s3_path('https://foo/bar')
+#' check_s3_uri('s3://foo/bar')
+#' check_s3_uri('https://foo/bar')
+#' assert_s3_uri('https://foo/bar')
 #' }
 #' @aliases check_s3_uri assert_s3_uri test_s3_uri expect_s3_uri
 check_s3_uri <- function(x) {
