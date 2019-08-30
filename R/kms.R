@@ -13,7 +13,7 @@ kms <- function() {
 #' @param simplify returns Base64-encoded text instead of raw list
 #' @return string or \code{list}
 #' @export
-#' @seealso kms_decrypt
+#' @seealso \code{\link{kms_decrypt}}
 kms_encrypt <- function(key, text, simplify = TRUE) {
     assert_string(key)
     assert_string(text)
@@ -33,7 +33,7 @@ kms_encrypt <- function(key, text, simplify = TRUE) {
 #' @param simplify returns decrypted plain-text instead of raw list
 #' @return decrypted text as string or \code{list}
 #' @export
-#' @seealso kms_encrypt
+#' @seealso \code{\link{kms_encrypt}}
 kms_decrypt <- function(cipher, simplify = TRUE) {
     assert_string(cipher)
     assert_flag(simplify)
@@ -72,7 +72,7 @@ kms_generate_data_key <- function(key, bytes = 64L) {
 #' @return two files created with \code{enc} (encrypted data) and \code{key} (encrypted key) extensions
 #' @inheritParams kms_encrypt
 #' @export
-#' @seealso kms_encrypt kms_decrypt_file
+#' @seealso \code{\link{kms_encrypt}} \code{\link{kms_decrypt_file}}
 #' @importFrom checkmate assert_file_exists
 kms_encrypt_file <- function(key, file) {
 
@@ -114,7 +114,7 @@ kms_encrypt_file <- function(key, file) {
 #' @param return where to place the encrypted file (defaults to \code{file})
 #' @return decrypted file path
 #' @export
-#' @seealso kms_encrypt kms_encrypt_file
+#' @seealso \code{\link{kms_encrypt}} \code{\link{kms_encrypt_file}}
 kms_decrypt_file <- function(file, return = file) {
 
     if (!file.exists(paste0(file, '.enc'))) {

@@ -12,3 +12,6 @@ string
 \description{
 Get the current AWS username
 }
+\seealso{
+\code{\link{sts_whoami}}
+}
