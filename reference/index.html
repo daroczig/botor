@@ -8,11 +8,13 @@
 
 <title>Function reference • botor</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,7 +32,9 @@
 
 
 
+
 <meta property="og:title" content="Function reference" />
+
 
 
 
@@ -76,7 +80,6 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/daroczig/botor">
@@ -153,9 +156,45 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="iam_get_user.html">iam_get_user()</a></code> </p>
+        </td>
+        <td><p>Retrieves information about the specified IAM user, including the user's creation date, path, unique ID, and ARN</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="iam_whoami.html">iam_whoami()</a></code> </p>
         </td>
         <td><p>Get the current AWS username</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="kinesis.html">kinesis()</a></code> </p>
+        </td>
+        <td><p>The default, fork-safe Kinesis client on the top of <code>botor</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="kinesis_describe_stream.html">kinesis_describe_stream()</a></code> </p>
+        </td>
+        <td><p>Describes the specified Kinesis data stream</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="kinesis_get_records.html">kinesis_get_records()</a></code> </p>
+        </td>
+        <td><p>Gets data records from a Kinesis data stream's shard</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="kinesis_get_shard_iterator.html">kinesis_get_shard_iterator()</a></code> </p>
+        </td>
+        <td><p>Gets an Amazon Kinesis shard iterator</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="kinesis_put_record.html">kinesis_put_record()</a></code> </p>
+        </td>
+        <td><p>Writes a single data record into an Amazon Kinesis data stream</p></td>
       </tr><tr>
         
         <td>
@@ -276,6 +315,12 @@
           <p><code><a href="ssm_get_parameter.html">ssm_get_parameter()</a></code> </p>
         </td>
         <td><p>Read AWS System Manager's Parameter Store</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sts_whoami.html">sts_whoami()</a></code> </p>
+        </td>
+        <td><p>Returns details about the IAM user or role whose credentials are used to call the operation</p></td>
       </tr>
     </tbody>
     </table>
