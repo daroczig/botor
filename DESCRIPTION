@@ -4,8 +4,8 @@ Authors@R: c(
     person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-3149-8537")),
     person("System1", role = c("fnd"))
     )
-Title: Reticulate wrapper on 'boto3' with convenient helper functions
-Description: Provides access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module.
+Title: 'AWS' Python 'SDK' ('boto3') for R
+Description: Fork-safe, raw access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module, and convenient helper functions to query the Simple Storage Service ('S3') and Key Management Service ('KMS'), partial support for 'IAM', the System Manager's Parameter Store and Secrets Manager.
 SystemRequirements: boto3 (https://aws.amazon.com/sdk-for-python)
 Version: 0.1.0.9002
 Date: 2019-01-15

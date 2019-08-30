@@ -2,14 +2,20 @@
 
 [![Build Status](https://travis-ci.org/daroczig/botor.svg?branch=master)](https://travis-ci.org/daroczig/botor) [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip) ![Active development in 2018-2019](https://img.shields.io/maintenance/yes/2019.svg)
 
-This R package provides access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module and some convenient helper functions and workarounds, eg taking care of spawning new resources in forked R processes.
+This R package provides raw access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module and some convenient helper functions (currently for S3 and KMS) and workarounds, eg taking care of spawning new resources in forked R processes.
 
 ## Installation
 
-`botor` is not on CRAN yet, please install from GitHub:
+This package requires Python to be installed along with the `boto3` Python module, which can be installed from R via:
 
 ```r
-devtools::install_github('daroczig/botor')
+reticulate::py_install('boto3')
+```
+
+Once the Python dependencies are resolved, the most recent (development version) of `botor` can be installed from  GitHub:
+
+```r
+remotes::install_github('daroczig/botor')
 ```
 
 ## Loading the package
