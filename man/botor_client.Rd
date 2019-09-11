@@ -4,16 +4,21 @@
 \alias{botor_client}
 \title{Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace}
 \usage{
-botor_client(service, type = c("client", "resource"))
+botor_client(service, type = c("client", "resource"), ...)
 }
 \arguments{
 \item{service}{string, eg S3 or IAM}
 
-\item{type}{client or resource to be created}
+\item{type}{AWS service client or resource to be created, eg \code{s3}}
+
+\item{...}{further parameters passed to the \code{client} or \code{resource}, eg \code{endpoint_url}}
 }
 \value{
 cached AWS client
 }
 \description{
 Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
+}
+\references{
+\url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}
 }

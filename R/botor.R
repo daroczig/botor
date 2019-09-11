@@ -63,10 +63,12 @@ clients <- new.env()
 
 #' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
 #' @param service string, eg S3 or IAM
-#' @param type client or resource to be created
+#' @param type AWS service client or resource to be created, eg \code{s3}
+#' @param ... further parameters passed to the \code{client} or \code{resource}, eg \code{endpoint_url}
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}
 #' @return cached AWS client
 #' @export
-botor_client <- function(service, type = c('client', 'resource')) {
+botor_client <- function(service, type = c('client', 'resource'), ...) {
 
     assert_string(service)
     type <- match.arg(type)
@@ -77,9 +79,9 @@ botor_client <- function(service, type = c('client', 'resource')) {
 
     if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
         if (type == 'client') {
-            client <- botor()$client(service)
+            client <- botor()$client(service, ...)
         } else {
-            client <- botor()$resource(service)
+            client <- botor()$resource(service, ...)
         }
         assign(x = service,
                value = structure(
