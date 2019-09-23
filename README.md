@@ -12,6 +12,8 @@ This package requires Python to be installed along with the `boto3` Python modul
 reticulate::py_install('boto3')
 ```
 
+If that might result in technical problems that you cannot solve, then it's probably easier to install a standalone Python along with the system dependencies etc via [`rminiconda`](https://github.com/hafen/rminiconda).
+
 Once the Python dependencies are resolved, you can either install from CRAN or the most recent (development version) of `botor` can be installed from  GitHub:
 
 ```r
