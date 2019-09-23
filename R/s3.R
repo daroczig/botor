@@ -153,8 +153,11 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file}
 #' @seealso \code{\link{s3_download_file}}
 #' @examples \dontrun{
-#' write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
-#' s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
+#' t <- tempfile()
+#' write.csv(mtcars, t, row.names = FALSE)
+#' s3_upload_file(t, 's3://botor/example-data/mtcars.csv')
+#' unlink(t)
+#' ## note that s3_write would have been a much nicer solution for the above
 #' }
 s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 

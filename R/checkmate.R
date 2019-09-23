@@ -2,9 +2,10 @@
 #' @param x string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
 #' @export
 #' @importFrom checkmate makeAssertionFunction makeTestFunction makeExpectationFunction makeAssertion makeExpectation check_string vname
-#' @examples \dontrun{
+#' @examples
 #' check_s3_uri('s3://foo/bar')
 #' check_s3_uri('https://foo/bar')
+#' \dontrun{
 #' assert_s3_uri('https://foo/bar')
 #' }
 #' @aliases check_s3_uri assert_s3_uri test_s3_uri expect_s3_uri

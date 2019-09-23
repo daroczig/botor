@@ -3,7 +3,7 @@
 #' @return error
 #' @keywords internal
 #' @examples \dontrun{
-#' trypy(botor$resource('foobar'))
+#' trypy(botor()$resource('foobar'))
 #' trypy(sum(1:2))
 #' trypy(sum(1:1foo))
 #' }
@@ -42,7 +42,7 @@ base64_enc <- function(text) {
 #' @return \code{raw} bytes
 #' @keywords internal
 #' @examples \dontrun{
-#' base64_dec(base64_enc(charToRaw('foobar')))
+#' botor:::base64_dec(botor:::base64_enc(charToRaw('foobar')))
 #' }
 #' @seealso \code{\link{base64_enc}}
 #' @importFrom reticulate import

@@ -17,7 +17,7 @@ Extract error message from a Python exception
 }
 \examples{
 \dontrun{
-trypy(botor$resource('foobar'))
+trypy(botor()$resource('foobar'))
 trypy(sum(1:2))
 trypy(sum(1:1foo))
 }

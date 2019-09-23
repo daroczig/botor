@@ -17,7 +17,7 @@ Base64-decode a string into raw bytes using Python's base64 module
 }
 \examples{
 \dontrun{
-base64_dec(base64_enc(charToRaw('foobar')))
+botor:::base64_dec(botor:::base64_enc(charToRaw('foobar')))
 }
 }
 \seealso{

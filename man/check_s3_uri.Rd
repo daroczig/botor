@@ -16,9 +16,9 @@ check_s3_uri(x)
 Check if an argument looks like an S3 bucket
 }
 \examples{
-\dontrun{
 check_s3_uri('s3://foo/bar')
 check_s3_uri('https://foo/bar')
+\dontrun{
 assert_s3_uri('https://foo/bar')
 }
 }

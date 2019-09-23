@@ -21,8 +21,11 @@ Upload a file to S3
 }
 \examples{
 \dontrun{
-write.csv(mtcars, '/tmp/mtcars.csv', row.names = FALSE)
-s3_upload_file('/tmp/mtcars.csv', 's3://botor/example-data/mtcars.csv')
+t <- tempfile()
+write.csv(mtcars, t, row.names = FALSE)
+s3_upload_file(t, 's3://botor/example-data/mtcars.csv')
+unlink(t)
+## note that s3_write would have been a much nicer solution for the above
 }
 }
 \references{
