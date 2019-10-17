@@ -63,31 +63,42 @@ clients <- new.env()
 
 #' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
 #' @param service string, eg S3 or IAM
-#' @param type client or resource to be created
+#' @param type AWS service client or resource to be created, eg \code{s3}
+#' @param cache booelan flag for caching the client or resource in the package namespace. For (internal) package functions, it's best to set to \code{TRUE} to avoid reinitializing the client/resource, but for custom use and when you need to use multiple clients for the same service in parallel (eg working with different regions etc), you might want to set this to \code{FALSE}
+#' @param ... further parameters passed to the \code{client} or \code{resource}, eg \code{endpoint_url}
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}
 #' @return cached AWS client
+#' @importFrom checkmate assert_string assert_flag
 #' @export
-botor_client <- function(service, type = c('client', 'resource')) {
+botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, ...) {
 
     assert_string(service)
+    assert_flag(cache)
     type <- match.arg(type)
 
     client <- tryCatch(
         get(service, envir = clients, inherits = FALSE),
         error = function(e) NULL)
 
-    if (is.null(client) || attr(client, 'uuid') != botor_session_uuid()) {
-        if (type == 'client') {
-            client <- botor()$client(service)
-        } else {
-            client <- botor()$resource(service)
-        }
-        assign(x = service,
+    if (cache == TRUE && !is.null(client) && attr(client, 'uuid') == botor_session_uuid()) {
+        return(client)
+    }
+
+    if (type == 'client') {
+        client <- botor()$client(service, ...)
+    } else {
+        client <- botor()$resource(service, ...)
+    }
+
+    if (cache == FALSE) {
+        return(client)
+    }
+
+    assign(x = service,
                value = structure(
                    client,
                    uuid = botor_session_uuid()),
-               envir = clients)
-    }
-
-    get(service, envir = clients)
+           envir = clients)
+    return(client)
 
 }
