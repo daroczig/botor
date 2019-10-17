@@ -8,5 +8,5 @@ boto3 <- NULL
 #' @return string
 #' @export
 boto3_version <- function() {
-    botor$`__version__`
+    boto3$`__version__`
 }
