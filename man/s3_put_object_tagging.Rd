@@ -2,8 +2,7 @@
 % Please edit documentation in R/s3.R
 \name{s3_put_object_tagging}
 \alias{s3_put_object_tagging}
-\title{Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same.
-Calls this function under the hood: \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}}
+\title{Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same}
 \usage{
 s3_put_object_tagging(uri, tags)
 }
@@ -13,6 +12,8 @@ s3_put_object_tagging(uri, tags)
 \item{tags}{named character vector, e.g. \code{c(my_first_name = 'my_first_value', my_second_name = 'my_second_value')} where names are the tag names and values are the tag values.}
 }
 \description{
-Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same.
-Calls this function under the hood: \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}
+Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same
+}
+\references{
+\url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}
 }
