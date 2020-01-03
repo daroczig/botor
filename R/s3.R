@@ -329,3 +329,22 @@ s3_delete <- function(uri) {
     s3_object(uri)$delete()
     log_debug('Deleted %s', uri)
 }
+
+
+#' Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same
+#' @param uri string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
+#' @param tags named character vector, e.g. \code{c(my_first_name = 'my_first_value', my_second_name = 'my_second_value')} where names are the tag names and values are the tag values.
+#' @export
+#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}
+s3_put_object_tagging <- function(uri, tags) {
+    assert_s3_uri(uri)
+    tag_set <- mapply(list, Key = names(tags), Value = tags, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+    ## Desired format for tag_set is
+    ## list(list('Key' = 'my_first_key', 'Value' = 'my_first_value'), list('Key' = 'my_second_key', 'Value' = 'my_second_value'))
+    uri_parts <- s3_split_uri(uri)
+    s3()$meta$client$put_object_tagging(
+        Bucket = uri_parts$bucket_name,
+        Key = uri_parts$key,
+        Tagging = list('TagSet' = tag_set)
+    )
+}
