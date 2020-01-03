@@ -14,11 +14,13 @@ s3 <- function() {
 #' @keywords internal
 s3_split_uri <- function(uri) {
     assert_s3_uri(uri)
+    ## kill URI schema
     path <- sub('^s3://', '', uri)
-    list(
-        bucket_name = sub('/.*$', '', path),
-        key = sub('^[a-z0-9][a-z0-9\\.-]+[a-z0-9]/', '', path)
-    )
+    ## bucket name is anything before the first slash
+    bucket <- sub('/.*$', '', path)
+    ## object key is the remaining bit
+    key <- sub(paste0('^', bucket, '/?'), '', path)
+    list(bucket_name = bucket, key = key)
 }
 
 
