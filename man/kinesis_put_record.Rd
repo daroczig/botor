@@ -4,7 +4,7 @@
 \alias{kinesis_put_record}
 \title{Writes a single data record into an Amazon Kinesis data stream}
 \usage{
-kinesis_put_record(stream, data, partition_key)
+kinesis_put_record(stream, data, partition_key, ...)
 }
 \arguments{
 \item{stream}{the name of the stream to describe}
@@ -13,7 +13,7 @@ kinesis_put_record(stream, data, partition_key)
 
 \item{partition_key}{Unicode string with a maximum length limit of 256 characters determining which shard in the stream the data record is assigned to}
 
-\item{...}{optional further parameters that might be required for some of the above parameter combinations}
+\item{...}{optional further parameters, such as \code{ExplicitHashKey} or \code{SequenceNumberForOrdering}}
 }
 \value{
 list of \code{ShardId}, \code{SequenceNumber} and \code{EncryptionType}

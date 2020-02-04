@@ -21,11 +21,11 @@ kinesis_describe_stream <- function(stream) {
 #' @inheritParams kinesis_describe_stream
 #' @param data the data blob (<1 MB) to put into the record, which is base64-encoded when the blob is serialized
 #' @param partition_key Unicode string with a maximum length limit of 256 characters determining which shard in the stream the data record is assigned to
-#' @param ... optional further parameters that might be required for some of the above parameter combinations
+#' @param ... optional further parameters, such as \code{ExplicitHashKey} or \code{SequenceNumberForOrdering}
 #' @export
 #' @return list of \code{ShardId}, \code{SequenceNumber} and \code{EncryptionType}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.put_record}
-kinesis_put_record <- function(stream, data, partition_key) {
+kinesis_put_record <- function(stream, data, partition_key, ...) {
     kinesis()$put_record(StreamName = stream, Data = data, PartitionKey = partition_key)
 }
 
@@ -33,6 +33,7 @@ kinesis_put_record <- function(stream, data, partition_key) {
 #' @inheritParams kinesis_put_record
 #' @param shard the shard ID of the Kinesis Data Streams shard to get the iterator for
 #' @param shard_iterator_type determines how the shard iterator is used to start reading data records from the shard
+#' @param ... optional further parameters, such as \code{StartingSequenceNumber} or \code{Timestamp}
 #' @export
 #' @return list of \code{ShardIterator}
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_shard_iterator}

@@ -15,7 +15,7 @@ kinesis_get_shard_iterator(stream, shard,
 
 \item{shard_iterator_type}{determines how the shard iterator is used to start reading data records from the shard}
 
-\item{...}{optional further parameters that might be required for some of the above parameter combinations}
+\item{...}{optional further parameters, such as \code{StartingSequenceNumber} or \code{Timestamp}}
 }
 \value{
 list of \code{ShardIterator}
