@@ -142,8 +142,8 @@
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv'</span>, <span class='kw pkg'>data.table</span><span class='kw ns'>::</span><span class='no'>fread</span>)
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv2'</span>, <span class='no'>read.csv2</span>)
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.RDS'</span>, <span class='no'>readRDS</span>)
-<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.json'</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span>)
-<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.jsonl'</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/jsonlite/man/stream_in.html'>stream_in</a></span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.json'</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://jeroen.cran.dev/jsonlite/reference/fromJSON.html'>fromJSON</a></span>)
+<span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.jsonl'</span>, <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='no'><a href='https://jeroen.cran.dev/jsonlite/reference/stream_in.html'>stream_in</a></span>)
 
 <span class='co'>## read compressed data</span>
 <span class='fu'>s3_read</span>(<span class='st'>'s3://botor/example-data/mtcars.csv.gz'</span>, <span class='no'>read.csv</span>, <span class='kw'>extract</span> <span class='kw'>=</span> <span class='st'>'gzip'</span>)
