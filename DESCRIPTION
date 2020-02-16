@@ -6,9 +6,9 @@ Authors@R: c(
     )
 Title: 'AWS Python SDK' ('boto3') for R
 Description: Fork-safe, raw access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' 'Python' module, and convenient helper functions to query the 'Simple Storage Service' ('S3') and 'Key Management Service' ('KMS'), partial support for 'IAM', the 'Systems Manager Parameter Store' and 'Secrets Manager'.
-SystemRequirements: boto3 (https://aws.amazon.com/sdk-for-python)
-Version: 0.2.0
-Date: 2019-09-23
+SystemRequirements: Python and boto3 (https://aws.amazon.com/sdk-for-python)
+Version: 0.3.0
+Date: 2020-02-16
 URL: https://daroczig.github.io/botor
 BugReports: https://github.com/daroczig/botor/issues
 RoxygenNote: 6.1.1
