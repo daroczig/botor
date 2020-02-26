@@ -49,7 +49,7 @@ ssm_get_secrets <- function(path, key = NULL, decrypt = TRUE) {
         path <- paste(parts[1:length(parts) - 1], collapse = "/")
     }
 
-    log_trace("Looking up %s in AWS Secrets Manager", path)
+    log_trace("Looking up keyID %s from SecretId %s in AWS Secrets Manager", key, path)
     
     resp <- trypy(ssm()$get_parameter(
                 Name = path,
