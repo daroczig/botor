@@ -18,7 +18,8 @@ Imports:
   utils,
   reticulate,
   checkmate,
-  logger
+  logger,
+  jsonlite
 Suggests:
   testthat,
   covr,
