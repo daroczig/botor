@@ -87,5 +87,9 @@ mime_guess <- function(file) {
 #' @return string
 #' @keywords internal
 coerce_bytes_literals_to_string <- function(x) {
-    rawToChar(require_python_builtins()$bytearray(x))
+    if (inherits(x, 'python.builtin.bytes')) {
+        rawToChar(require_python_builtins()$bytearray(x))
+    } else {
+        rawToChar(require_python_builtins()$bytearray(x, encoding = 'utf8'))
+    }
 }
