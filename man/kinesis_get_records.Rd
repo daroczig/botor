@@ -4,10 +4,12 @@
 \alias{kinesis_get_records}
 \title{Gets data records from a Kinesis data stream's shard}
 \usage{
-kinesis_get_records(shard_iterator)
+kinesis_get_records(shard_iterator, limit = 25)
 }
 \arguments{
 \item{shard_iterator}{the position in the shard from which you want to start sequentially reading data records, usually provided by \code{\link{kinesis_get_shard_iterator}}}
+
+\item{limit}{maximum number of records to return}
 }
 \value{
 list of \code{Records}, \code{NextShardIterator} and \code{MillisBehindLatest}
