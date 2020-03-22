@@ -44,7 +44,7 @@ kinesis_get_shard_iterator <- function(stream, shard,
                                            'AT_SEQUENCE_NUMBER', 'AFTER_SEQUENCE_NUMBER', 'AT_TIMESTAMP'),
                                        ...) {
     shard_iterator_type <- match.arg(shard_iterator_type)
-    kinesis()$get_shard_iterator(StreamName = stream, ShardId = shard, ShardIteratorType = shard_iterator_type)
+    kinesis()$get_shard_iterator(StreamName = stream, ShardId = shard, ShardIteratorType = shard_iterator_type, ...)
 }
 
 #' Gets data records from a Kinesis data stream's shard
