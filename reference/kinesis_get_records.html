@@ -112,7 +112,7 @@
     <p>Gets data records from a Kinesis data stream's shard</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kinesis_get_records</span>(<span class='no'>shard_iterator</span>)</pre>
+    <pre class="usage"><span class='fu'>kinesis_get_records</span>(<span class='no'>shard_iterator</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>25</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -120,6 +120,10 @@
     <tr>
       <th>shard_iterator</th>
       <td><p>the position in the shard from which you want to start sequentially reading data records, usually provided by <code><a href='kinesis_get_shard_iterator.html'>kinesis_get_shard_iterator</a></code></p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>maximum number of records to return</p></td>
     </tr>
     </table>
 
