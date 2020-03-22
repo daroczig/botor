@@ -59,6 +59,6 @@ kinesis_get_shard_iterator <- function(stream, shard,
 #' iterator <- kinesis_get_shard_iterator(stream = 'botor-tester', shard = '0')
 #' kinesis_get_records(iterator$ShardIterator)
 #' }
-kinesis_get_records <- function(shard_iterator, limit = 25) {
+kinesis_get_records <- function(shard_iterator, limit = 25L) {
     kinesis()$get_records(ShardIterator = shard_iterator, Limit = limit)
 }
