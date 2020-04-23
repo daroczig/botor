@@ -271,7 +271,8 @@ s3_ls <- function(uri) {
             key = object$data$Key,
             uri = file.path('s3:/', uri_parts$bucket_name, object$data$Key),
             size = object$data$Size,
-            owner = object$data$Owner$DisplayName,
+            ## owner might be missing, so coerce NULL to NA
+            owner = c(object$data$Owner$DisplayName, NA_character_)[1],
             last_modified = object$data$LastModified$strftime('%Y-%m-%d %H:%M:%S %Z'),
             stringsAsFactors = FALSE)
     }))
