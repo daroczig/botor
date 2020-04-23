@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AWS Python SDK (boto3) for R • botor</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="AWS Python SDK (boto3) for R">
 <meta property="og:description" content="Fork-safe, raw access to the Amazon Web Services (AWS) SDK via the boto3 Python module, and convenient helper functions to query the Simple Storage Service (S3) and Key Management Service (KMS), partial support for IAM, the Systems Manager Parameter Store and Secrets Manager.">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -50,7 +50,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/daroczig/botor/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -65,24 +72,24 @@
 <div id="botor-reticulate-wrapper-on-boto3" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#botor-reticulate-wrapper-on-boto3" class="anchor"></a>botor: Reticulate wrapper on ‘boto3’</h1></div>
-<p><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a> <img src="https://www.r-pkg.org/badges/version/botor" alt="CRAN"><a href="https://travis-ci.org/daroczig/botor"><img src="https://travis-ci.org/daroczig/botor.svg?branch=master" alt="Build Status"></a> <a href="https://codecov.io/gh/daroczig/botor"><img src="https://codecov.io/gh/daroczig/botor/branch/master/graph/badge.svg" alt="Code Coverage"></a></p>
+
 <p>This R package provides raw access to the ‘Amazon Web Services’ (‘AWS’) ‘SDK’ via the ‘boto3’ Python module and some convenient helper functions (currently for S3 and KMS) and workarounds, eg taking care of spawning new resources in forked R processes.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package requires Python to be installed along with the <code>boto3</code> Python module, which can be installed from R via:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">reticulate<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/py_install.html">py_install</a></span>(<span class="st">'boto3'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">reticulate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/py_install.html">py_install</a></span>(<span class="st">'boto3'</span>)</pre></div>
 <p>If that might result in technical problems that you cannot solve, then it’s probably easier to install a standalone Python along with the system dependencies etc via <a href="https://github.com/hafen/rminiconda"><code>rminiconda</code></a>.</p>
 <p>Once the Python dependencies are resolved, you can either install from CRAN or the most recent (development version) of <code>botor</code> can be installed from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'daroczig/botor'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'daroczig/botor'</span>)</pre></div>
 </div>
 <div id="loading-the-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-the-package" class="anchor"></a>Loading the package</h2>
 <p>Loading the <code>botor</code> package might take a while as it will also <code>import</code> the <code>boto3</code> Python module in the background:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(botor))</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;    user  system elapsed </span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;   1.131   0.250   1.191</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">botor</span>))
+<span class="co">#&gt;    user  system elapsed </span>
+<span class="co">#&gt;   1.131   0.250   1.191</span></pre></div>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
@@ -91,30 +98,30 @@
 <ol>
 <li>
 <p>Check the currently used AWS user’s name:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/iam_whoami.html">iam_whoami</a></span>()</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] "gergely-dev"</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="reference/iam_whoami.html">iam_whoami</a></span>()
+<span class="co">#&gt; [1] "gergely-dev"</span></pre></div>
 </li>
 <li>
 <p>Read a <code>csv</code> file stored in S3 using a helper function:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, read.csv)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, <span class="no">read.csv</span>)
+<span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="co">#&gt; ...</span></pre></div>
 </li>
 <li>
 <p>Encrypt a string via KMS using a helper function:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/kms_encrypt.html">kms_encrypt</a></span>(<span class="st">'alias/key'</span>, <span class="st">'secret'</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] "QWERTY..."</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/kms_encrypt.html">kms_encrypt</a></span>(<span class="st">'alias/key'</span>, <span class="st">'secret'</span>)
+<span class="co">#&gt; [1] "QWERTY..."</span></pre></div>
 </li>
 <li>
 <p>Get more info on the currently used AWS user calling the IAM client directly:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/iam.html">iam</a></span>()<span class="op">$</span><span class="kw">get_user</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="reference/iam.html">iam</a></span>()$<span class="fu">get_user</span>()</pre></div>
 </li>
 <li>
 <p>Create a new client to a service without helper functions:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">ec2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/botor_client.html">botor_client</a></span>(<span class="st">'ec2'</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">ec2<span class="op">$</span><span class="kw">describe_vpcs</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="no">ec2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/botor_client.html">botor_client</a></span>(<span class="st">'ec2'</span>)
+<span class="no">ec2</span>$<span class="fu">describe_vpcs</span>()</pre></div>
 </li>
 </ol>
 </div>
@@ -127,50 +134,50 @@
 </li>
 <li>call the <code><a href="reference/botor.html">botor()</a></code> function with the relevant argument to set the config of the default session for the <code>botor</code> helper functions, eg</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="reference/botor.html">botor</a></span>(<span class="dt">region_name =</span> <span class="st">'eu-west-42'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="reference/botor.html">botor</a></span>(<span class="kw">region_name</span> <span class="kw">=</span> <span class="st">'eu-west-42'</span>)</pre></div>
 <ul>
 <li>if you need to manage multiple sessions, then use the raw <code>boto3</code> object from the <code>botor</code> package and <code>boto3.session.Session</code> to init these custom sessions and the required clients/resources on the top of those, eg</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">my_custom_session1 &lt;-<span class="st"> </span>boto3<span class="op">$</span><span class="kw">Session</span>(<span class="dt">region_name =</span> <span class="st">'us-west-1'</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">my_custom_s3_client1 &lt;-<span class="st"> </span>my_custom_session1<span class="op">$</span><span class="kw">client</span>(<span class="st">'s3'</span>)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">my_custom_session2 &lt;-<span class="st"> </span>boto3<span class="op">$</span><span class="kw">Session</span>(<span class="dt">region_name =</span> <span class="st">'us-west-2'</span>)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">my_custom_s3_client2 &lt;-<span class="st"> </span>my_custom_session2<span class="op">$</span><span class="kw">client</span>(<span class="st">'s3'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="r"><span class="no">my_custom_session1</span> <span class="kw">&lt;-</span> <span class="no">boto3</span>$<span class="fu">Session</span>(<span class="kw">region_name</span> <span class="kw">=</span> <span class="st">'us-west-1'</span>)
+<span class="no">my_custom_s3_client1</span> <span class="kw">&lt;-</span> <span class="no">my_custom_session1</span>$<span class="fu">client</span>(<span class="st">'s3'</span>)
+<span class="no">my_custom_session2</span> <span class="kw">&lt;-</span> <span class="no">boto3</span>$<span class="fu">Session</span>(<span class="kw">region_name</span> <span class="kw">=</span> <span class="st">'us-west-2'</span>)
+<span class="no">my_custom_s3_client2</span> <span class="kw">&lt;-</span> <span class="no">my_custom_session2</span>$<span class="fu">client</span>(<span class="st">'s3'</span>)</pre></div>
 </div>
 <div id="using-the-raw-boto3-module" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-raw-boto3-module" class="anchor"></a>Using the raw <code>boto3</code> module</h2>
 <p>The <code>botor</code> package provides the <code>boto3</code> object with full access to the <code>boto3</code> Python SDK. Quick example on listing all S3 buckets:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(botor)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">s3 &lt;-<span class="st"> </span>boto3<span class="op">$</span><span class="kw">resource</span>(<span class="st">'s3'</span>)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(reticulate)</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/iterate.html">iter_next</a></span>(s3<span class="op">$</span>buckets<span class="op">$</span><span class="kw">pages</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">botor</span>)
+<span class="no">s3</span> <span class="kw">&lt;-</span> <span class="no">boto3</span>$<span class="fu">resource</span>(<span class="st">'s3'</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">reticulate</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/iterate.html">iter_next</a></span>(<span class="no">s3</span>$<span class="no">buckets</span>$<span class="fu">pages</span>())</pre></div>
 <p>Note that this approach requires a stable understanding of the <code>boto3</code> Python module, plus a decent familiarity with <code>reticulate</code> as well (see eg <code>iter_next</code>) – so you might want to rather consider using the helper functions described below.</p>
 </div>
 <div id="using-the-default-botor-session" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-default-botor-session" class="anchor"></a>Using the default <code>botor</code> session</h2>
 <p>Calling <code><a href="reference/botor.html">botor()</a></code> will provide you a default <code>boto3</code> session that is cached internally. You can always override the default session by calling <code><a href="reference/botor.html">botor()</a></code> again with new arguments. See eg setting the default <code>boto3</code> session to use <code>us-west-2</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="reference/botor.html">botor</a></span>(<span class="dt">region_name =</span> <span class="st">'us-west-2'</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="reference/botor.html">botor</a></span>()<span class="op">$</span><span class="kw">resource</span>(<span class="st">'s3'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="r"><span class="fu"><a href="reference/botor.html">botor</a></span>(<span class="kw">region_name</span> <span class="kw">=</span> <span class="st">'us-west-2'</span>)
+<span class="fu"><a href="reference/botor.html">botor</a></span>()$<span class="fu">resource</span>(<span class="st">'s3'</span>)</pre></div>
 <p>A great advantage of using <code><a href="reference/botor.html">botor()</a></code> instead of custom sessions is that it’s fork-safe. See eg:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="kw"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt; [1] 31225</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="kw"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>)</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; [1] 31225</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="cf">function</span>(i) <span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="kw"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>))</a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt; [1] 31225</span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; [1] 31225</span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="kw">mclapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="cf">function</span>(i) <span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="kw"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>), <span class="dt">mc.cores =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; [1] 13209</span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; [1] 13210</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="fu"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>)
+<span class="co">#&gt; [1] 31225</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="fu"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>)
+<span class="co">#&gt; [1] 31225</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">function</span>(<span class="no">i</span>) <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="fu"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>))
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 31225</span>
+<span class="co">#&gt;</span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 31225</span>
+
+<span class="fu">mclapply</span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">function</span>(<span class="no">i</span>) <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="fu"><a href="reference/botor.html">botor</a></span>(), <span class="st">'pid'</span>), <span class="kw">mc.cores</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 13209</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 13210</span></pre></div>
 </div>
 <div id="convenient-helper-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -180,26 +187,26 @@
 <ol>
 <li>
 <p>Listing all S3 buckets takes some time as it will first initialize the S3 Boto3 client in the background:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="kw"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())[[<span class="st">'elapsed'</span>]]</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; [1] 1.426</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())<span class="kw">[[</span><span class="st">'elapsed'</span>]]
+<span class="co">#&gt; [1] 1.426</span></pre></div>
 </li>
 <li>
 <p>But the second query is much faster as reusing the same <code>s3</code> Boto3 resource:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="kw"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())[[<span class="st">'elapsed'</span>]]</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; [1] 0.323</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())<span class="kw">[[</span><span class="st">'elapsed'</span>]]
+<span class="co">#&gt; [1] 0.323</span></pre></div>
 </li>
 <li>
 <p>Unfortunately, sharing the same Boto3 resource between (forked) processes is not ideal, so <code>botor</code> will take care of that by spawning new resources in the forked threads:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(parallel)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">simplify2array</a></span>(<span class="kw"><a href="https://rdrr.io/r/parallel/mclapply.html">mclapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(i) <span class="kw"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="kw"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())[[<span class="st">'elapsed'</span>]], <span class="dt">mc.cores =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt; [1] 1.359 1.356 0.406 0.397</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">parallel</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">simplify2array</a></span>(<span class="fu"><a href="https://rdrr.io/r/parallel/mclapply.html">mclapply</a></span>(<span class="fl">1</span>:<span class="fl">4</span>, <span class="kw">function</span>(<span class="no">i</span>) <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())<span class="kw">[[</span><span class="st">'elapsed'</span>]], <span class="kw">mc.cores</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="co">#&gt; [1] 1.359 1.356 0.406 0.397</span></pre></div>
 </li>
 <li>
 <p>Want to speed it up more?</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(memoise)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">s3_list_buckets &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/memoise/man/memoise.html">memoise</a></span>(s3_list_buckets)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">simplify2array</a></span>(<span class="kw"><a href="https://rdrr.io/r/parallel/mclapply.html">mclapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(i) <span class="kw"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="kw"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())[[<span class="st">'elapsed'</span>]], <span class="dt">mc.cores =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#&gt; [1] 1.330 1.332 0.000 0.000</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">memoise</span>)
+<span class="no">s3_list_buckets</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/memoise/man/memoise.html">memoise</a></span>(<span class="no">s3_list_buckets</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">simplify2array</a></span>(<span class="fu"><a href="https://rdrr.io/r/parallel/mclapply.html">mclapply</a></span>(<span class="fl">1</span>:<span class="fl">4</span>, <span class="kw">function</span>(<span class="no">i</span>) <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="reference/s3_list_buckets.html">s3_list_buckets</a></span>())<span class="kw">[[</span><span class="st">'elapsed'</span>]], <span class="kw">mc.cores</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="co">#&gt; [1] 1.330 1.332 0.000 0.000</span></pre></div>
 </li>
 </ol>
 <p>The currently supported resources and features via helper functions: <a href="https://daroczig.github.io/botor/reference/index.html" class="uri">https://daroczig.github.io/botor/reference/index.html</a></p>
@@ -208,20 +215,20 @@
 <h2 class="hasAnchor">
 <a href="#error-handling" class="anchor"></a>Error handling</h2>
 <p>The convenient helper functions try to suppress the boring Python traceback and provide you only the most relevant information on the error. If you want to see the full tracelog and more details after an error, call <code><a href="https://rdrr.io/pkg/reticulate/man/py_last_error.html">reticulate::py_last_error()</a></code>. When working with the raw <code>boto3</code> wrapper, you may find <code>botor:::trypy</code> useful as well.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="reference/s3_download_file.html">s3_download_file</a></span>(<span class="st">'s3://bottttor/example-data/mtcars.csv'</span>, <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>())</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; Error in s3_download_file("s3://bottttor/example-data/mtcars.csv", tempfile()) : </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt;   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="kw"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars2.csv'</span>, read.csv)</a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; Error in s3_download(object, t) : </span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt;   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="kw"><a href="reference/botor.html">botor</a></span>(<span class="dt">region_name =</span> <span class="st">'us-west-2'</span>)</a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="kw"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, read.csv)</a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>
-<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></a>
-<a class="sourceLine" id="cb18-13" data-line-number="13"><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="r"><span class="fu"><a href="reference/s3_download_file.html">s3_download_file</a></span>(<span class="st">'s3://bottttor/example-data/mtcars.csv'</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>())
+<span class="co">#&gt; Error in s3_download_file("s3://bottttor/example-data/mtcars.csv", tempfile()) : </span>
+<span class="co">#&gt;   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found</span>
+
+<span class="fu"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars2.csv'</span>, <span class="no">read.csv</span>)
+<span class="co">#&gt; Error in s3_download(object, t) : </span>
+<span class="co">#&gt;   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden</span>
+
+<span class="fu"><a href="reference/botor.html">botor</a></span>(<span class="kw">region_name</span> <span class="kw">=</span> <span class="st">'us-west-2'</span>)
+<span class="fu"><a href="reference/s3_read.html">s3_read</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, <span class="no">read.csv</span>)
+<span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="co">#&gt; ...</span></pre></div>
 </div>
 <div id="logging" class="section level2">
 <h2 class="hasAnchor">
@@ -242,15 +249,15 @@
 <code>FATAL</code> currently not used</li>
 </ul>
 <p>The default log level threshold set to <code>DEBUG</code>. If you want to update that, use the package name for the <code>namespace</code> argument of <code>log_threshold</code> from the <code>logger</code> package, eg to enable all log messages:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(logger)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/pkg/logger/man/log_threshold.html">log_threshold</a></span>(TRACE, <span class="dt">namespace =</span> <span class="st">'botor'</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw"><a href="reference/s3_download_file.html">s3_download_file</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>())</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">#&gt; TRACE [2019-01-11 14:48:07] Downloading s3://botor/example-data/mtcars.csv to '/tmp/RtmpCPNrOk/file6fac556567d4' ...</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co">#&gt; DEBUG [2019-01-11 14:48:09] Downloaded 1303 bytes from s3://botor/example-data/mtcars.csv and saved at '/tmp/RtmpCPNrOk/file6fac556567d4'</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">logger</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/logger/man/log_threshold.html">log_threshold</a></span>(<span class="no">TRACE</span>, <span class="kw">namespace</span> <span class="kw">=</span> <span class="st">'botor'</span>)
+
+<span class="fu"><a href="reference/s3_download_file.html">s3_download_file</a></span>(<span class="st">'s3://botor/example-data/mtcars.csv'</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>())
+<span class="co">#&gt; TRACE [2019-01-11 14:48:07] Downloading s3://botor/example-data/mtcars.csv to '/tmp/RtmpCPNrOk/file6fac556567d4' ...</span>
+<span class="co">#&gt; DEBUG [2019-01-11 14:48:09] Downloaded 1303 bytes from s3://botor/example-data/mtcars.csv and saved at '/tmp/RtmpCPNrOk/file6fac556567d4'</span></pre></div>
 <p>Or update to not fire the less important messages than warnings:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(logger)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/pkg/logger/man/log_threshold.html">log_threshold</a></span>(WARN, <span class="dt">namespace =</span> <span class="st">'botor'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">logger</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/logger/man/log_threshold.html">log_threshold</a></span>(<span class="no">WARN</span>, <span class="kw">namespace</span> <span class="kw">=</span> <span class="st">'botor'</span>)</pre></div>
 <p>You can use the same approach to set custom (or more than one) log appenders, eg writing the log messages to files, a database etc – check the <code>logger</code> docs for more details.</p>
 </div>
 <div id="why-the-name" class="section level2">
@@ -262,11 +269,13 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=botor">https://​cloud.r-project.org/​package=botor</a>
+</li>
+<li>Browse source code at <br><a href="https://github.com/daroczig/botor/">https://​github.com/​daroczig/​botor/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/daroczig/botor/issues">https://​github.com/​daroczig/​botor/​issues</a>
 </li>
@@ -281,13 +290,21 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Gergely Daróczi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3149-8537" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
+<li>Gergely Daróczi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3149-8537" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
 <a href="https://system1.com"><img src="https://system1.com/static/img/logo.svg" height="24" style="background-color:grey;"></a> <br><small class="roles"> Funder </small>  </li>
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
+<li><a href="https://travis-ci.org/daroczig/botor"><img src="https://travis-ci.org/daroczig/botor.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://codecov.io/gh/daroczig/botor"><img src="https://codecov.io/gh/daroczig/botor/branch/master/graph/badge.svg" alt="Code Coverage"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -296,7 +313,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
