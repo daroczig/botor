@@ -4,9 +4,13 @@
 \alias{kinesis_get_shard_iterator}
 \title{Gets an Amazon Kinesis shard iterator}
 \usage{
-kinesis_get_shard_iterator(stream, shard,
+kinesis_get_shard_iterator(
+  stream,
+  shard,
   shard_iterator_type = c("TRIM_HORIZON", "LATEST", "AT_SEQUENCE_NUMBER",
-  "AFTER_SEQUENCE_NUMBER", "AT_TIMESTAMP"), ...)
+    "AFTER_SEQUENCE_NUMBER", "AT_TIMESTAMP"),
+  ...
+)
 }
 \arguments{
 \item{stream}{the name of the stream to describe}

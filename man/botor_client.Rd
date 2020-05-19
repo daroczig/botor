@@ -4,8 +4,7 @@
 \alias{botor_client}
 \title{Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace}
 \usage{
-botor_client(service, type = c("client", "resource"), cache = TRUE,
-  ...)
+botor_client(service, type = c("client", "resource"), cache = TRUE, ...)
 }
 \arguments{
 \item{service}{string, eg S3 or IAM}

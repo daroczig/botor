@@ -11,7 +11,7 @@ Version: 0.3.0
 Date: 2020-02-16
 URL: https://daroczig.github.io/botor
 BugReports: https://github.com/daroczig/botor/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 License: AGPL-3
 Encoding: UTF-8
 Imports:

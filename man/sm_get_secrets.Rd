@@ -4,7 +4,11 @@
 \alias{sm_get_secrets}
 \title{Read AWS System Manager's Secrets Manager via Secret Manager}
 \usage{
-sm_get_secrets(path, key = NULL)
+sm_get_secrets(
+  path,
+  keyinpath = TRUE,
+  output_format = c("raw_string", "value")
+)
 }
 \arguments{
 \item{path}{name/path of the key to be read}
