@@ -13,6 +13,7 @@ sm <- function() {
 #' @param parse_json logical. Default TRUE
 #' @importFrom checkmate assert_vector assert_logical
 #' @importFrom jsonlite fromJSON
+#' @importFrom logger log_warn
 #' @return (optionally decrypted) value
 #' @export
 sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
