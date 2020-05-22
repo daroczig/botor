@@ -29,8 +29,10 @@ sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
   resp <- trypy(sm()$get_secret_value(SecretId = path))$SecretString
 
   if (parse_json) {
-    resp <- fromJSON(resp)[[key]]
-    if (is.null(resp)) log_warn("Key %s does not exist", key)
+    resp <- fromJSON(resp)
+  }
+  for (k in key) {
+    resp <- resp[[k]]
   }
   
   resp
