@@ -11,13 +11,13 @@ sm <- function() {
 #' @param path name/path of the key to be read
 #' @param key single key or a vector of keys. 
 #' @param parse_json logical. Default TRUE
-#' @importFrom checkmate assert_vector assert_logical
+#' @importFrom checkmate assert_flag assert_vector
 #' @importFrom jsonlite fromJSON
 #' @importFrom logger log_warn
 #' @return (optionally decrypted) value
 #' @export
 sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
-  assert_logical(parse_json)
+  assert_flag(parse_json)
   assert_vector(key, null.ok = TRUE)
 
   if (!is.null(key) && parse_json == FALSE) {
@@ -31,8 +31,7 @@ sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
   if (parse_json) {
     resp <- fromJSON(resp)[[key]]
     if (is.null(resp)) log_warn("Key %s does not exist", key)
-    resp
-  } else {
-    resp
   }
+  
+  resp
 }
