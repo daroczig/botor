@@ -21,7 +21,7 @@ sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
   assert_vector(key, null.ok = TRUE)
 
   if (!is.null(key) && parse_json == FALSE) {
-    stop('Key(s) must be provided if parse_json = TRUE')
+    stop('Need to set parse_json=TRUE when extracting keys')
   }
 
   log_trace("Looking up SecretId %s in AWS Secrets Manager", path)
