@@ -26,8 +26,7 @@ sm_get_secret <- function(path, key = NULL, parse_json = TRUE) {
 
   log_trace("Looking up SecretId %s in AWS Secrets Manager", path)
 
-  resp <- trypy(sm()$get_secret_value(
-    SecretId = path))$SecretString
+  resp <- trypy(sm()$get_secret_value(SecretId = path))$SecretString
 
   if (parse_json) {
     resp <- fromJSON(resp)[[key]]
