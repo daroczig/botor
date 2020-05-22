@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gets an Amazon Kinesis shard iterator — kinesis_get_shard_iterator • botor</title>
+<title>The default, fork-safe AWS Systems Manager (SecretManager) client on the top of <code>botor</code> — sm • botor</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Gets an Amazon Kinesis shard iterator — kinesis_get_shard_iterator" />
-<meta property="og:description" content="Gets an Amazon Kinesis shard iterator" />
+<meta property="og:title" content="The default, fork-safe AWS Systems Manager (SecretManager) client on the top of <code>botor</code> — sm" />
+<meta property="og:description" content="The default, fork-safe AWS Systems Manager (SecretManager) client on the top of botor" />
 
 
 
@@ -111,53 +111,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gets an Amazon Kinesis shard iterator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/kinesis.R'><code>R/kinesis.R</code></a></small>
-    <div class="hidden name"><code>kinesis_get_shard_iterator.Rd</code></div>
+    <h1>The default, fork-safe AWS Systems Manager (SecretManager) client on the top of <code>botor</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/daroczig/botor/blob/master/R/sm.R'><code>R/sm.R</code></a></small>
+    <div class="hidden name"><code>sm.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Gets an Amazon Kinesis shard iterator</p>
+    <p>The default, fork-safe AWS Systems Manager (SecretManager) client on the top of <code>botor</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>kinesis_get_shard_iterator</span>(
-  <span class='no'>stream</span>,
-  <span class='no'>shard</span>,
-  <span class='kw'>shard_iterator_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TRIM_HORIZON"</span>, <span class='st'>"LATEST"</span>, <span class='st'>"AT_SEQUENCE_NUMBER"</span>,
-    <span class='st'>"AFTER_SEQUENCE_NUMBER"</span>, <span class='st'>"AT_TIMESTAMP"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>sm</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>stream</th>
-      <td><p>the name of the stream to describe</p></td>
-    </tr>
-    <tr>
-      <th>shard</th>
-      <td><p>the shard ID of the Kinesis Data Streams shard to get the iterator for</p></td>
-    </tr>
-    <tr>
-      <th>shard_iterator_type</th>
-      <td><p>determines how the shard iterator is used to start reading data records from the shard</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>optional further parameters, such as <code>StartingSequenceNumber</code> or <code>Timestamp</code></p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list of <code>ShardIterator</code></p>
+    <p><code>botocore.client.secretsmanager</code></p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_shard_iterator'>https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/kinesis.html#Kinesis.Client.get_shard_iterator</a></p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='kinesis_get_records.html'>kinesis_get_records</a></code></p></div>
+    <p><a href='https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html'>https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
