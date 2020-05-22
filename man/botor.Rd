@@ -4,8 +4,14 @@
 \alias{botor}
 \title{The default, fork-safe Boto3 session}
 \usage{
-botor(aws_access_key_id, aws_secret_access_key, aws_session_token,
-  region_name, botocore_session, profile_name)
+botor(
+  aws_access_key_id,
+  aws_secret_access_key,
+  aws_session_token,
+  region_name,
+  botocore_session,
+  profile_name
+)
 }
 \arguments{
 \item{aws_access_key_id}{AWS access key ID}
