@@ -1,3 +1,11 @@
+# botor 0.4.0 (2023-03-12)
+
+* fix encoding issue of bytearrays
+* Python 2 and Python 3 compatibility fixes
+* pass limit param to get records from Kinesis
+* coerce NULL to NA
+* Support for AWS Systems Manager
+
 # botor 0.3.0 (2020-02-16)
 
 * make caching client/resource optional (#7)

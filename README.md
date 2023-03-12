@@ -1,6 +1,6 @@
 # botor: Reticulate wrapper on 'boto3'
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) ![CRAN](https://www.r-pkg.org/badges/version/botor) [![Build Status](https://travis-ci.org/daroczig/botor.svg?branch=master)](https://travis-ci.org/daroczig/botor) [![Code Coverage](https://codecov.io/gh/daroczig/botor/branch/master/graph/badge.svg)](https://codecov.io/gh/daroczig/botor)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) ![CRAN](https://www.r-pkg.org/badges/version/botor) [![Build Status](https://travis-ci.org/daroczig/botor.svg?branch=master)](https://travis-ci.org/daroczig/botor) [![Code Coverage](https://codecov.io/gh/daroczig/botor/branch/master/graph/badge.svg)](https://app.codecov.io/gh/daroczig/botor)
 
 This R package provides raw access to the 'Amazon Web Services' ('AWS') 'SDK' via the 'boto3' Python module and some convenient helper functions (currently for S3 and KMS) and workarounds, eg taking care of spawning new resources in forked R processes.
 
@@ -198,7 +198,7 @@ s3_read('s3://botor/example-data/mtcars.csv', read.csv)
 
 ## Logging
 
-`botor` uses the [`logger`](https://daroczig.github.io/logger) package to write log messages to the console by default with the following log level standards:
+`botor` uses the [`logger`](https://daroczig.github.io/logger/) package to write log messages to the console by default with the following log level standards:
 
 * `TRACE` start of an AWS query (eg just about to start listing all S3 buckets in an AWS account)
 * `DEBUG` summary on the result of an AWS query (eg number of S3 buckets found in an AWS account)

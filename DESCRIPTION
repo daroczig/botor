@@ -9,7 +9,7 @@ Description: Fork-safe, raw access to the 'Amazon Web Services' ('AWS') 'SDK' vi
 SystemRequirements: Python and boto3 (https://aws.amazon.com/sdk-for-python)
 Version: 0.4.0
 Date: 2023-03-12
-URL: https://daroczig.github.io/botor
+URL: https://daroczig.github.io/botor/
 BugReports: https://github.com/daroczig/botor/issues
 RoxygenNote: 7.1.1
 License: AGPL-3
