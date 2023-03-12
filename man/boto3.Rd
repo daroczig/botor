@@ -4,7 +4,9 @@
 \name{boto3}
 \alias{boto3}
 \title{Raw access to the boto3 module imported at package load time}
-\format{An object of class \code{python.builtin.module} (inherits from \code{python.builtin.object}) of length 2.}
+\format{
+An object of class \code{python.builtin.module} (inherits from \code{python.builtin.object}) of length 0.
+}
 \usage{
 boto3
 }

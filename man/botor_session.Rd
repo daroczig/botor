@@ -4,7 +4,9 @@
 \name{botor_session}
 \alias{botor_session}
 \title{Internal boto3 session}
-\format{An object of class \code{NULL} of length 0.}
+\format{
+An object of class \code{NULL} of length 0.
+}
 \usage{
 botor_session
 }

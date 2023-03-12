@@ -16,4 +16,3 @@
     ## options('reticulate.traceback' = FALSE)
 
 }
-

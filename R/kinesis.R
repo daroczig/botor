@@ -48,7 +48,6 @@ kinesis_get_shard_iterator <- function(stream, shard,
 }
 
 #' Gets data records from a Kinesis data stream's shard
-#' @inheritParams kinesis_put_record
 #' @param shard_iterator the position in the shard from which you want to start sequentially reading data records, usually provided by \code{\link{kinesis_get_shard_iterator}}
 #' @param limit maximum number of records to return
 #' @export
