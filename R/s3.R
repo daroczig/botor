@@ -273,7 +273,7 @@ s3_ls <- function(uri) {
             size = object$data$Size,
             ## owner might be missing, so coerce NULL to NA
             owner = c(object$data$Owner$DisplayName, NA_character_)[1],
-            last_modified = object$data$LastModified$strftime('%Y-%m-%d %H:%M:%S %Z'),
+            last_modified = object$data$LastModified,
             stringsAsFactors = FALSE)
     }))
 
