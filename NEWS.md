@@ -1,3 +1,7 @@
+# botor 0.4.0.9000 (development)
+
+- fix S3 listing bug (#18, #20) via #19 (thanks @jburos)
+
 # botor 0.4.0 (2023-03-12)
 
 * fix encoding issue of bytearrays
