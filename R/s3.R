@@ -67,7 +67,7 @@ s3_download_file <- function(uri, file, force = TRUE) {
     assert_string(file)
     assert_directory_exists(dirname(file))
     log_trace('Downloading %s to %s ...', uri, shQuote(file))
-    if (force == FALSE & file.exists(file)) {
+    if (force == FALSE && file.exists(file)) {
         stop(paste(file, 'already exists'))
     }
     assert_s3_uri(uri)
@@ -188,12 +188,18 @@ s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 
 #' Write an R object into S3
 #' @param x R object
-#' @param fun R function with \code{file} argument to serialize \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json}, \code{stream_out} or \code{saveRDS}
-#' @param compress optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in \code{uri} as well (that is not done automatically).
+#' @param fun R function with \code{file} argument to serialize
+#'     \code{x} to disk before uploading, eg \code{write.csv},
+#'     \code{write_json}, \code{stream_out} or \code{saveRDS}
+#' @param compress optionally compress the file before uploading to
+#'     S3. If compression is used, it's better to include the related
+#'     file extension in \code{uri} as well (that is not done
+#'     automatically).
 #' @param ... optional further arguments passed to \code{fun}
 #' @inheritParams s3_object
 #' @export
-#' @note The temp file used for this operation is automatically removed.
+#' @note The temp file used for this operation is automatically
+#'     removed.
 #' @examples \dontrun{
 #' s3_write(mtcars, write.csv, 's3://botor/example-data/mtcars.csv', row.names = FALSE)
 #' s3_write(mtcars, write.csv2, 's3://botor/example-data/mtcars.csv2', row.names = FALSE)
@@ -250,8 +256,12 @@ s3_write <- function(x, fun, uri, compress = c('none', 'gzip', 'bzip2', 'xz'), .
 
 
 #' List objects at an S3 path
-#' @param uri string, should start with \code{s3://}, then bucket name and optional object key prefix
-#' @return \code{data.frame} with \code{bucket_name}, object \code{key}, \code{uri} (that can be directly passed to eg \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and \code{last_modified} timestamp
+#' @param uri string, should start with \code{s3://}, then bucket name
+#'     and optional object key prefix
+#' @return \code{data.frame} with \code{bucket_name}, object
+#'     \code{key}, \code{uri} (that can be directly passed to eg
+#'     \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and
+#'     \code{last_modified} timestamp
 #' @export
 #' @importFrom reticulate iterate
 s3_ls <- function(uri) {
@@ -293,7 +303,6 @@ s3_ls <- function(uri) {
 #' }
 s3_exists <- function(uri) {
     assert_s3_uri(uri)
-    s3object <- s3_object(uri)
     uri_parts <- s3_split_uri(uri)
     log_trace('Checking if object at %s exist ...', uri)
     head <- tryCatch(
@@ -334,16 +343,19 @@ s3_delete <- function(uri) {
 }
 
 
-#' Sets tags on s3 object overwriting all existing tags. Note: tags and metadata tags are not the same
-#' @param uri string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key
-#' @param tags named character vector, e.g. \code{c(my_first_name = 'my_first_value', my_second_name = 'my_second_value')} where names are the tag names and values are the tag values.
+#' Sets tags on s3 object overwriting all existing tags. Note: tags
+#' and metadata tags are not the same
+#' @param uri string, URI of an S3 object, should start with
+#'     \code{s3://}, then bucket name and object key
+#' @param tags named character vector, e.g. \code{c(my_first_name =
+#'     'my_first_value', my_second_name = 'my_second_value')} where
+#'     names are the tag names and values are the tag values.
 #' @export
-#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}
+#' @references
+#'     \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_object_tagging}
 s3_put_object_tagging <- function(uri, tags) {
     assert_s3_uri(uri)
     tag_set <- mapply(list, Key = names(tags), Value = tags, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-    ## Desired format for tag_set is
-    ## list(list('Key' = 'my_first_key', 'Value' = 'my_first_value'), list('Key' = 'my_second_key', 'Value' = 'my_second_value'))
     uri_parts <- s3_split_uri(uri)
     s3()$meta$client$put_object_tagging(
         Bucket = uri_parts$bucket_name,

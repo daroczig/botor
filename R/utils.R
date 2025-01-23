@@ -90,11 +90,14 @@ python_version <- function() {
 
 #' Transforms a python2 string literal or python3 bytes literal into an R string
 #'
-#' This is useful to call eg for the KMS call, where python2 returns a string, but python3 returns bytes literals -- calling "decode" is tricky, but bytearray conversion, then passing the raw vector to R and converting that a string works.
+#' This is useful to call eg for the KMS call, where python2 returns a
+#' string, but python3 returns bytes literals -- calling "decode" is
+#' tricky, but bytearray conversion, then passing the raw vector to R
+#' and converting that a string works.
 #' @param x string
 #' @return string
 #' @keywords internal
-coerce_bytes_literals_to_string <- function(x) {
+coerce_bytes_literals_to_string <- function(x) { # nolint
     if (inherits(x, 'python.builtin.bytes')) {
         rawToChar(require_python_builtins()$bytearray(x))
     } else {

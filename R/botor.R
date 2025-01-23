@@ -12,15 +12,14 @@ botor_session <- NULL
 #' @param profile_name The name of a profile to use. If not given, then the default profile is used
 #' @return boto3 \code{Session}
 #' @export
-botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token,
-                  region_name, botocore_session, profile_name) {
+botor <- function(aws_access_key_id, aws_secret_access_key, aws_session_token, region_name, botocore_session, profile_name) {
 
     mc   <- match.call()
     args <- as.list(mc[-1])
 
     if (length(args) != 0 || is.null(botor_session) || botor_session_pid() != Sys.getpid()) {
 
-        if (!is.null(botor_session) & length(args) == 0) {
+        if (!is.null(botor_session) && length(args) == 0) {
             args <- attr(botor_session, 'args')
         }
 
@@ -61,12 +60,22 @@ botor_session_uuid <- function() {
 clients <- new.env()
 
 
-#' Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
+#' Creates an initial or reinitialize an already existing AWS client
+#' or resource cached in the package's namespace
 #' @param service string, eg S3 or IAM
-#' @param type AWS service client or resource to be created, eg \code{s3}
-#' @param cache booelan flag for caching the client or resource in the package namespace. For (internal) package functions, it's best to set to \code{TRUE} to avoid reinitializing the client/resource, but for custom use and when you need to use multiple clients for the same service in parallel (eg working with different regions etc), you might want to set this to \code{FALSE}
-#' @param ... further parameters passed to the \code{client} or \code{resource}, eg \code{endpoint_url}
-#' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}
+#' @param type AWS service client or resource to be created, eg
+#'     \code{s3}
+#' @param cache booelan flag for caching the client or resource in the
+#'     package namespace. For (internal) package functions, it's best
+#'     to set to \code{TRUE} to avoid reinitializing the
+#'     client/resource, but for custom use and when you need to use
+#'     multiple clients for the same service in parallel (eg working
+#'     with different regions etc), you might want to set this to
+#'     \code{FALSE}
+#' @param ... further parameters passed to the \code{client} or
+#'     \code{resource}, eg \code{endpoint_url}
+#' @references
+#'     \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}
 #' @return cached AWS client
 #' @importFrom checkmate assert_string assert_flag
 #' @export
@@ -94,11 +103,12 @@ botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, 
         return(client)
     }
 
-    assign(x = service,
-               value = structure(
-                   client,
-                   uuid = botor_session_uuid()),
-           envir = clients)
+    assign(
+        x = service,
+        value = structure(
+            client,
+            uuid = botor_session_uuid()),
+        envir = clients)
     return(client)
 
 }

@@ -8,8 +8,13 @@ kms <- function() {
 
 
 #' Encrypt plain text via KMS
-#' @param key the KMS customer master key identifier as a fully specified Amazon Resource Name (eg \code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012}) or an alias with the \code{alias/} prefix (eg \code{alias/foobar})
-#' @param text max 4096 bytes long string, eg an RSA key, a database password, or other sensitive customer information
+#' @param key the KMS customer master key identifier as a fully
+#'     specified Amazon Resource Name (eg
+#'     \code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012})
+#'     or an alias with the \code{alias/} prefix (eg
+#'     \code{alias/foobar})
+#' @param text max 4096 bytes long string, eg an RSA key, a database
+#'     password, or other sensitive customer information
 #' @param simplify returns Base64-encoded text instead of raw list
 #' @return string or \code{list}
 #' @export
@@ -47,8 +52,12 @@ kms_decrypt <- function(cipher, simplify = TRUE) {
 
 
 #' Generate a data encryption key for envelope encryption via KMS
-#' @param bytes the required length of the data encryption key in bytes (so provide eg \code{64L} for a 512-bit key)
-#' @return \code{list} of the Base64-encoded encrypted version of the data encryption key (to be stored on disk), the \code{raw} object of the encryption key and the KMS customer master key used to generate this object
+#' @param bytes the required length of the data encryption key in
+#'     bytes (so provide eg \code{64L} for a 512-bit key)
+#' @return \code{list} of the Base64-encoded encrypted version of the
+#'     data encryption key (to be stored on disk), the \code{raw}
+#'     object of the encryption key and the KMS customer master key
+#'     used to generate this object
 #' @inheritParams kms_encrypt
 #' @export
 #' @importFrom checkmate assert_integer
@@ -69,7 +78,8 @@ kms_generate_data_key <- function(key, bytes = 64L) {
 
 #' Encrypt file via KMS
 #' @param file file path
-#' @return two files created with \code{enc} (encrypted data) and \code{key} (encrypted key) extensions
+#' @return two files created with \code{enc} (encrypted data) and
+#'     \code{key} (encrypted key) extensions
 #' @inheritParams kms_encrypt
 #' @export
 #' @seealso \code{\link{kms_encrypt}} \code{\link{kms_decrypt_file}}

@@ -13,6 +13,4 @@
     logger::log_formatter(logger::formatter_sprintf, namespace = pkgname)
     logger::log_threshold(logger::DEBUG, namespace = pkgname)
 
-    ## options('reticulate.traceback' = FALSE)
-
 }
