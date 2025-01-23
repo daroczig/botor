@@ -1,6 +1,6 @@
-# botor 0.4.0.9000 (development)
+# botor 0.4.1 (2025-01-23)
 
-- fix S3 listing bug (#18, #20) via #19 (thanks @jburos)
+* fix S3 listing bug (#18, #20) via #19 (thanks @jburos)
 
 # botor 0.4.0 (2023-03-12)
 

@@ -26,7 +26,7 @@ Loading the `botor` package might take a while as it will also `import` the `bot
 
 ```r
 system.time(library(botor))
-#>    user  system elapsed 
+#>    user  system elapsed
 #>   1.131   0.250   1.191
 ```
 
@@ -131,7 +131,7 @@ lapply(1:2, function(i) attr(botor(), 'pid'))
 mclapply(1:2, function(i) attr(botor(), 'pid'), mc.cores = 2)
 #> [[1]]
 #> [1] 13209
-#> 
+#>
 #> [[2]]
 #> [1] 13210
 ```
@@ -181,11 +181,11 @@ The convenient helper functions try to suppress the boring Python traceback and 
 
 ```r
 s3_download_file('s3://bottttor/example-data/mtcars.csv', tempfile())
-#> Error in s3_download_file("s3://bottttor/example-data/mtcars.csv", tempfile()) : 
+#> Error in s3_download_file("s3://bottttor/example-data/mtcars.csv", tempfile()) :
 #>   Python `ClientError`: An error occurred (404) when calling the HeadObject operation: Not Found
 
 s3_read('s3://botor/example-data/mtcars2.csv', read.csv)
-#> Error in s3_download(object, t) : 
+#> Error in s3_download(object, t) :
 #>   Python `ClientError`: An error occurred (403) when calling the HeadObject operation: Forbidden
 
 botor(region_name = 'us-west-2')
