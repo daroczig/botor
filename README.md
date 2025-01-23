@@ -1,4 +1,4 @@
-# botor: Reticulate wrapper on 'boto3'
+# botor: Reticulate wrapper on 'boto3' <a href="https://daroczig.github.io/botor/"><img src="man/figures/logo.png" align="right" height="138" alt="botor website" /></a>
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) ![CRAN](https://www.r-pkg.org/badges/version/botor) [![R-CMD-check](https://github.com/daroczig/botor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daroczig/botor/actions/workflows/R-CMD-check.yaml) [![Code Coverage](https://codecov.io/gh/daroczig/botor/branch/master/graph/badge.svg)](https://app.codecov.io/gh/daroczig/botor)
