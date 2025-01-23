@@ -15,11 +15,14 @@ kinesis_get_shard_iterator(
 \arguments{
 \item{stream}{the name of the stream to describe}
 
-\item{shard}{the shard ID of the Kinesis Data Streams shard to get the iterator for}
+\item{shard}{the shard ID of the Kinesis Data Streams shard to get
+the iterator for}
 
-\item{shard_iterator_type}{determines how the shard iterator is used to start reading data records from the shard}
+\item{shard_iterator_type}{determines how the shard iterator is
+used to start reading data records from the shard}
 
-\item{...}{optional further parameters, such as \code{StartingSequenceNumber} or \code{Timestamp}}
+\item{...}{optional further parameters, such as
+\code{StartingSequenceNumber} or \code{Timestamp}}
 }
 \value{
 list of \code{ShardIterator}

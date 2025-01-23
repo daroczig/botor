@@ -13,6 +13,9 @@ coerce_bytes_literals_to_string(x)
 string
 }
 \description{
-This is useful to call eg for the KMS call, where python2 returns a string, but python3 returns bytes literals -- calling "decode" is tricky, but bytearray conversion, then passing the raw vector to R and converting that a string works.
+This is useful to call eg for the KMS call, where python2 returns a
+string, but python3 returns bytes literals -- calling "decode" is
+tricky, but bytearray conversion, then passing the raw vector to R
+and converting that a string works.
 }
 \keyword{internal}

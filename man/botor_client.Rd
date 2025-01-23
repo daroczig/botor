@@ -2,24 +2,34 @@
 % Please edit documentation in R/botor.R
 \name{botor_client}
 \alias{botor_client}
-\title{Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace}
+\title{Creates an initial or reinitialize an already existing AWS client
+or resource cached in the package's namespace}
 \usage{
 botor_client(service, type = c("client", "resource"), cache = TRUE, ...)
 }
 \arguments{
 \item{service}{string, eg S3 or IAM}
 
-\item{type}{AWS service client or resource to be created, eg \code{s3}}
+\item{type}{AWS service client or resource to be created, eg
+\code{s3}}
 
-\item{cache}{booelan flag for caching the client or resource in the package namespace. For (internal) package functions, it's best to set to \code{TRUE} to avoid reinitializing the client/resource, but for custom use and when you need to use multiple clients for the same service in parallel (eg working with different regions etc), you might want to set this to \code{FALSE}}
+\item{cache}{booelan flag for caching the client or resource in the
+package namespace. For (internal) package functions, it's best
+to set to \code{TRUE} to avoid reinitializing the
+client/resource, but for custom use and when you need to use
+multiple clients for the same service in parallel (eg working
+with different regions etc), you might want to set this to
+\code{FALSE}}
 
-\item{...}{further parameters passed to the \code{client} or \code{resource}, eg \code{endpoint_url}}
+\item{...}{further parameters passed to the \code{client} or
+\code{resource}, eg \code{endpoint_url}}
 }
 \value{
 cached AWS client
 }
 \description{
-Creates an initial or reinitialize an already existing AWS client or resource cached in the package's namespace
+Creates an initial or reinitialize an already existing AWS client
+or resource cached in the package's namespace
 }
 \references{
 \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html}

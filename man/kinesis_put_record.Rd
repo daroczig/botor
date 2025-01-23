@@ -9,14 +9,19 @@ kinesis_put_record(stream, data, partition_key, ...)
 \arguments{
 \item{stream}{the name of the stream to describe}
 
-\item{data}{the data blob (<1 MB) to put into the record, which is base64-encoded when the blob is serialized}
+\item{data}{the data blob (<1 MB) to put into the record, which is
+base64-encoded when the blob is serialized}
 
-\item{partition_key}{Unicode string with a maximum length limit of 256 characters determining which shard in the stream the data record is assigned to}
+\item{partition_key}{Unicode string with a maximum length limit of
+256 characters determining which shard in the stream the data
+record is assigned to}
 
-\item{...}{optional further parameters, such as \code{ExplicitHashKey} or \code{SequenceNumberForOrdering}}
+\item{...}{optional further parameters, such as
+\code{ExplicitHashKey} or \code{SequenceNumberForOrdering}}
 }
 \value{
-list of \code{ShardId}, \code{SequenceNumber} and \code{EncryptionType}
+list of \code{ShardId}, \code{SequenceNumber} and
+    \code{EncryptionType}
 }
 \description{
 Writes a single data record into an Amazon Kinesis data stream

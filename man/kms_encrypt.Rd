@@ -7,9 +7,14 @@
 kms_encrypt(key, text, simplify = TRUE)
 }
 \arguments{
-\item{key}{the KMS customer master key identifier as a fully specified Amazon Resource Name (eg \code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012}) or an alias with the \code{alias/} prefix (eg \code{alias/foobar})}
+\item{key}{the KMS customer master key identifier as a fully
+specified Amazon Resource Name (eg
+\code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012})
+or an alias with the \code{alias/} prefix (eg
+\code{alias/foobar})}
 
-\item{text}{max 4096 bytes long string, eg an RSA key, a database password, or other sensitive customer information}
+\item{text}{max 4096 bytes long string, eg an RSA key, a database
+password, or other sensitive customer information}
 
 \item{simplify}{returns Base64-encoded text instead of raw list}
 }

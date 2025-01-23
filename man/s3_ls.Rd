@@ -7,10 +7,14 @@
 s3_ls(uri)
 }
 \arguments{
-\item{uri}{string, should start with \code{s3://}, then bucket name and optional object key prefix}
+\item{uri}{string, should start with \code{s3://}, then bucket name
+and optional object key prefix}
 }
 \value{
-\code{data.frame} with \code{bucket_name}, object \code{key}, \code{uri} (that can be directly passed to eg \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and \code{last_modified} timestamp
+\code{data.frame} with \code{bucket_name}, object
+    \code{key}, \code{uri} (that can be directly passed to eg
+    \code{\link{s3_read}}), \code{size} in bytes, \code{owner} and
+    \code{last_modified} timestamp
 }
 \description{
 List objects at an S3 path

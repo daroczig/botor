@@ -7,12 +7,17 @@
 kms_encrypt_file(key, file)
 }
 \arguments{
-\item{key}{the KMS customer master key identifier as a fully specified Amazon Resource Name (eg \code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012}) or an alias with the \code{alias/} prefix (eg \code{alias/foobar})}
+\item{key}{the KMS customer master key identifier as a fully
+specified Amazon Resource Name (eg
+\code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012})
+or an alias with the \code{alias/} prefix (eg
+\code{alias/foobar})}
 
 \item{file}{file path}
 }
 \value{
-two files created with \code{enc} (encrypted data) and \code{key} (encrypted key) extensions
+two files created with \code{enc} (encrypted data) and
+    \code{key} (encrypted key) extensions
 }
 \description{
 Encrypt file via KMS

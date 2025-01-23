@@ -9,11 +9,16 @@ s3_write(x, fun, uri, compress = c("none", "gzip", "bzip2", "xz"), ...)
 \arguments{
 \item{x}{R object}
 
-\item{fun}{R function with \code{file} argument to serialize \code{x} to disk before uploading, eg \code{write.csv}, \code{write_json}, \code{stream_out} or \code{saveRDS}}
+\item{fun}{R function with \code{file} argument to serialize
+\code{x} to disk before uploading, eg \code{write.csv},
+\code{write_json}, \code{stream_out} or \code{saveRDS}}
 
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
-\item{compress}{optionally compress the file before uploading to S3. If compression is used, it's better to include the related file extension in \code{uri} as well (that is not done automatically).}
+\item{compress}{optionally compress the file before uploading to
+S3. If compression is used, it's better to include the related
+file extension in \code{uri} as well (that is not done
+automatically).}
 
 \item{...}{optional further arguments passed to \code{fun}}
 }
@@ -21,7 +26,8 @@ s3_write(x, fun, uri, compress = c("none", "gzip", "bzip2", "xz"), ...)
 Write an R object into S3
 }
 \note{
-The temp file used for this operation is automatically removed.
+The temp file used for this operation is automatically
+    removed.
 }
 \examples{
 \dontrun{

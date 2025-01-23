@@ -7,12 +7,20 @@
 kms_generate_data_key(key, bytes = 64L)
 }
 \arguments{
-\item{key}{the KMS customer master key identifier as a fully specified Amazon Resource Name (eg \code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012}) or an alias with the \code{alias/} prefix (eg \code{alias/foobar})}
+\item{key}{the KMS customer master key identifier as a fully
+specified Amazon Resource Name (eg
+\code{arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012})
+or an alias with the \code{alias/} prefix (eg
+\code{alias/foobar})}
 
-\item{bytes}{the required length of the data encryption key in bytes (so provide eg \code{64L} for a 512-bit key)}
+\item{bytes}{the required length of the data encryption key in
+bytes (so provide eg \code{64L} for a 512-bit key)}
 }
 \value{
-\code{list} of the Base64-encoded encrypted version of the data encryption key (to be stored on disk), the \code{raw} object of the encryption key and the KMS customer master key used to generate this object
+\code{list} of the Base64-encoded encrypted version of the
+    data encryption key (to be stored on disk), the \code{raw}
+    object of the encryption key and the KMS customer master key
+    used to generate this object
 }
 \description{
 Generate a data encryption key for envelope encryption via KMS
