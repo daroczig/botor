@@ -4,7 +4,7 @@
 \alias{s3_upload_file}
 \title{Upload a file to S3}
 \usage{
-s3_upload_file(file, uri, content_type = mime_guess(file))
+s3_upload_file(file, uri, content_type = mime_guess(file), ...)
 }
 \arguments{
 \item{file}{string, location of local file}
@@ -12,6 +12,8 @@ s3_upload_file(file, uri, content_type = mime_guess(file))
 \item{uri}{string, URI of an S3 object, should start with \code{s3://}, then bucket name and object key}
 
 \item{content_type}{content type of a file that is auto-guess if omitted}
+
+\item{...}{optional parameters passed to the \code{upload_file} method's \code{ExtraArgs}}
 }
 \value{
 invisibly \code{uri}
