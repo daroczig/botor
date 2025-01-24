@@ -53,9 +53,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">s3</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">s3</span><span class="op">(</span>disable_signing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"botor-s3-disable-signing"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+
+
+<dl><dt id="arg-disable-signing">disable_signing<a class="anchor" aria-label="anchor" href="#arg-disable-signing"></a></dt>
+<dd><p>boolean if requests should be signed. Set to <code>FALSE</code> when interacting with public S3 buckets requiring unauthenticated access.</p></dd>
+
+</dl></div>
     <div id="value">
     <h2>Value</h2>
     <p><code>s3.ServiceResource</code></p>
