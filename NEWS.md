@@ -1,3 +1,7 @@
+# botor 0.4.1.9000 (development)
+
+* Support passing ExtraArgs to S3 `upload_file` (#14)
+
 # botor 0.4.1 (2025-01-23)
 
 Maintenance release:

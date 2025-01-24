@@ -152,6 +152,7 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' @inheritParams s3_object
 #' @param file string, location of local file
 #' @param content_type content type of a file that is auto-guess if omitted
+#' @param ... optional parameters passed to the \code{upload_file} method's \code{ExtraArgs}
 #' @export
 #' @importFrom checkmate assert_file_exists
 #' @importFrom reticulate import
@@ -165,7 +166,7 @@ s3_read <- function(uri, fun, ..., extract = c('none', 'gzip', 'bzip2', 'xz')) {
 #' unlink(t)
 #' ## note that s3_write would have been a much nicer solution for the above
 #' }
-s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
+s3_upload_file <- function(file, uri, content_type = mime_guess(file), ...) {
 
     assert_string(file)
     assert_file_exists(file)
@@ -174,9 +175,9 @@ s3_upload_file <- function(file, uri, content_type = mime_guess(file)) {
 
     ## set content type
     if (!is.na(content_type)) {
-        extra_args <- list(ContentType = content_type)
+        extra_args <- list(ContentType = content_type, ...)
     } else {
-        extra_args <- NULL
+        extra_args <- list(...)
     }
 
     log_trace('Uploading %s to %s ...', shQuote(file), uri)
