@@ -79,7 +79,7 @@ clients <- new.env()
 #' @return cached AWS client
 #' @importFrom checkmate assert_string assert_flag
 #' @export
-botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, ...) {
+botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, ...) { # nolint
 
     assert_string(service)
     assert_flag(cache)
