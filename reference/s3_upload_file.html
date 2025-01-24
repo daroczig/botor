@@ -53,7 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">s3_upload_file</span><span class="op">(</span><span class="va">file</span>, <span class="va">uri</span>, content_type <span class="op">=</span> <span class="fu"><a href="mime_guess.html">mime_guess</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">s3_upload_file</span><span class="op">(</span><span class="va">file</span>, <span class="va">uri</span>, content_type <span class="op">=</span> <span class="fu"><a href="mime_guess.html">mime_guess</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,6 +70,10 @@
 
 <dt id="arg-content-type">content_type<a class="anchor" aria-label="anchor" href="#arg-content-type"></a></dt>
 <dd><p>content type of a file that is auto-guess if omitted</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>optional parameters passed to the <code>upload_file</code> method's <code>ExtraArgs</code></p></dd>
 
 </dl></div>
     <div id="value">
