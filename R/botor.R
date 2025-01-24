@@ -89,7 +89,13 @@ botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, 
         get(service, envir = clients, inherits = FALSE),
         error = function(e) NULL)
 
-    if (cache == TRUE && !is.null(client) && attr(client, 'uuid') == botor_session_uuid()) {
+    client_params <- list(...)
+    if (cache == TRUE && !is.null(client) &&
+            attr(client, 'uuid') == botor_session_uuid() &&
+            ## compare custom client/resource parameters
+            all.equal(client_params, attr(client, 'botor_client_params')) &&
+            ## compare serialized configs
+            all.equal(client_params$config$`__dict__`, attr(client, 'botor_client_params')$config$`__dict__`)) {
         return(client)
     }
 
@@ -98,6 +104,7 @@ botor_client <- function(service, type = c('client', 'resource'), cache = TRUE, 
     } else {
         client <- botor()$resource(service, ...)
     }
+    attr(client, 'botor_client_params') <- client_params
 
     if (cache == FALSE) {
         return(client)
