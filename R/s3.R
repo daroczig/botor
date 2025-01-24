@@ -3,8 +3,15 @@
 #' @export
 #' @references \url{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#service-resource}
 #' @importFrom logger log_trace log_debug log_info log_warn log_error
-s3 <- function() {
-    botor_client('s3', type = 'resource')
+#' @param disable_signing boolean if requests should be signed. Set to \code{FALSE} when interacting with public S3 buckets requiring unauthenticated access.
+s3 <- function(disable_signing = getOption('botor-s3-disable-signing')) {
+    client <- botor_client('s3', type = 'resource', cache = FALSE)
+    if (isTRUE(disable_signing)) {
+        client$meta$client$meta$events$register(
+            'choose-signer.s3.*',
+            require_python_module('botocore')$handlers$disable_signing)
+    }
+    client
 }
 
 

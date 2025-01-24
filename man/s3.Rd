@@ -4,7 +4,10 @@
 \alias{s3}
 \title{The default, fork-safe Amazon Simple Storage Service (S3) client on the top of \code{botor}}
 \usage{
-s3()
+s3(disable_signing = getOption("botor-s3-disable-signing"))
+}
+\arguments{
+\item{disable_signing}{boolean if requests should be signed. Set to \code{FALSE} when interacting with public S3 buckets requiring unauthenticated access.}
 }
 \value{
 \code{s3.ServiceResource}

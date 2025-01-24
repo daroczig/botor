@@ -3,6 +3,7 @@
 Maintenance release:
 
 * Fix S3 listing bug (#18, #20) via #19 (thanks @jburos)
+* Support unsigned S3 requests
 * Linting and code style updates
 * Move CI/CD from Travis to GHA
 
